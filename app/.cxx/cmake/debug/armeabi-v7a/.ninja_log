@@ -1,0 +1,23 @@
+# ninja log v5
+1	1291	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Matrix.cpp.o	736e595be915407e
+0	1431	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/GLUtils.cpp.o	7398770b77066328
+1431	2564	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Model.cpp.o	37cd304f5f2819fe
+1	2772	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Camera.cpp.o	202a2156382a01c6
+2772	3114	0	CMakeFiles/lesson-lib.dir/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp.o	10ac987e908925e3
+1291	3338	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Material.cpp.o	33ea0216536c5503
+3114	3709	0	CMakeFiles/lesson-lib.dir/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp.o	2cf9e2c7d3fb9aed
+3339	4275	0	CMakeFiles/lesson-lib.dir/src/main/cpp/JuliaSet/JuliaSetRenderer.cpp.o	ac6216efae4b3a84
+2565	4408	0	CMakeFiles/lesson-lib.dir/src/main/cpp/utils/Scene.cpp.o	a9d2329122865098
+4408	4576	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/liblesson-lib.so	ccaaaff88f23bc3b
+1	420	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Matrix.cpp.o	736e595be915407e
+0	521	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/GLUtils.cpp.o	7398770b77066328
+1	1597	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Camera.cpp.o	202a2156382a01c6
+521	2051	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Model.cpp.o	37cd304f5f2819fe
+2051	2441	0	CMakeFiles/lesson-lib.dir/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp.o	10ac987e908925e3
+2441	3025	0	CMakeFiles/lesson-lib.dir/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp.o	2cf9e2c7d3fb9aed
+420	3328	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Material.cpp.o	33ea0216536c5503
+1597	4209	0	CMakeFiles/lesson-lib.dir/src/main/cpp/utils/Scene.cpp.o	a9d2329122865098
+3025	4289	0	CMakeFiles/lesson-lib.dir/src/main/cpp/JuliaSet/JuliaSetRenderer.cpp.o	ac6216efae4b3a84
+3328	4743	0	CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp.o	45d002920137affe
+5	1152	0	CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp.o	45d002920137affe
+1152	1256	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/liblesson-lib.so	d456bb11471baa2f

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.learnopengles.android.cpp"
+    android:versionCode="1"
+    android:versionName="1.0.0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="27" />
+
+    <!-- We require OpenGL ES 2.0 -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:debuggable="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:testOnly="true" >
+        <activity android:name="com.learnopengles.android.TableOfContents" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.learnopengles.android.bricksShader.BricksShaderActivity"
+            android:label="@string/bricks_shader" />
+        <activity
+            android:name="com.learnopengles.android.quantizedColor.QuantizedColorActivity"
+            android:label="@string/quantized_color" />
+        <activity
+            android:name="com.learnopengles.android.JuliaSet.JuliaSetActivity"
+            android:label="@string/julia_set" />
+        <activity
+            android:name="com.learnopengles.android.Polyhedrons.PolyhedronsActivity"
+            android:label="@string/polyhedrons" />
+    </application>
+
+</manifest>

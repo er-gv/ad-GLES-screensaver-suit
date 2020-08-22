@@ -1,0 +1,3 @@
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86_64/CMakeFiles/edit_cache.dir
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86_64/CMakeFiles/rebuild_cache.dir
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86_64/CMakeFiles/lesson-lib.dir

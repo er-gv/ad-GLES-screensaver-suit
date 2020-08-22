@@ -1,0 +1,17 @@
+{
+  "buildFiles": [
+    "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/cmake --build /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "lesson-lib-Debug-arm64-v8a": {
+      "artifactName": "lesson-lib",
+      "buildCommand": "/home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/cmake --build /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/arm64-v8a --target lesson-lib",
+      "abi": "arm64-v8a",
+      "output": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/cmake/debug/obj/arm64-v8a/liblesson-lib.so",
+      "runtimeFiles": []
+    }
+  }
+}

@@ -1,0 +1,11 @@
+# ninja log v5
+2	452	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Matrix.cpp.o	ced382d21c65f4cb
+0	495	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/GLUtils.cpp.o	7b5bb39efae8806f
+4	1262	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Camera.cpp.o	df91c35f2a31a94c
+497	1694	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Model.cpp.o	bbaba64431302432
+1695	1827	0	CMakeFiles/lesson-lib.dir/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp.o	b778b463bb14bef4
+1827	2359	0	CMakeFiles/lesson-lib.dir/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp.o	eae51db234c546fd
+452	2557	0	CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Material.cpp.o	7fb4c44d27f9251b
+1262	3409	0	CMakeFiles/lesson-lib.dir/src/main/cpp/utils/Scene.cpp.o	8ad2579b602c2782
+2359	3444	0	CMakeFiles/lesson-lib.dir/src/main/cpp/JuliaSet/JuliaSetRenderer.cpp.o	3d09e9cd501ce119
+3444	3748	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/liblesson-lib.so	ec407f3421d11090

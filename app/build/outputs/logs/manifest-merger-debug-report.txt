@@ -1,0 +1,111 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-40:12
+MERGED from [com.android.support:appcompat-v7:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/5999653a58a513f1695110305774686b/appcompat-v7-27.0.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/965e18b1b5c5b5e3b57b84236b0ea4d5/support-fragment-27.0.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/17982dea21d709486085218a0878a21e/support-core-utils-27.0.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/83d2fc75e16f95c73778c848db8c1ee3/animated-vector-drawable-27.0.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/cc20934b26b01b61cd7cb509dedfa212/support-vector-drawable-27.0.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/e400d0c10dcd24b5705c8ff2685bd17d/support-core-ui-27.0.2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/c217ad5798cd45381e7269b05916df01/support-compat-27.0.2/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.0.3] /home/nathan/.gradle/caches/transforms-2/files-2.1/3f42638e622181c82f32785addecb8a3/runtime-1.0.3/AndroidManifest.xml:17:1-24:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-40:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-40:12
+	package
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:3:11-50
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:5:11-40
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:4:11-34
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+uses-feature#0x00020000
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:8:5-10:34
+	android:glEsVersion
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:9:9-41
+	android:required
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:10:9-32
+application
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:12:5-38:19
+	android:label
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:14:9-41
+	android:icon
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:13:9-38
+activity#com.learnopengles.android.TableOfContents
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:16:9-22:20
+	android:name
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:16:19-75
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:17:13-21:29
+action#android.intent.action.MAIN
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:18:17-68
+	android:name
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:20:17-76
+	android:name
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:20:27-74
+activity#com.learnopengles.android.bricksShader.BricksShaderActivity
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:23:9-25:52
+	android:label
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:25:13-50
+	android:name
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:24:13-87
+activity#com.learnopengles.android.quantizedColor.QuantizedColorActivity
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:27:9-29:54
+	android:label
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:29:13-52
+	android:name
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:28:13-91
+activity#com.learnopengles.android.JuliaSet.JuliaSetActivity
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:31:9-33:48
+	android:label
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:33:13-46
+	android:name
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:32:13-79
+activity#com.learnopengles.android.Polyhedrons.PolyhedronsActivity
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:34:9-36:50
+	android:label
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:36:13-48
+	android:name
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:35:13-85
+uses-sdk
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/5999653a58a513f1695110305774686b/appcompat-v7-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/5999653a58a513f1695110305774686b/appcompat-v7-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/965e18b1b5c5b5e3b57b84236b0ea4d5/support-fragment-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/965e18b1b5c5b5e3b57b84236b0ea4d5/support-fragment-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/17982dea21d709486085218a0878a21e/support-core-utils-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/17982dea21d709486085218a0878a21e/support-core-utils-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/83d2fc75e16f95c73778c848db8c1ee3/animated-vector-drawable-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/83d2fc75e16f95c73778c848db8c1ee3/animated-vector-drawable-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/cc20934b26b01b61cd7cb509dedfa212/support-vector-drawable-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/cc20934b26b01b61cd7cb509dedfa212/support-vector-drawable-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/e400d0c10dcd24b5705c8ff2685bd17d/support-core-ui-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/e400d0c10dcd24b5705c8ff2685bd17d/support-core-ui-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/c217ad5798cd45381e7269b05916df01/support-compat-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.0.2] /home/nathan/.gradle/caches/transforms-2/files-2.1/c217ad5798cd45381e7269b05916df01/support-compat-27.0.2/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.0.3] /home/nathan/.gradle/caches/transforms-2/files-2.1/3f42638e622181c82f32785addecb8a3/runtime-1.0.3/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.3] /home/nathan/.gradle/caches/transforms-2/files-2.1/3f42638e622181c82f32785addecb8a3/runtime-1.0.3/AndroidManifest.xml:20:5-22:41
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
+		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml

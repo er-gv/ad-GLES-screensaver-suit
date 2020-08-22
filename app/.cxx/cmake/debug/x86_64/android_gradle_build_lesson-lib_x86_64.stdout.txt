@@ -1,0 +1,86 @@
+[1/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/GLUtils.cpp.o
+[2/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Matrix.cpp.o
+[3/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Camera.cpp.o
+[4/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Material.cpp.o
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/GLUtils.cpp:163:9: warning: unused variable 'BOTTOM' [-Wunused-variable]
+    int BOTTOM = 5;
+        ^
+1 warning generated.
+[5/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Model.cpp.o
+[6/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/utils/Scene.cpp.o
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Camera.cpp:10:39: warning: field 'm_up' will be initialized after field 'm_bearing' [-Wreorder]
+Camera::Camera(): m_eye(glm::vec3()), m_up(glm::vec3(0,1,0)), m_bearing(glm::vec3(0,0, -1)){}
+                                      ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Camera.cpp:20:37: warning: field 'm_up' will be initialized after field 'm_bearing' [-Wreorder]
+        m_eye(glm::make_vec3(eye)), m_up(glm::make_vec3(lookat)), m_bearing(glm::make_vec3(up))
+                                    ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Camera.cpp:29:9: warning: field 'm_up' will be initialized after field 'm_bearing' [-Wreorder]
+        m_up(glm::vec3(upx,upy,upz)),
+        ^
+3 warnings generated.
+[7/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp.o
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp:173:9: warning: delete called on non-final 'QuantizedColorNative' that has virtual functions but non-virtual destructor [-Wdelete-non-abstract-non-virtual-dtor]
+        delete renderer;
+        ^
+In file included from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp:5:
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:40:13: warning: private field 'mLightModelMatrix' is not used [-Wunused-private-field]
+    Matrix *mLightModelMatrix;
+            ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:43:12: warning: private field 'mMVMatrixHandle' is not used [-Wunused-private-field]
+    GLuint mMVMatrixHandle;
+           ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:44:12: warning: private field 'mLightPosHandle' is not used [-Wunused-private-field]
+    GLuint mLightPosHandle;
+           ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:46:12: warning: private field 'mNormalHandle' is not used [-Wunused-private-field]
+    GLuint mNormalHandle;
+           ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:48:12: warning: private field 'mTextureCoordinateHandle' is not used [-Wunused-private-field]
+    GLuint mTextureCoordinateHandle;
+           ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:51:12: warning: private field 'mPointProgramHandle' is not used [-Wunused-private-field]
+    GLuint mPointProgramHandle;
+           ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:53:11: warning: private field 'mLightPosInModelSpace' is not used [-Wunused-private-field]
+    float mLightPosInModelSpace[4];
+          ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:54:11: warning: private field 'mLightPosInWorldSpace' is not used [-Wunused-private-field]
+    float mLightPosInWorldSpace[4];
+          ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.h:55:11: warning: private field 'mLightPosInEyeSpace' is not used [-Wunused-private-field]
+    float mLightPosInEyeSpace[4];
+          ^
+10 warnings generated.
+[8/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp.o
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp:16:19: warning: data argument not used by format string [-Wformat-extra-args]
+    LOGD(LOG_TAG, "GL %s = %s \n", name, v);
+         ~~~~~~~  ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp:11:67: note: expanded from macro 'LOGD'
+#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
+                                                                  ^~~~~~~~~~~
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp:17:15: warning: unused variable 'viki' [-Wunused-variable]
+    glm::vec3 viki = glm::vec3(2,4,66);
+              ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp:22:23: warning: data argument not used by format string [-Wformat-extra-args]
+        LOGI(LOG_TAG, "after %s() glError (0x%x)\n", op, error);
+             ~~~~~~~  ^
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp:10:66: note: expanded from macro 'LOGI'
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+                                                                 ^~~~~~~~~~~
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp:20:13: warning: unused function 'checkGlError' [-Wunused-function]
+static void checkGlError(const char *op) {
+            ^
+4 warnings generated.
+[9/10] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/JuliaSet/JuliaSetRenderer.cpp.o
+In file included from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/JuliaSet/JuliaSetRenderer.cpp:5:
+In file included from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/JuliaSet/JuliaSetRenderer.h:14:
+../../../../src/main/cpp/utils/Logger.h:34:5: warning: 'static' is not permitted on a declaration of a type [-Wmissing-declarations]
+    static enum SEVERITY {
+    ^
+1 warning generated.
+In file included from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/utils/Scene.cpp:5:
+../../../../src/main/cpp/utils/Scene.h:23:15: warning: private field 'MVPmatrix' is not used [-Wunused-private-field]
+    glm::mat4 MVPmatrix;
+              ^
+1 warning generated.
+[10/10] Linking CXX shared library ../../../../build/intermediates/cmake/debug/obj/x86_64/liblesson-lib.so

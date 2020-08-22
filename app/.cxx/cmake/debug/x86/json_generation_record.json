@@ -1,0 +1,74 @@
+[
+  {
+    "level": "INFO",
+    "message": "Start JSON generation. Platform version: 21 min SDK version: x86",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "Trying to locate CMake in local SDK repository.",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "CMake \u00273.10.2\u0027 found in SDK did not match requested version \u00273.6.0\u0027.",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "- CMake found in SDK at \u0027/home/nathan/DevTool/Android-SDK/cmake/3.6.4111459\u0027 had version \u00273.6.0\u0027",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "rebuilding JSON /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86/android_gradle_build.json due to:",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "- missing previous command file /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86/build_command.txt, will remove stale json folder",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "- command changed from previous, will remove stale json folder",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "removing stale contents from \u0027/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86\u0027",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "created folder \u0027/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86\u0027",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "executing cmake Executable : /home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/cmake\narguments : \n-H/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app\n-DCMAKE_CXX_FLAGS\u003d-frtti -fexceptions\n-DCMAKE_FIND_ROOT_PATH\u003d/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/prefab/x86/prefab\n-DCMAKE_BUILD_TYPE\u003dDebug\n-DCMAKE_TOOLCHAIN_FILE\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/build/cmake/android.toolchain.cmake\n-DANDROID_ABI\u003dx86\n-DANDROID_NDK\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669\n-DANDROID_PLATFORM\u003dandroid-21\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DCMAKE_ANDROID_NDK\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/cmake/debug/obj/x86\n-DCMAKE_MAKE_PROGRAM\u003d/home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/ninja\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM_LEVEL\u003d18\n-DANDROID_TOOLCHAIN\u003dclang\n-DANDROID_STL\u003dc++_static\n-B/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86\n-GNinja\njvmArgs : \n\n",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "Executable : /home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/cmake\narguments : \n-H/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app\n-DCMAKE_CXX_FLAGS\u003d-frtti -fexceptions\n-DCMAKE_FIND_ROOT_PATH\u003d/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/prefab/x86/prefab\n-DCMAKE_BUILD_TYPE\u003dDebug\n-DCMAKE_TOOLCHAIN_FILE\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/build/cmake/android.toolchain.cmake\n-DANDROID_ABI\u003dx86\n-DANDROID_NDK\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669\n-DANDROID_PLATFORM\u003dandroid-21\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DCMAKE_ANDROID_NDK\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/cmake/debug/obj/x86\n-DCMAKE_MAKE_PROGRAM\u003d/home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/ninja\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM_LEVEL\u003d18\n-DANDROID_TOOLCHAIN\u003dclang\n-DANDROID_STL\u003dc++_static\n-B/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86\n-GNinja\njvmArgs : \n\n",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  },
+  {
+    "level": "INFO",
+    "message": "JSON generation completed with problem. Exception: Build command failed.\nError while executing process /home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/cmake with arguments {-H/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app -DCMAKE_CXX_FLAGS\u003d-frtti -fexceptions -DCMAKE_FIND_ROOT_PATH\u003d/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/prefab/x86/prefab -DCMAKE_BUILD_TYPE\u003dDebug -DCMAKE_TOOLCHAIN_FILE\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/build/cmake/android.toolchain.cmake -DANDROID_ABI\u003dx86 -DANDROID_NDK\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669 -DANDROID_PLATFORM\u003dandroid-21 -DCMAKE_ANDROID_ARCH_ABI\u003dx86 -DCMAKE_ANDROID_NDK\u003d/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669 -DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON -DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/cmake/debug/obj/x86 -DCMAKE_MAKE_PROGRAM\u003d/home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/ninja -DCMAKE_SYSTEM_NAME\u003dAndroid -DCMAKE_SYSTEM_VERSION\u003d21 -DANDROID_PLATFORM_LEVEL\u003d18 -DANDROID_TOOLCHAIN\u003dclang -DANDROID_STL\u003dc++_static -B/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86 -GNinja}\n-- Check for working C compiler: /home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang\n-- Check for working C compiler: /home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang -- works\n-- Detecting C compiler ABI info\n-- Detecting C compiler ABI info - done\n-- Detecting C compile features\n-- Detecting C compile features - done\n-- Check for working CXX compiler: /home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++\n-- Check for working CXX compiler: /home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -- works\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86\n\nCMake Error at CMakeLists.txt:20 (add_library):\n  Cannot find source file:\n\n    src/main/cpp/graphics/ShaderClass.java.h\n\n  Tried extensions .c .C .c++ .cc .cpp .cxx .m .M .mm .h .hh .h++ .hm .hpp\n  .hxx .in .txx\n\n\nCMake Error: CMake can not determine linker language for target: lesson-lib\nCMake Warning:\n  Manually-specified variables were not used by the project:\n\n    CMAKE_ANDROID_NDK\n\n\n",
+    "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/CMakeLists.txt",
+    "tag": "debug|x86"
+  }
+]

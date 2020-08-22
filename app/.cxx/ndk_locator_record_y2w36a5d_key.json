@@ -1,0 +1,11 @@
+{
+  "ndkDirProperty": "/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669",
+  "sdkFolder": "/home/nathan/DevTool/Android-SDK",
+  "sideBySideNdkFolderNames": [
+    "21.2.6472646",
+    "21.0.6113669",
+    "21.3.6528147",
+    "19.2.5345600",
+    "20.1.5948944"
+  ]
+}
