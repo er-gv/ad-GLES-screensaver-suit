@@ -10,10 +10,10 @@ import android.os.SystemClock;
 
 import badlogic.gdx.backends.android.AndroidGL20;
 
-import com.learnopengles.android.cpp.R;
+import com.learnopengles.glScreenSavers.cpp.R;
 
-import com.learnopengles.android.common.RawResourceReader;
-import com.learnopengles.android.common.TextureHelper;
+import com.learnopengles.glScreenSavers.common.RawResourceReader;
+import com.learnopengles.glScreenSavers.common.TextureHelper;
 
 /**
  * This class implements our custom renderer. Note that the GL10 parameter passed in is unused for OpenGL ES 2.0

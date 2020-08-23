@@ -25,16 +25,16 @@ vec2 projectToXYPlane(vec4 vertex){
 	float c = deltaNormal.z/len;
 	float d = sqrt(b*b+c*c);
 	mat4 rortateX = mat4(
-		vec4(1, 0, 0, 0),
-		vec4(0, c/d, -b/d, 0),
-		vec4(0, b/d, c/d, 0),
-		vec4(0, 0, 0, 1)
+		vec4(1.0, 0.0, 0.0, 0.0),
+		vec4(0, c/d, -b/d, 0.0),
+		vec4(0, b/d, c/d, 0.0),
+		vec4(0.0, 0.0, 0.0, 1.0)
 	);
 	mat4 rortateY = mat4(
-		vec4(d, 0, a, 0),
-		vec4(0, 1, 0, 0),
-		vec4(-a, 0, d, 0),
-		vec4(0, 0, 0, 1)
+		vec4(d, 0.0, a, 0.0),
+		vec4(0, 1.0, 0.0, 0.0),
+		vec4(-a, 0.0, d, 0.0),
+		vec4(0.0, 0.0, 0.0, 1.0)
 	);
 	mat4 trasform = rortateY*rortateX;
 	return (trasform*vertex).xy;

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-import com.learnopengles.android.common.ShaderHelper;
+import com.learnopengles.glScreenSavers.common.ShaderHelper;
 
 import android.opengl.GLES20;
 import android.util.Log;

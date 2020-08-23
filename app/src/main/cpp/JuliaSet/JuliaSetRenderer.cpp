@@ -12,6 +12,7 @@
 
 static constexpr float  mLightPosInModelSpace[] ={0.0f, 0.0f, 0.0f, 1.0f};
 
+
 JuliaSetRenderer::JuliaSetRenderer(){
    // Scene s;
     JuliaLogger = new Logger(JULIA_TAG);
@@ -98,6 +99,8 @@ void JuliaSetRenderer::create(){
 
     // Load the texture
     mSpectrumTexHandle = GLUtils::loadTexture("texture/spectrum.jpg");
+
+    randomizeSpectrumIndices();
 }
 
 void JuliaSetRenderer::surfaceChange(int width, int height){
@@ -156,28 +159,28 @@ void JuliaSetRenderer::drawScene(){
     mModelMatrix->identity();
     mModelMatrix->translate(4.0f, 6.0f, -7.0f);
     mModelMatrix->rotate(angleInDegrees, 1.0f, 0.0f, 0.0f);
-    drawCube(radians, 0);
+    drawCube(radians, perm[0]);
 
     mModelMatrix->identity();
     mModelMatrix->translate(-4.0f, 6.0f, -7.0f);
     mModelMatrix->rotate(angleInDegrees, 0.0f, 1.0f, 0.0f);
-    drawCube(radians, 1);
+    drawCube(radians, perm[1]);
 
     mModelMatrix->identity();
     mModelMatrix->translate(4.0f, -6.0f, -7.0f);
     mModelMatrix->rotate(angleInDegrees, 0.0f, 0.0f, 1.0f);
-    drawCube(radians, 2);
+    drawCube(radians, perm[2]);
 
     mModelMatrix->identity();
     mModelMatrix->translate( -4.0f, -6.0f, -7.0f);
     mModelMatrix->rotate(angleInDegrees, 1.0f, 1.0f, 0.0f);
-    drawCube(radians, 3);
+    drawCube(radians, perm[3]);
 
     mModelMatrix->identity();
     mModelMatrix->translate(0.0f, 0.0f, -8.0f);
     mModelMatrix->scale(2.8f, 2.8f, 2.8f);
     mModelMatrix->rotate(angleInDegrees, sqrt2_over_2, sqrt2_over_2, sqrt2_over_2);
-    drawCube(radians, 4);
+    drawCube(radians, perm[4]);
 
     // Draw a point to indicate the light.
     drawLight();
@@ -334,7 +337,7 @@ void JuliaSetRenderer::drawCube(float radians, int idx){
 
     // Draw the cube
     int c = idx*2;
-    glUniform1f(mJuliaSeedHandle, radians);
+    //glUniform1f(mJuliaSeedHandle, radians);
     for (int i = 0; i <6; ++i) {
         glUniform2fv(mColorHandle, 1, &(getSpectrumParams()[c]));
         glDrawArrays(GL_TRIANGLE_STRIP, 4*i, 4);
@@ -382,11 +385,27 @@ GLfloat JuliaSetRenderer::tick() {
     return radian;
 }
 
+void JuliaSetRenderer::randomizeSpectrumIndices() {
+    for(int i=0; i<5; ++i){
+        perm[i] =i;
+    }
+    srandom(time(nullptr));
+    for(int i=0; i<4; ++i){
+        int idx = random()%(4-i)+i+1;
+        perm[i] =perm[i]^perm[idx];
+        perm[idx] =perm[i]^perm[idx];
+        perm[i] =perm[i]^perm[idx];
+    }
+    perm[3] =perm[3]^perm[4];
+    perm[4] =perm[3]^perm[4];
+    perm[3] =perm[3]^perm[4];
+}
+
 
 static JuliaSetRenderer *renderer;
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_JuliaSet_JuliaSetRenderer_nativeSurfaceCreate(
+Java_com_ergv_glScreenSavers_JuliaSet_JuliaSetRenderer_nativeSurfaceCreate(
         JNIEnv *env, jclass type, jobject asset_manager) {
 
     GLUtils::setEnvAndAssetManager(env, asset_manager);
@@ -401,7 +420,7 @@ Java_com_learnopengles_android_JuliaSet_JuliaSetRenderer_nativeSurfaceCreate(
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_JuliaSet_JuliaSetRenderer_nativeSurfaceChange(
+Java_com_ergv_glScreenSavers_JuliaSet_JuliaSetRenderer_nativeSurfaceChange(
         JNIEnv *env, jclass type, jint width, jint height) {
 
     if (renderer != nullptr) {
@@ -410,7 +429,7 @@ Java_com_learnopengles_android_JuliaSet_JuliaSetRenderer_nativeSurfaceChange(
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_JuliaSet_JuliaSetRenderer_nativeDrawFrame(JNIEnv *env, jclass type) {
+Java_com_ergv_glScreenSavers_JuliaSet_JuliaSetRenderer_nativeDrawFrame(JNIEnv *env, jclass type) {
 
     if (renderer != nullptr) {
         renderer->drawScene();

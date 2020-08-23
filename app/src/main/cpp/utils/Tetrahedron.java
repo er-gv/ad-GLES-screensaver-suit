@@ -8,8 +8,7 @@ import badlogic.gdx.backends.android.AndroidGL20;
 import android.opengl.GLES20;
 import android.util.Log;
 
-import ShaderClass;
-import com.learnopengles.android.Polyhedrons.Vector3D;
+import com.learnopengles.glScreenSavers.Polyhedrons.Vector3D;
 
 
 public class Tetrahedron extends AbstractPolyhedron {

@@ -6,7 +6,6 @@ uniform mat4 u_MVMatrix;		// A constant representing the combined model/view mat
 
 uniform vec3 u_LightPos;
 uniform sampler2D u_Spectrum;    // The spectrum texture.
-uniform float u_JuliaSeed;
 uniform vec2 u_SpectrumCoords;
 
 varying vec3 v_Position;

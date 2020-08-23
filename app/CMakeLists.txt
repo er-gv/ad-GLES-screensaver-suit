@@ -37,8 +37,8 @@ add_library(
         src/main/cpp/graphics/Matrix.cpp
         src/main/cpp/graphics/Camera.h
         src/main/cpp/graphics/Camera.cpp
-        src/main/cpp/graphics/ShaderClass.java.h
-        src/main/cpp/graphics/ShaderClass.java.cpp
+        #src/main/cpp/graphics/ShaderClass.java.h
+        #src/main/cpp/graphics/ShaderClass.java.cpp
         src/main/cpp/graphics/PointLight.h
         src/main/cpp/graphics/PointLight.cpp
         src/main/cpp/graphics/Material.h

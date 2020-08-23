@@ -19,6 +19,7 @@ class JuliaSetRenderer {
 
 private:
 
+    int perm[5];
     Logger *JuliaLogger;
     /** some matrix objects for transformations */
     Matrix* mModelMatrix;
@@ -88,6 +89,8 @@ private:
     GLuint ibo;
 
     static GLfloat *getSpectrumParams();
+
+    void randomizeSpectrumIndices();
 };
 
 

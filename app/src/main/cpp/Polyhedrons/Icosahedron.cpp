@@ -107,7 +107,7 @@ void Polyhedrons::Icosahedron::render() {
             theta += deltaTheta;
         }
         //
-        //product_r_cosPhi = r * android.util. (float) Math.cos(-phiRadians);
+        //product_r_cosPhi = r * com.ergv.glScreenSavers.util. (float) Math.cos(-phiRadians);
         product_r_sinPhi = -product_r_sinPhi;
         theta = glm::radians(36.0);
         for(int i=6; i<11; i++){

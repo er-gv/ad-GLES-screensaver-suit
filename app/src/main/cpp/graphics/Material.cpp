@@ -31,9 +31,7 @@ GLuint Material::getUniform(const char* name) {
     return static_cast<GLuint>(glGetUniformLocation(program, name));
 }
 
-Material* Material::makeMaterial(
-        const char* vertexSrc, const char* fragmentSrc,
-        const char* attribs[], int nAttribs, const char* uniforms[], int nUniforms){
+Material* Material::makeMaterial(const char* vertexSrc, const char* fragmentSrc){
 
     Material* mat;
     const char *vertex = GLUtils::openTextFile(vertexSrc);
@@ -46,16 +44,5 @@ Material* Material::makeMaterial(
         return nullptr;
     }
     mat = new Material(program);
-    int k = nAttribs-1;
-    while(k>=0){
-        mat->attribs[attribs[k]] = mat->getAttrib(attribs[k]);
-        k--;
-    }
-
-    k = nUniforms -1;
-    while(k>=0){
-        mat->uniforms[uniforms[k]] = mat->getUniform(uniforms[k]);
-        k--;
-    }
     return mat;
 }

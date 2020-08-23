@@ -424,7 +424,7 @@ static BricksShaderNativeRenderer *renderer;
 
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_bricksShader_BricksShaderNativeRenderer_nativeSurfaceCreate(
+Java_com_ergv_glScreenSavers_bricksShader_BricksShaderNativeRenderer_nativeSurfaceCreate(
         JNIEnv *env,
         jclass type,
         jobject asset_manager) {
@@ -447,7 +447,7 @@ Java_com_learnopengles_android_bricksShader_BricksShaderNativeRenderer_nativeSur
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_bricksShader_BricksShaderNativeRenderer_nativeSurfaceChange(
+Java_com_ergv_glScreenSavers_bricksShader_BricksShaderNativeRenderer_nativeSurfaceChange(
         JNIEnv *env,
         jclass type,
         jint width, jint height) {
@@ -459,7 +459,7 @@ Java_com_learnopengles_android_bricksShader_BricksShaderNativeRenderer_nativeSur
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_bricksShader_BricksShaderNativeRenderer_nativeDrawFrame(
+Java_com_ergv_glScreenSavers_bricksShader_BricksShaderNativeRenderer_nativeDrawFrame(
         JNIEnv *env, jclass type) {
 
     if (renderer) {

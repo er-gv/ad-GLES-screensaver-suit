@@ -8,6 +8,7 @@
 	[
 		"/home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/cmake --build /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86 --target clean"
 	],
+	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
 	{
 		"lesson-lib-Debug-x86" : 
@@ -16,6 +17,75 @@
 			"artifactName" : "lesson-lib",
 			"buildCommand" : "/home/nathan/DevTool/Android-SDK/cmake/3.6.4111459/bin/cmake --build /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86 --target lesson-lib",
 			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/GLUtils.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Matrix.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Camera.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/PointLight.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Material.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Model.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/utils/Scene.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/JuliaSet/JuliaSetRenderer.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/x86"
+				}
+			],
 			"output" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/cmake/debug/obj/x86/liblesson-lib.so",
 			"toolchain" : "9088753890150084730"
 		}

@@ -190,7 +190,6 @@
       "project": {
         "compilerSettingsCacheFolder": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/.cxx",
         "cxxFolder": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/.cxx",
-        "ideBuildTargetAbi": "armeabi-v7a,armeabi",
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
         "isNativeCompilerSettingsCacheEnabled": false,
@@ -214,7 +213,10 @@
     "objFolder": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/cmake/debug/obj",
     "variantName": "debug",
     "validAbiList": [
-      "ARMEABI_V7A"
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
     ],
     "prefabDirectory": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/debug/prefab",
     "prefabPackageDirectoryList": []

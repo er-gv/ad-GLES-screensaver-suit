@@ -4,14 +4,14 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.learnopengles.android.cpp",
+  "applicationId": "com.ergv.glScreenSavers",
   "variantName": "debug",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 1,
+      "versionCode": 18,
       "versionName": "1.0.0.0",
       "enabled": true,
       "outputFile": "app-debug.apk"

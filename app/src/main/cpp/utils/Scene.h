@@ -12,7 +12,7 @@
 #include "graphics/Camera.h"
 #include "Polyhedrons/Polyhedron.h"
 #include "graphics/Model.h"
-#include "PointLight.h"
+#include "graphics/PointLight.h"
 
 class Scene {
 

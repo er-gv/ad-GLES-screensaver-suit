@@ -24,10 +24,6 @@
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/raw/threshold_blending_vs.glsl"
     },
     {
-        "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/layout_lesson_six.xml.flat",
-        "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/layout/lesson_six.xml"
-    },
-    {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/raw_monochrome_phong_fs.glsl.flat",
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/raw/monochrome_phong_fs.glsl"
     },
@@ -52,16 +48,8 @@
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/raw/color_vertex_shader.glsl"
     },
     {
-        "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_lesson_four.png.flat",
-        "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable-hdpi/ic_lesson_four.png"
-    },
-    {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/raw_per_pixel_vertex_shader.glsl.flat",
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/raw/per_pixel_vertex_shader.glsl"
-    },
-    {
-        "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_lesson_seven.png.flat",
-        "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable-hdpi/ic_lesson_seven.png"
     },
     {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/raw_per_pixel_vertex_shader_tex_and_light.glsl.flat",
@@ -72,16 +60,8 @@
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/raw/fresnel_refraction_fragment_shader.glsl"
     },
     {
-        "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_lesson_eight.png.flat",
-        "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable-xhdpi/ic_lesson_eight.png"
-    },
-    {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable_icon_border.xml.flat",
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable/icon_border.xml"
-    },
-    {
-        "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/layout_lesson_seven.xml.flat",
-        "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/layout/lesson_seven.xml"
     },
     {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/raw_per_pixel_fragment_shader_tex_and_light.glsl.flat",
@@ -104,20 +84,12 @@
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/layout/table_of_contents.xml"
     },
     {
-        "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_lesson_two.png.flat",
-        "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable-hdpi/ic_lesson_two.png"
-    },
-    {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_lesson_three.png.flat",
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable-hdpi/ic_lesson_three.png"
     },
     {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/raw_wood_vertex_shader.glsl.flat",
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/raw/wood_vertex_shader.glsl"
-    },
-    {
-        "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_lesson_six.png.flat",
-        "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable-hdpi/ic_lesson_six.png"
     },
     {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/raw_threshold_blending_fs.glsl.flat",
@@ -134,10 +106,6 @@
     {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable-xhdpi_icon.png.flat",
         "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable-xhdpi/icon.png"
-    },
-    {
-        "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_lesson_five.png.flat",
-        "source": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/res/drawable-hdpi/ic_lesson_five.png"
     },
     {
         "merged": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/res/merged/debug/drawable_bricks_icon.png.flat",

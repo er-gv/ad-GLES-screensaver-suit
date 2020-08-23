@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "applicationId": "com.learnopengles.android.cpp",
+  "applicationId": "com.ergv.glScreenSavers",
   "variantType": "BASE_APK",
   "elements": [
     {
@@ -10,7 +10,7 @@
       "apkData": {
         "type": "MAIN",
         "splits": [],
-        "versionCode": 1,
+        "versionCode": 18,
         "versionName": "1.0.0.0",
         "outputFile": "app-debug.apk",
         "fullName": "debug",
@@ -19,7 +19,7 @@
       },
       "path": "AndroidManifest.xml",
       "properties": {
-        "packageId": "com.learnopengles.android.cpp",
+        "packageId": "com.ergv.glScreenSavers",
         "split": "",
         "minSdkVersion": "21"
       }

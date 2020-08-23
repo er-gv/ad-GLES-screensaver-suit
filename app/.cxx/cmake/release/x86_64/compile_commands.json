@@ -19,6 +19,12 @@
 
 {
   "directory": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/x86_64",
+  "command": "/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++  --target=x86_64-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC   -o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/PointLight.cpp.o -c /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/PointLight.cpp",
+  "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/PointLight.cpp"
+},
+
+{
+  "directory": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/x86_64",
   "command": "/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++  --target=x86_64-none-linux-android21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC   -o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Material.cpp.o -c /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Material.cpp",
   "file": "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Material.cpp"
 },

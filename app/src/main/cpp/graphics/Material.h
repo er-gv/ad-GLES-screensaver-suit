@@ -9,7 +9,7 @@
 #include <map>
 #include <vector>
 
-#include "GLincludes.h"
+#include "graphics/GLincludes.h"
 
 
 class Material {
@@ -22,11 +22,11 @@ class Material {
 public:
     ~Material();
     bool isInitilized();
+    inline void activate(){glUseProgram(program);}
+    inline void deactivate(){glUseProgram(0);}
     GLuint getAttrib(const char* name);
     GLuint getUniform(const char* name);
-    static Material* makeMaterial(const char* vertexSrc, const char* fragmentSrc,
-                                  const char* attribs[], int nAttribs,
-                                  const char* uniforms[], int nUniforms);
+    static Material* makeMaterial(const char* vertexSrc, const char* fragmentSrc);
 };
 
 

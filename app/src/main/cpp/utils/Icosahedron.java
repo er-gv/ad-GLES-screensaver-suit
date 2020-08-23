@@ -5,8 +5,7 @@ import java.nio.ShortBuffer;
 
 import android.opengl.GLES20;
 
-import ShaderClass;
-import com.learnopengles.android.Polyhedrons.Vector3D;
+import com.learnopengles.glScreenSavers.Polyhedrons.Vector3D;
 
 import badlogic.gdx.backends.android.AndroidGL20;
 
@@ -116,7 +115,7 @@ public class Icosahedron extends AbstractPolyhedron {
 		    theta += deltaTheta;
 		}
 //		
-		//product_r_cosPhi = r * android.util. (float) Math.cos(-phiRadians);
+		//product_r_cosPhi = r * com.ergv.glScreenSavers.util. (float) Math.cos(-phiRadians);
 		product_r_sinPhi = -product_r_sinPhi;
 		theta = (float) (Math.PI*36.0/180.0f);
 		for(int i=6; i<11; i++){

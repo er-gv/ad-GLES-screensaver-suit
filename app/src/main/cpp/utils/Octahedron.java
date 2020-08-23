@@ -5,8 +5,7 @@ import java.nio.ShortBuffer;
 
 import android.opengl.GLES20;
 
-import ShaderClass;
-import com.learnopengles.android.Polyhedrons.Vector3D;
+import com.learnopengles.glScreenSavers.Polyhedrons.Vector3D;
 
 import badlogic.gdx.backends.android.AndroidGL20;
 

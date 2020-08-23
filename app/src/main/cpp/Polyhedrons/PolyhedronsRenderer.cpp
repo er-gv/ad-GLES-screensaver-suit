@@ -15,7 +15,7 @@ static Scene scene;
 
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_Polyhedrons_PolyhedronsRenderer_nativeSurfaceCreate(
+Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeSurfaceCreate(
         JNIEnv *env, jclass type, jobject asset_manager) {
 
     GLUtils::setEnvAndAssetManager(env, asset_manager);
@@ -35,14 +35,14 @@ Java_com_learnopengles_android_Polyhedrons_PolyhedronsRenderer_nativeSurfaceCrea
 
 extern "C" JNIEXPORT
 void JNICALL
-Java_com_learnopengles_android_Polyhedrons_PolyhedronsRenderer_nativeSurfaceChange(
+Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeSurfaceChange(
         JNIEnv *env, jclass type, jint width, jint height) {
 
     scene.viewport(width, height);
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_Polyhedrons_PolyhedronsRenderer_nativeDrawFrame(
+Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeDrawFrame(
         JNIEnv *env, jclass type) {
 
     scene.render();

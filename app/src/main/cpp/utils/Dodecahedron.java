@@ -5,12 +5,12 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-import android.opengl.GLES20;
+import com.ergv.glScreenSavers.opengl.GLES20;
 
 import ShaderClass;
-import com.learnopengles.android.Polyhedrons.Vector3D;
+import com.learnopengles.com.ergv.glScreenSavers.Polyhedrons.Vector3D;
 
-import badlogic.gdx.backends.android.AndroidGL20;
+import badlogic.gdx.backends.com.ergv.glScreenSavers.AndroidGL20;
 
 public class Dodecahedron extends AbstractPolyhedron {
 

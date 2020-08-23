@@ -165,7 +165,7 @@ void QuantizedColorNative::drawTriangle(const GLfloat *verticesData, const GLflo
 static QuantizedColorNative *renderer;
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_quantizedColor_QuantizedColorNativeRenderer_nativeSurfaceCreate(
+Java_com_ergv_glScreenSavers_quantizedColor_QuantizedColorNativeRenderer_nativeSurfaceCreate(
         JNIEnv *env,  jclass type, jobject assetManager) {
 
     GLUtils::setEnvAndAssetManager(env, assetManager);
@@ -179,7 +179,7 @@ Java_com_learnopengles_android_quantizedColor_QuantizedColorNativeRenderer_nativ
 
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_quantizedColor_QuantizedColorNativeRenderer_nativeSurfaceChange(
+Java_com_ergv_glScreenSavers_quantizedColor_QuantizedColorNativeRenderer_nativeSurfaceChange(
         JNIEnv *env, jclass type, jint width, jint height) {
     if (renderer != nullptr) {
         renderer->change(width, height);
@@ -187,7 +187,7 @@ Java_com_learnopengles_android_quantizedColor_QuantizedColorNativeRenderer_nativ
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_learnopengles_android_quantizedColor_QuantizedColorNativeRenderer_nativeDrawFrame(
+Java_com_ergv_glScreenSavers_quantizedColor_QuantizedColorNativeRenderer_nativeDrawFrame(
         JNIEnv *env,jclass type) {
 
     if (renderer != nullptr) {
