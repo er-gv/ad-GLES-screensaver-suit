@@ -96,11 +96,6 @@ namespace Polyhedrons {
         mIndices = new int[nVerts];
         memcpy(mIndices, indices, nVerts*sizeof(int));
 
-        glm::vec3 p1 = mParent.vertices[mIndices[1]];
-        glm::vec3 p2 = mParent.vertices[mIndices[2]];
-
-        p1 -= mParent.vertices[mIndices[0]];
-        p2 -= mParent.vertices[mIndices[0]];
         mNormal = computeNormal(mParent.vertices[mIndices[0]], mParent.vertices[mIndices[1]], mParent.vertices[mIndices[2]]);
 
 

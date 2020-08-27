@@ -33,11 +33,10 @@
         <activity
             android:name="com.ergv.glScreenSavers.JuliaSet.JuliaSetActivity"
             android:label="@string/julia_set" />
-        <!--
-            <activity
-            android:name=".Polyhedrons.PolyhedronsActivity"
-            android:label="@string/polyhedrons"/>
-        -->
+        <activity
+            android:name="com.ergv.glScreenSavers.Polyhedrons.PolyhedronsActivity"
+            android:label="@string/polyhedrons" />
+
         <!--
             <activity
             android:name=".Geodetic.SphereConeCylinderActivity"

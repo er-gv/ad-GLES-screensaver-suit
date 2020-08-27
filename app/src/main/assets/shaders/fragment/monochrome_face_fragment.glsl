@@ -24,9 +24,9 @@ void main() {
     float diffuse;
 
     if (gl_FrontFacing) {
-        diffuse = max(dot(u_FaceNormal, lightVector), 0.0);
-    } else {
         diffuse = max(dot(-u_FaceNormal, lightVector), 0.0);
+    } else {
+        diffuse = max(dot(u_FaceNormal, lightVector), 0.0);
     }
 
     // Add attenuation.
@@ -36,6 +36,6 @@ void main() {
     diffuse = diffuse + 0.3;
 
     // Multiply the color by the diffuse illumination level to get final output color.
-    gl_FragColor = (u_Color * diffuse);
+    gl_FragColor = u_Color*diffuse;
 }
 

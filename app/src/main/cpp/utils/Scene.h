@@ -18,9 +18,9 @@ class Scene {
 
     std::vector<Model*> models;
     Camera camera;
+    glm::mat4 projectionMat;
+    glm::mat4 viewMat;
     PointLight light;
-    glm::mat4 MVmatrix;
-    glm::mat4 MVPmatrix;
 
     //light sources
     //list of modelsmodels;    //camera
@@ -31,9 +31,10 @@ public:
 
 
     void render();
+    void update();
     void setBounderies( Bounderies b);
     void addModel(Model* const m);
-    void setupCamera();
+    void setupCamera(double ratio =1.0);
     void setLights();
     void viewport(int width, int height);
 

@@ -1,15 +1,11 @@
 //
 // Created by nathan on 16/04/20.
 //
-#include "graphics/Material.h"
-#include "Tetrahedron.h"
-#include <GLES2/gl2.h>
+
 #include <android/log.h>
-#include <glm/glm.hpp>
-#include <glm/vec3.hpp>
-#include <glm/mat4x4.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "Tetrahedron.h"
+#include "graphics/Material.h"
+
 
 
 namespace Polyhedrons {
@@ -45,21 +41,14 @@ namespace Polyhedrons {
         //vertexNormals = new glm::vec3[nVertices];
         vertices = new glm::vec3[nVertices];
 
-        float phiAngles = -19.471220333f; /* the phi angle needed for generation */
-
-        float r = 1.0f; /* any radius in which the polyhedron is inscribed */
-        /* first vertex */
-        float phiRadians = glm::radians(phiAngles);
-        float deltaTheta = glm::radians(120.0f);
-        vertices[0] = glm::vec3(0.0f, 0.0f, r);
-        float theta = 0.0f;
-        float rCosPhi = r * cos(phiRadians);
-        float rMultsinPhi = r * sin(phiRadians);
-        for (int i = 1; i < 4; i++) {
-            vertices[i] = glm::vec3(cos(theta * 2) * rCosPhi, rMultsinPhi,
-                                    sin(theta * 2) * rCosPhi);
-            theta += deltaTheta;
+        vertices[0] = glm::vec3(0.0f, 1.0f, 0.0f); //top of the pyramid
+        int theta = 60;
+        for(int i=1; i<4; i++){
+            double  rads = glm::radians(float(theta));
+            vertices[i] = glm::vec3(cos(rads), 0.0, sin(rads));
+            theta+=120;
         }
+
         {
             char buffer[100];
             for (int i = 0; i < 4; i++) {
@@ -74,12 +63,9 @@ namespace Polyhedrons {
     bool Tetrahedron::initShaders() {
 
         {
-            const char vertex_shader[] = "shaders/vertex/point_vertex_shader.glsl";
+            const char vertex_shader[] = "shaders/vertex/monochrome_face_vertex.glsl";
             const char fragment_shader[] = "shaders/fragment/monochrome_face_fragment.glsl";
-            monochrome = Material::makeMaterial(
-                    vertex_shader, fragment_shader,
-                    (const char*[]){"a_Position"}, 1,
-                    (const char*[]){"u_MVPMatrix", "u_mvMat", "u_LightPos", "u_FaceNormal"}, 4);
+            monochrome = Material::makeMaterial(vertex_shader, fragment_shader);
 
             /*monochromePositionHandle = glGetAttribLocation(monochromeProgram, "a_Position");
             monochromeMVPHandle = glGetUniformLocation(monochromeProgram, "u_MVPMatrix");
@@ -130,60 +116,61 @@ namespace Polyhedrons {
 
     bool Tetrahedron::initFaces() {
         char buffer[100];
-        faces = new Polyhedron::Polygon*[nFaces];
-        faces[0] = new Polygon(*this, (int[]) {0, 1, 2}, 3);
-        faces[1] = new Polygon(*this, (int[]) {0, 2, 3}, 3);
-        faces[2] = new Polygon(*this, (int[]) {0, 3, 1}, 3);
-        faces[3] = new Polygon(*this, (int[]) {1, 2, 3}, 3);
+        normals = new glm::vec3[nFaces];
+        if(nullptr == normals)
+            return false;
+        /*faces = new Polyhedron::Polygon*[nFaces];
+
+         faces[0] = new Polygon(*this, (int[]) {1, 2, 0}, 3);
+        faces[1] = new Polygon(*this, (int[]) {2, 3, 0}, 3);
+        faces[2] = new Polygon(*this, (int[]) {3, 1, 0}, 3);
+        faces[3] = new Polygon(*this, (int[]) {3, 1, 2}, 3);
 
         size_t sizeof_float = sizeof(float);
         size_t offset = 3*sizeof_float;
-        for( int k=0; k<nFaces; k++){
+        glm::vec3 v1 = vertices[1]-vertices[0];
+        glm::vec3 v2 = vertices[2]-vertices[0];*/
+        normals[0] = glm::normalize(glm::cross(vertices[1]-vertices[0], vertices[2]-vertices[0]));
+        normals[1] = glm::normalize(glm::cross(vertices[2]-vertices[0], vertices[3]-vertices[0]));
+        normals[2] = glm::normalize(glm::cross(vertices[3]-vertices[0], vertices[1]-vertices[0]));
+        normals[3] = glm::normalize(glm::cross(vertices[1]-vertices[2], vertices[3]-vertices[2]));
+        /*for( int k=0; k<nFaces; k++){
             const glm::vec3& normal = faces[k]->getNormal();
-            memcpy(normals+offset*k, glm::value_ptr(normal), offset);
-            sprintf(buffer, "normal[%d] = (%f, %f, %f).", k,
-                    normal.x, normal.y, normal.z);
-                    __android_log_print(ANDROID_LOG_INFO, Tetrahedron::LogTag.c_str(), "%s",
-                                        buffer);
+            int j = 3*k;
+            glm::vec3 n = glm::normalize(glm::vec3 const&a, glm::vec3 const& b , glm::vec3 const& c){
+                return glm::normalize(glm::cross(c-a, b-a));
+            }
 
-        }
+        }*/
         return true;
     }
 
     bool Tetrahedron::initBuffers() {
         vbo = new GLuint[1];
-        ibo = new GLuint[2];
+        ibo = new GLuint[1];
         glGenBuffers(1, vbo);
-        glGenBuffers(2, ibo);
-        short constexpr trianglesFanIndexBuffer[] ={0,1,2, 3,1};
-        short constexpr trianglesIndexBuffer[] ={0,1,2, 3,1,0, 0,2,3, 3,2,1};
-        short constexpr wireFrameLinesIndexBuffer[] = {0,1,0,2,0,3,1,2,1,3,2,3};
+        glGenBuffers(1, ibo);
 
-        vertexDataBuffer = new GLfloat[nVertices*VERTEX_DATA_SIZE_IN_ELEMENTS];
+        GLuint constexpr trianglesIndexBuffer[] ={1,2,0, 2,3,0, 3,1,0, 3,2,1};
+
+        vertexDataBuffer = new GLfloat[4*3];
         char buffer[100];
         for(int i=0; i< nVertices; i++){
-            sprintf(buffer, "nVert[%d] = (%f, %f, %f).", vertices[i].x, vertices[i].y, vertices[i].z);
+            sprintf(buffer, "nVert[%d] = (%f, %f, %f).", i, vertices[i].x, vertices[i].y, vertices[i].z);
             __android_log_print(ANDROID_LOG_INFO, Tetrahedron::LogTag.c_str(), "%s",
                                 buffer);
 
-            float val[3];
-            memcpy(val, glm::value_ptr(vertices[i]), sizeof(val));
-            sprintf(buffer, "glm::vec3 copied to arr[3]: = (%f, %f, %f).", val[0], val[1,1], val[2]);
-            __android_log_print(ANDROID_LOG_INFO, Tetrahedron::LogTag.c_str(), "%s",
-                                buffer);
-            memcpy(& vertexDataBuffer[i*VERTEX_DATA_SIZE_IN_ELEMENTS], glm::value_ptr(vertices[i]), sizeof(glm::vec3));
+            vertexDataBuffer[3*i] = vertices[i].x;
+            vertexDataBuffer[3*i+1] = vertices[i].y;
+            vertexDataBuffer[3*i+2] = vertices[i].z;
         }
-        if (vbo[0]>0 && ibo[0]>0 && ibo[1]>0) {
+        if (vbo[0]>0 && ibo[0]>0 ) {
             glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(vertexDataBuffer),  vertexDataBuffer, GL_STATIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, 3*4*sizeof(GLfloat),  vertexDataBuffer, GL_STATIC_DRAW);
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(trianglesIndexBuffer),
                          trianglesIndexBuffer, GL_STATIC_DRAW);
-
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(wireFrameLinesIndexBuffer),
-                         wireFrameLinesIndexBuffer, GL_STATIC_DRAW);
 
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -195,27 +182,32 @@ namespace Polyhedrons {
     void Tetrahedron::destroy() {
         //TODO delete unnecessary memory
         glDeleteBuffers(1, vbo);
-        glDeleteBuffers(2, ibo);
+        glDeleteBuffers(1, ibo);
     }
 
     //TODO transform/projection/pre-render state update
-    void Tetrahedron::update() {
-        long time = GLUtils::currentTimeMillis() % 10000L;
+    void Tetrahedron::update(long time) {
+
         float angleInDegrees = (360.0f / 10000.0f) * ((int) time);
-        rotate(angleInDegrees, vertices[0]);
+
+        activeTransform.setTransform(initialTransform.get());
+        activeTransform.scale(2.4f);
+        activeTransform.translate(glm::vec3(-2.0, 0.0, 0.0));
+        activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.0, 1.0, 0.0)) ;
+        //activeTransform.rotate(glm::radians(40.0), glm::vec3(1.0, 0.0, 0.0)) ;
+
     }
 
     //TODO bugfix
-    void Tetrahedron::render(Camera& camera) {
+    void Tetrahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
 
-
+        monochrome->activate();
         glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-
         GLuint positionAttr = monochrome->getAttrib("a_Position");
-        glEnableVertexAttribArray(positionAttr);
-        glVertexAttribPointer(positionAttr, POSITION_DATA_SIZE, GL_FLOAT,
+        glVertexAttribPointer(positionAttr, 3, GL_FLOAT,
                               static_cast<GLboolean>(false),
-                              VERTEX_DATA_SIZE_IN_BYTES, 0);
+                              0, 0);
+        glEnableVertexAttribArray(positionAttr);
 
 
          /*glVertexAttribPointer(texAttributeHandle, TEX_DATA_SIZE, GL_FLOAT, false, VERTEX_DATA_SIZE,
@@ -235,38 +227,24 @@ namespace Polyhedrons {
 
         //draw triangles
         glBindBuffer(GL_ARRAY_BUFFER, ibo[0]);
-        glm::mat4 projecrion = camera.projection();
-        glm::mat4 view = camera.lookAt();
-        glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(activeTransform*view*projecrion));
-        glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(activeTransform*view));
+        glm::mat4 viewT = viewMat*activeTransform.get();
+        glm::mat4 projT = projectionMat*viewT;
+        glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(projT));
+        glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(viewT));
 
-        glUniform3f(monochrome->getUniform("u_Color"), 0.0f, 0.2f, 0.65f);
-        glUniform3f(monochrome->getUniform("u_LightPos"), 0.0f, 0.0f, 0.65f);
-        glUniform1fv(monochrome->getUniform("u_FaceNormal"), 12, normals);
+        glUniform3fv(monochrome->getUniform("u_LightPos"), 1, glm::value_ptr(lightPos));
 
 
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
+        for(int i=0; i<4; ++i) {
+            glUniform3fv(monochrome->getUniform("u_FaceNormal"), 1,glm::value_ptr(normals[i]));
+            glUniform4f(monochrome->getUniform("u_Color"), faceColors[3*i], faceColors[3*i+1], faceColors[3*i+2], 1.0f);
+            glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
+                           reinterpret_cast<const void *>(3 * i * sizeof(GLuint)));
+        }
 
-        glUniform3f(monochrome->getUniform("u_Color"), 1.0f, 1.2f, 1.6f);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
-        glDrawElements(GL_LINES, 12, GL_UNSIGNED_SHORT, 0);
-
-        /*glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
-
-        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_SHORT, 0)
-        //
-        glDrawElements(GL_TRIANGLES, 5, GL_UNSIGNED_SHORT, 0)
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
-
-        //draw wireframe
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
-        glDrawElements(GL_LINES, 12, GL_UNSIGNED_SHORT, 0);
-
-        //unbind the buffers and the vertices attribs
-        //glDisableVertexAttribArray(normalAttributeHandle);
-        //glDisableVertexAttribArray(positionAttributeHandle);
-        //glDisableVertexAttribArray(texAttributeHandle);
-*/
         glDisableVertexAttribArray(positionAttr);
+        monochrome->deactivate();
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }

@@ -49,6 +49,7 @@ namespace Polyhedrons {
 
         GLfloat* vertexDataBuffer;
         glm::vec3 *vertices;
+        glm::vec3 *normals;
         int nVertices;
 
         //glm::vec3 *vertexNormals;
@@ -72,9 +73,9 @@ namespace Polyhedrons {
         virtual bool initFaces()=0;
         virtual bool initBuffers()=0;
         virtual bool addMaterials()=0;
-        virtual void render(Camera& camera) = 0;
+        virtual void render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) = 0;
         virtual void destroy();
-        virtual void update() = 0; // call this to update the model's state before rendering
+        virtual void update(long time) = 0; // call this to update the model's state before rendering
         //virtual void postUpdate() = 0; // call this for post rendering update.
         virtual bool initShaders()=0;
 

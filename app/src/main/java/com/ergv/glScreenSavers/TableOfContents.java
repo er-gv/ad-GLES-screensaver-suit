@@ -11,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.SimpleAdapter;
 
 import com.ergv.glScreenSavers.JuliaSet.JuliaSetActivity;
+import com.ergv.glScreenSavers.Polyhedrons.PolyhedronsActivity;
 import com.ergv.glScreenSavers.bricksShader.BricksShaderActivity;
 import com.ergv.glScreenSavers.quantizedColor.QuantizedColorActivity;
 
@@ -35,14 +36,14 @@ public class TableOfContents extends ListActivity {
         final SparseArray<Class<? extends Activity>> activityMapping = new SparseArray<Class<? extends Activity>>();
 
         int i = 0;
-        /*{
+        {
             final Map<String, Object> item = new HashMap<String, Object>();
             item.put(ITEM_IMAGE, R.drawable.bricks_icon);
             item.put(ITEM_TITLE, getText(R.string.spinning_polyhedrons));
             item.put(ITEM_SUBTITLE, getText(R.string.spinning_polyhedrons_subtitle));
             data.add(item);
             activityMapping.put(i++, PolyhedronsActivity.class);
-        }*/
+        }
         {
             final Map<String, Object> item = new HashMap<String, Object>();
             item.put(ITEM_IMAGE, R.drawable.ic_lesson_one);

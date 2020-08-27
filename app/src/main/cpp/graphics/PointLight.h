@@ -29,7 +29,7 @@ public:
     void setPointSize(const float s);
     void setTransform(Transform& other);
     void updatePosition(long time);
-    glm::vec4 position();
+    glm::vec3 position();
 };
 
 

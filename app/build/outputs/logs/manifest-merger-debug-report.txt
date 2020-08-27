@@ -76,6 +76,12 @@ ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/ap
 		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:33:13-46
 	android:name
 		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:32:13-54
+activity#com.ergv.glScreenSavers.Polyhedrons.PolyhedronsActivity
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:34:9-36:50
+	android:label
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:36:13-48
+	android:name
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:35:13-60
 uses-sdk
 INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml

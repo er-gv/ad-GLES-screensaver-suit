@@ -3,209 +3,193 @@
 // Created by nathan on 16/04/20.
 //
 
+#include <vector>
+#include <tuple>
+
 #include "Icosahedron.h"
-#include <glm/glm.hpp>
-#include <glm/vec3.hpp>
 
-static GLushort constexpr triangleFanIndicesBuffer[]= {0,1,2,3,4,5,1,11,10,9,8,7,6,10};
-static GLushort constexpr triangleStripIndexBuffer[]= {6,1,10,
-                                                       1,6,2,
-                                                       7,2,6,
-                                                       2,7,3,
-                                                       8,3,7,
-                                                       3,8,4,
-                                                       9,4,8,
-                                                       4,9,5,
-                                                       10,5,9,
-                                                       5,10,1};
-
-
-static GLushort constexpr wireFrameTopBottomLinesIndexBuffer[]=
-        {0,1,0,2,0,3,0,4,0,5,11,6,11,7,11,8,11,9,11,10};
-
+static constexpr GLfloat faceColors[] ={
+        0.941176f, 0.9019607f, 0.549019f,
+        1.0, 1.0, 0.0, 0.7, 1.0, 0.3,
+        0.894501f, 0.444444f, 0.839215f
+};
 Polyhedrons::Icosahedron::Icosahedron() :
     Polyhedron(), LogTag("ICOSAHEDRON"){
-
+    monochrome = nullptr;
 }
 
 Polyhedrons::Icosahedron::~Icosahedron() {
     destroy();
 }
 
-void Polyhedrons::Icosahedron::render() {
-		glUseProgram(materialProgram);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+void Polyhedrons::Icosahedron::update(long time) {
 
-		// Bind Attributes
-		int positionAttribute = glGetAttribLocation(materialProgram, "a_Position");
-		int normalAttribute = glGetAttribLocation(materialProgram, "a_Normal");
-		glEnableVertexAttribArray(positionAttribute);
-		glEnableVertexAttribArray(normalAttribute);
+    float angleInDegrees = (360.0f / 10000.0f) * ((int) time);
 
-		glVertexAttribPointer(positionAttribute, POSITION_DATA_SIZE, GL_FLOAT, false, STRIDE, verticesData+POSITION_OFFSET);
-		glVertexAttribPointer(normalAttribute,   NORMAL_DATA_SIZE,   GL_FLOAT, false, STRIDE, verticesData+NORMAL_OFFSET);
+    activeTransform.setTransform(initialTransform.get());
+    activeTransform.scale(3.4f);
+    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.0, 1.0, 0.0)) ;
+}
 
-
-		int colorLoc = glGetUniformLocation(materialProgram, "u_Color");
-
-		// Draw
-		//set triangles color
-		glUniform3f(colorLoc, 1.0f, 1.0f, 0.0f) ;
-
-		//draw triangles
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
-		glDrawElements(GL_TRIANGLE_FAN, 7, GL_UNSIGNED_SHORT, triangleFanIndicesBuffer);
-		glUniform3f(colorLoc, 0.0f, 0.0f, 1.0f) ;
-		glDrawElements(GL_TRIANGLE_FAN, 7, GL_UNSIGNED_SHORT, triangleFanIndicesBuffer+(7*BYTES_PER_SHORT));
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
-		for(int i= 0, evenIndex =0; i<5; i++, evenIndex+=12){
-
-			glUniform3f(colorLoc, 1.0f, 0.0f, 0.0f) ;
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT,  triangleStripIndexBuffer+evenIndex);
-			glUniform3f(colorLoc, 0.0f, 1.0f, 0.0f) ;
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT,  triangleStripIndexBuffer+evenIndex+6);
-		}
-
-		//set wireframe color and render the wireframe
-		glUniform3f(colorLoc, 0.0f, 0.0f, 0.0f) ;
-
-		//draw wireframe around the ten triangles at the middle of the icosahedron.
-		for(int i= 0; i<10; i++){
-			glDrawElements(GL_LINE_LOOP, 3, GL_UNSIGNED_SHORT,  &triangleStripIndexBuffer[3*i]);
-		}
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[2]);
-		glDrawElements(GL_LINES, 20, GL_UNSIGNED_SHORT,  wireFrameTopBottomLinesIndexBuffer);
-
-		//GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, ibo[3]);
-		//glEs20.glDrawElements(GLES20.GL_LINES, 20, GLES20.GwireFrameTopBottomLinesIndexBufferL_UNSIGNED_SHORT, 0);
-
-		//unbind the buffers and disable vertices attribs
-		glDisableVertexAttribArray(positionAttribute);
-		glDisableVertexAttribArray(normalAttribute);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	}
+void Polyhedrons::Icosahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
+    monochrome->activate();
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    GLuint positionAttr = monochrome->getAttrib("a_Position");
+    glVertexAttribPointer(positionAttr, 3, GL_FLOAT,
+                          static_cast<GLboolean>(false),
+                          0, 0);
+    glEnableVertexAttribArray(positionAttr);
 
 
-	void Polyhedrons::Icosahedron::buildGeometry() {
+    //draw triangles
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
+    glm::mat4 viewT = viewMat*activeTransform.get();
+    glm::mat4 projT = projectionMat*viewT;
+    glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(projT));
+    glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(viewT));
+    glUniform3fv(monochrome->getUniform("u_LightPos"), 1, glm::value_ptr(lightPos));
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
+    glUniform4f(monochrome->getUniform("u_Color"), faceColors[0], faceColors[1], faceColors[2], 1.0f);
+    for(int i=0; i<5; ++i) {
+        glUniform3fv(monochrome->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[i]));
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
+                       reinterpret_cast<const void *>(3 * i * sizeof(GLuint)));
+    }
+
+    for(int i=0; i<10; ++i) {
+        glUniform3fv(monochrome->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[5+i]));
+        glUniform4f(monochrome->getUniform("u_Color"), faceColors[3*(i%2)+3], faceColors[3*(i%2)+4], faceColors[3*(i%2)+5], 1.0f);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
+                       reinterpret_cast<const void *>((15+(3 * i) )* sizeof(GLuint)));
+    }
+
+    glUniform4f(monochrome->getUniform("u_Color"), faceColors[9], faceColors[10], faceColors[11], 1.0f);
+    for(int i=0; i<5; ++i) {
+        glUniform3fv(monochrome->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[15+i]));
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
+                       reinterpret_cast<const void *>((45+(3 * i))* sizeof(GLuint)));
+    }
+
+    glDisableVertexAttribArray(positionAttr);
+    monochrome->deactivate();
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+	bool Polyhedrons::Icosahedron::initVertices()  {
 		float phiAngles  = 26.56505f; /* the phi angle needed for generation */
+        float phiRadians = glm::radians(phiAngles); /* 2 sets of four points */
 
         float r = 1.0f; /* any radius in which the polyhedron is inscribed */
         /* first vertex */
-
-        float phiRadians = glm::radians(phiAngles); /* 2 sets of four points */
-        float deltaTheta = glm::radians(72.0f);
-        float theta = 0.0f;
+        float deltaTheta = 72.0f; //360/5 = 72 angles.
+        float theta = 54.0f; //half angle
         float product_r_cosPhi = r * cos(phiRadians);
         float product_r_sinPhi = r * sin(phiRadians);
 
         for(int i=1; i<6; i++){
-            vertices[i].x = cos(theta)* product_r_cosPhi;
-            vertices[i].y = sin(theta)* product_r_cosPhi;
-            vertices[i].z = product_r_sinPhi;
+            vertices[i].x = cos(glm::radians(theta))*product_r_cosPhi;
+            vertices[i].z = sin(glm::radians(theta))*product_r_cosPhi;
+            vertices[i].y = product_r_sinPhi;
             theta += deltaTheta;
         }
         //
         //product_r_cosPhi = r * com.ergv.glScreenSavers.util. (float) Math.cos(-phiRadians);
         product_r_sinPhi = -product_r_sinPhi;
-        theta = glm::radians(36.0);
+        theta = 1.5*54.0f;
         for(int i=6; i<11; i++){
-            vertices[i].x = cos(theta)* product_r_cosPhi;
-            vertices[i].y = sin(theta)* product_r_cosPhi;
-            vertices[i].z = product_r_sinPhi;
+            vertices[i].x = cos(glm::radians(theta))*product_r_cosPhi;
+            vertices[i].z = sin(glm::radians(theta))*product_r_cosPhi;
+            vertices[i].y = product_r_sinPhi;
             theta += deltaTheta;
         }
         //set top and bottom vertices
         vertices[0].x  =  0.0f;
-        vertices[0].z  =  r;
-        vertices[0].y  =  0.0f;
+        vertices[0].y  =  r;
+        vertices[0].z  =  0.0f;
         vertices[11].x =  0.0f;
-        vertices[11].z = -r;
-        vertices[11].y =  0.0f;
+        vertices[11].y = -r;
+        vertices[11].z =  0.0f;
+        return true;
     }
 
 
-    void Polyhedrons::Icosahedron::buildNormals() {
-    Polyhedron::Polygon faces[NUM_FACES] = {
-            /* map vertices to 20 faces */
-            Polygon(this,(int[]){0, 1, 2}),
-            Polygon(this,(int[]){ 0, 2, 3 }),
-            Polygon(this,(int[]){ 0, 3, 4 }),
-            Polygon(this,(int[]){ 0, 4, 5 }),
-            Polygon(this,(int[]){ 0, 5, 1 }),
-            Polygon(this,(int[]){ 11, 6, 7 }),
-            Polygon(this,(int[]){ 11, 7, 8 }),
-            Polygon(this,(int[]){ 11, 8, 9 }),
-            Polygon(this,(int[]){ 11, 9, 10 }),
-            Polygon(this,(int[]){ 11, 10, 6 }),
-            Polygon((int[]){ 1, 2, 6 }),
-            Polygon((int[]){ 2, 3, 7 }),
-            Polygon((int[]){ 3, 4, 8 }),
-            Polygon((int[]){ 4, 5, 9 }),
-            Polygon((int[]){ 5, 1, 10 }),
-            Polygon((int[]){ 6, 7, 2 }),
-            Polygon((int[]){ 7, 8, 3 }),
-            Polygon((int[]){ 8, 9, 4 }),
-            Polygon((int[]){ 9, 10, 5 }),
-            Polygon((int[]){ 10, 6, 1 })
-    };
+bool Polyhedrons::Icosahedron::initFaces()  {
+    std::vector<std::tuple<int, int, int>> facesIdx;
+    facesIdx.push_back(std::make_tuple(0, 1, 2));
+    facesIdx.push_back(std::make_tuple( 0, 2, 3 ));
+    facesIdx.push_back(std::make_tuple( 0, 3, 4 ));
+    facesIdx.push_back(std::make_tuple( 0, 4, 5 ));
+    facesIdx.push_back(std::make_tuple( 0, 5, 1 ));
+    facesIdx.push_back(std::make_tuple( 11, 6, 7 ));
+    facesIdx.push_back(std::make_tuple( 11, 7, 8 ));
+    facesIdx.push_back(std::make_tuple( 11, 8, 9 ));
+    facesIdx.push_back(std::make_tuple( 11, 9, 10 ));
+    facesIdx.push_back(std::make_tuple( 11, 10, 6 ));
+    facesIdx.push_back(std::make_tuple( 1, 2, 6 ));
+    facesIdx.push_back(std::make_tuple( 2, 3, 7 ));
+    facesIdx.push_back(std::make_tuple( 3, 4, 8 ));
+    facesIdx.push_back(std::make_tuple( 4, 5, 9 ));
+    facesIdx.push_back(std::make_tuple( 5, 1, 10 ));
+    facesIdx.push_back(std::make_tuple( 6, 7, 2 ));
+    facesIdx.push_back(std::make_tuple( 7, 8, 3 ));
+    facesIdx.push_back(std::make_tuple( 8, 9, 4 ));
+    facesIdx.push_back(std::make_tuple( 9, 10, 5 ));
+    facesIdx.push_back(std::make_tuple( 10, 6, 1 ));
 
-    glm::vec3 faceNormals[NUM_FACES];
-    for(int i=0; i<NUM_FACES; i++){
-        glm::vec3 const &v0 = faces[i].getVertex(*this, 0);
-        glm::vec3 const &v1 = faces[i].getVertex(*this, 1);
-        glm::vec3 const &v2 = faces[i].getVertex(*this, 2);
-        faceNormals[i] = glm::cross(v0 -v1, v0 -v2);
+    for(int k=0; k<NUM_FACES; ++k){
+        int a = std::get<0>(facesIdx[k]);
+        int b = std::get<1>(facesIdx[k]);
+        int c = std::get<2>(facesIdx[k]);
+        vertexNormals[k] = glm::normalize(glm::cross(vertices[c]-vertices[a],
+                                               vertices[b]-vertices[a]));
     }
-
-    /*vertexNormals[0]  = glm::vec3(0f, 0f,  1.0f);
-    vertexNormals[11] = glm::vec3(0f, 0f, -1.0f);
-    vertexNormals[1]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[0], faceNormals[4], faceNormals[10], faceNormals[14], faceNormals[19]});
-    vertexNormals[2]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[0], faceNormals[1], faceNormals[10], faceNormals[11], faceNormals[15]});
-    vertexNormals[3]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[1], faceNormals[2], faceNormals[11], faceNormals[12] , faceNormals[16]});
-    vertexNormals[4]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[2], faceNormals[3], faceNormals[12], faceNormals[13], faceNormals[17]});
-    vertexNormals[5]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[3], faceNormals[4], faceNormals[13], faceNormals[14], faceNormals[18]});
-    vertexNormals[6]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[5], faceNormals[9], faceNormals[10], faceNormals[15], faceNormals[19]});
-    vertexNormals[7]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[5], faceNormals[6], faceNormals[11], faceNormals[15], faceNormals[16]});
-    vertexNormals[8]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[6], faceNormals[7], faceNormals[12], faceNormals[16], faceNormals[17]});
-    vertexNormals[9]  = glm::vec3.avarage(new glm::vec3[]{faceNormals[7], faceNormals[8], faceNormals[12], faceNormals[16], faceNormals[17]});
-    vertexNormals[10] = glm::vec3.avarage(new glm::vec3[]{faceNormals[8], faceNormals[9], faceNormals[14], faceNormals[18], faceNormals[19]});
-
-    for(int i=0; i<NUM_FACES; i++)
-        vertexNormals[i].normalize();*/
+    return true;
 }
 
-void Polyhedrons::Icosahedron::buildBuffers() {
-    int dataSize = NUM_FACES*VERTEX_DATA_SIZE;
-    verticesData = new float[dataSize];
+bool Polyhedrons::Icosahedron::initBuffers() {
+    int dataSize = NUM_VERTICES*VERTEX_DATA_SIZE;
+    GLfloat* vertexBuffer = new float[dataSize];
+    bool result = false;
+    GLuint triangleFanIndicesBuffer[]= {0,1,2,3,4,5,1,11,10,9,8,7,6,10};
+    GLuint triangleStripIndexBuffer[]= {
+            0,1,2,            0,2,3,            0,3,4,
+            0,4,5,            0,5,1,
 
-    for(int i=0, j=0; i<dataSize ; i+=VERTEX_DATA_SIZE, j++){
-        verticesData[i] = vertices[j].x;
-        verticesData[i+1] = vertices[j].y;
-        verticesData[i+2] = vertices[j].z;
-        /*veteticesData[i+3] = this.vertexNormals[j].x;
-        veteticesData[i+4] = this.vertexNormals[j].y;
-        veteticesData[i+5] = this.vertexNormals[j].z;*/
+            6,1,10, 1,6,2,  7,2,6, 2,7,3, 8,3,7,
+            3,8,4,  9,4,8,  4,9,5, 10,5,9, 5,10,1,
+
+            11, 10,9,            11, 9, 8,            11, 8, 7,
+            11, 7, 6,            11, 6, 10};
+
+
+    GLuint wireFrameTopBottomLinesIndexBuffer[]=
+            {0,1,0,2,0,3,0,4,0,5,11,6,11,7,11,8,11,9,11,10};
+
+    for(int i=0; i<NUM_VERTICES ; ++i){
+        int j = i*VERTEX_DATA_SIZE;
+        vertexBuffer[j] = vertices[i].x;
+        vertexBuffer[j+1] = vertices[i].y;
+        vertexBuffer[j+2] = vertices[i].z;
+        /*vertexBuffer[i+3] = this.vertexNormals[j].x;
+        vertexBuffer[i+4] = this.vertexNormals[j].y;
+        vertexBuffer[i+5] = this.vertexNormals[j].z;*/
     }
-
-}
-
-void Polyhedrons::Icosahedron::sendDataToGPU() {
-    glGenBuffers(1, vbo);
+    glGenBuffers(1, &vbo);
     glGenBuffers(3, ibo);
 
-    if (vbo[0] > 0 && ibo[0] > 0) {
-        glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-        glBufferData(GL_ARRAY_BUFFER, STRIDE*NUM_VERTICES, verticesData, GL_STATIC_DRAW);
+    if (vbo > 0 && ibo[0] > 0) {
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, dataSize*sizeof(GLfloat), vertexBuffer, GL_STATIC_DRAW);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(triangleFanIndicesBuffer),
-                triangleFanIndicesBuffer, GL_STATIC_DRAW);
+                     triangleFanIndicesBuffer, GL_STATIC_DRAW);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(triangleStripIndexBuffer),
-                triangleStripIndexBuffer, GL_STATIC_DRAW);
+                     triangleStripIndexBuffer, GL_STATIC_DRAW);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[2]);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(wireFrameTopBottomLinesIndexBuffer),
@@ -213,29 +197,30 @@ void Polyhedrons::Icosahedron::sendDataToGPU() {
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        result = true;
+        delete[] vertexBuffer;
     }
-
+    return result;
 }
 
-    void Polyhedrons::Icosahedron::destroy() {
-        if(nullptr != vbo)
-            delete vbo;
-        if(nullptr != ibo)
-            delete ibo;
-        if(nullptr != verticesData)
-            delete verticesData;
-    }
 
-    bool Polyhedrons::Icosahedron::initShaders() {
+void Polyhedrons::Icosahedron::destroy() {
+    if(monochrome)
+        delete monochrome;
+}
 
-    }
+bool Polyhedrons::Icosahedron::initShaders() {
+    const char vertex_shader[] = "shaders/vertex/monochrome_face_vertex.glsl";
+    const char fragment_shader[] = "shaders/fragment/monochrome_face_fragment.glsl";
+    monochrome = Material::makeMaterial(vertex_shader, fragment_shader);
+    return (nullptr != monochrome);
+}
+    
+bool Polyhedrons::Icosahedron::addMaterials(){};
 
-    bool Polyhedrons::Icosahedron::init() {
-        buildGeometry();
-        buildNormals();
-        buildBuffers();
-        initShaders();
-    }
+bool Polyhedrons::Icosahedron::init() {
+    return (initVertices() && initFaces() &&  initBuffers() && initShaders());
+}
 
 
 

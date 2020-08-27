@@ -30,12 +30,12 @@ public:
 
     ~Camera();
 
-    glm::vec3& eye() ;
-    void eye(glm::vec3& e);
-    glm::vec3& bearing() ;
-    void bearing(glm::vec3& b);
-    glm::vec3& up();
-    void up(glm::vec3& u);
+    const glm::vec3& eye();
+    void set_eye(const glm::vec3& e);
+    const glm::vec3& bearing();
+    void set_bearing(const glm::vec3& b);
+    const glm::vec3& up();
+    void set_up(const glm::vec3& u);
 
     glm::mat4 lookAt();
     glm::mat4 lookAtLH();

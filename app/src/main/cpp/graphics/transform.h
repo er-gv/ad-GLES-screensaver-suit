@@ -17,7 +17,7 @@ struct Transform{
     inline Transform():t(glm::mat4(1)){}
     inline Transform(glm::mat4 m):t(m){}
     inline ~Transform(){}
-
+public:
     inline void translate(float dx, float dy, float dz) {
         t = glm::translate(t, glm::vec3(dx, dy, dz));
     }
@@ -42,7 +42,7 @@ struct Transform{
     }
 
     inline void setTransform(const glm::mat4& m){
-        t=m;
+        t=glm::mat4(m);
     }
     inline void multiply(const glm::mat4& m){
         t*=m;

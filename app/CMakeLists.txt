@@ -68,20 +68,20 @@ add_library(
         #polyhedrons
         src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp
         src/main/cpp/Polyhedrons/PolyhedronsRenderer.h
-        #src/main/cpp/Polyhedrons/Polyhedron.h
-        #src/main/cpp/Polyhedrons/Polyhedron.cpp
-        #src/main/cpp/Polyhedrons/Tetrahedron.h
-        #src/main/cpp/Polyhedrons/Tetrahedron.cpp
+        src/main/cpp/Polyhedrons/Polyhedron.h
+        src/main/cpp/Polyhedrons/Polyhedron.cpp
+        src/main/cpp/Polyhedrons/Tetrahedron.h
+        src/main/cpp/Polyhedrons/Tetrahedron.cpp
         #src/main/cpp/Polyhedrons/TestCube.h
         #src/main/cpp/Polyhedrons/TestCube.cpp
         #src/main/cpp/Polyhedrons/Cube.h
         #src/main/cpp/Polyhedrons/Cube.cpp
-        #src/main/cpp/Polyhedrons/Octahedron.h
-        #src/main/cpp/Polyhedrons/Octahedron.cpp
-        #src/main/cpp/Polyhedrons/Dodecahedron.h
-        #src/main/cpp/Polyhedrons/Dodecahedron.cpp
-        #src/main/cpp/Polyhedrons/Icosahedron.h
-        #src/main/cpp/Polyhedrons/Icosahedron.cpp
+        src/main/cpp/Polyhedrons/Octahedron.h
+        src/main/cpp/Polyhedrons/Octahedron.cpp
+        src/main/cpp/Polyhedrons/Dodecahedron.h
+        src/main/cpp/Polyhedrons/Dodecahedron.cpp
+        src/main/cpp/Polyhedrons/Icosahedron.h
+        src/main/cpp/Polyhedrons/Icosahedron.cpp
 
         #src/main/cpp/graphics/PerlinNoiseGenerator.h
         #src/main/cpp/graphics/PerlinNoiseGenerator.cpp

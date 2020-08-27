@@ -10,7 +10,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <android/log.h>
 PointLight::PointLight() :t(){
-    mSize = 5.0f;
+    mSize = 15.0f;
     mat =nullptr;
 }
 
@@ -45,39 +45,35 @@ void PointLight::updatePosition(long time){
     float angleInDegrees = (360.0f / 10000.0f) * ((int) time);
     float radians = glm::radians(angleInDegrees);
     t.identity();
-    t.translate(glm::vec3(0, 0, -5));
-    t.rotate(radians, glm::vec3(1.0f, 1.0f, 0.0f));
-    t.translate(glm::vec3(0, 0, 2));
+    t.translate(glm::vec3(0, 0, -3));
+    //t.rotate(radians, glm::vec3(0.0f, 1.0f, 0.0f));
+    //t.translate(glm::vec3(0, 0, 2));
 
 }
 
 void PointLight::render(const glm::mat4& view, const glm::mat4& projection) {
 
-    __android_log_print(ANDROID_LOG_INFO, "POINTLIGHT", "entering render");
     mat->activate();//glUseProgram(mPointProgramHandle);
     // Pass in the mPosition
-    glVertexAttrib3f(mat->getAttrib("a_Position"),  .0f, .0f, .0f);
-
+    glVertexAttrib3fv(mat->getAttrib("a_Position"),  glm::value_ptr(position()));
 
     // Pass in the model*view*projection matrix.
     glUniformMatrix4fv(
             mat->getUniform("u_MVPMatrix"),
             1, GL_FALSE,
-            glm::value_ptr(projection*view*t.get())
+            glm::value_ptr(projection*view)
     );
     //Pass in light color
     glUniform3fv(mat->getUniform("u_Color"), 1, glm::value_ptr(mColor));
 
     //Pass light size
     glUniform1f( mat->getUniform("u_pointSize"), mSize);
-
     glDrawArrays(GL_POINTS, 0, 1);
     mat->deactivate();
-    __android_log_print(ANDROID_LOG_INFO, "POINTLIGHT", "leaving render");
 }
 
-glm::vec4 PointLight::position(){
-    return (t.get()*glm::vec4(.0f, .0f, .0f, 1.0));
+glm::vec3 PointLight::position(){
+    return glm::vec3(t.get()*glm::vec4(.0f, .0f, .0f, 1.0));
 };
 
 void PointLight::setTransform(Transform &other) {

@@ -10,11 +10,11 @@
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "graphics/Camera.h"
-//#include "transform.h"
+#include "transform.h"
 
 class Model {
 protected:
-    glm::mat4 initialTransform, activeTransform;
+    Transform initialTransform, activeTransform;
    // Transform t;
 
 public:
@@ -25,9 +25,9 @@ public:
 
     virtual bool init()=0;
     //bool loadModel(char* const path);
-    virtual void render(Camera& camera) = 0;
+    virtual void render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) = 0;
     virtual void destroy()=0;
-    virtual void update() = 0; // call this to update the model's state before rendering
+    virtual void update(long time) = 0; // call this to update the model's state before rendering
     //virtual void postUpdate() = 0; // call this for post rendering update.
 
     void translate(float dx, float dy, float dz) ;

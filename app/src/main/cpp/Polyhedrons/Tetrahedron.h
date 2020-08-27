@@ -10,11 +10,8 @@
 #include <cmath>
 #include <string>
 
-#include <glm/vec3.hpp>
-#include <glm/mat4x4.hpp>
-#include <glm/glm.hpp>
+#include "graphics/GLincludes.h"
 
-#include <GLES2/gl2.h>
 #include <android/log.h>
 
 #include "Polyhedron.h"
@@ -31,6 +28,11 @@ namespace Polyhedrons {
         static const int VERTEX_DATA_SIZE_IN_ELEMENTS = TEX_DATA_SIZE +NORMAL_DATA_SIZE +POSITION_DATA_SIZE;
         static const int VERTEX_DATA_SIZE_IN_BYTES = BYTES_PER_FLOAT*VERTEX_DATA_SIZE_IN_ELEMENTS;
 
+        static constexpr GLfloat faceColors[]={
+                                1.0, 0.0, 0.0,
+                                1.0, 1.0, 0.0,
+                                1.0, 1.0, 1.0,
+                                0.0, 0.0, 1.0};
         /** from Polyhedron
         glm::vec3 *vertices;
         int nVertices;
@@ -70,7 +72,6 @@ namespace Polyhedrons {
 
         GLint mMVPMatrixHandle;
         GLint mMVMatrixHandle;
-        GLfloat normals[3*4];
         bool initBuffers();
         bool initShaders();
         virtual bool initVertices();
@@ -82,9 +83,9 @@ namespace Polyhedrons {
         ~Tetrahedron();
 
         virtual bool init();
-        virtual void render(Camera& camera) ;
+        virtual void render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) ;
         virtual void destroy();
-        virtual void update(); // call this to update the model's state before rendering
+        virtual void update(long time); // call this to update the model's state before rendering
         virtual bool addMaterials();
         //virtual void postUpdate() = 0; // call this for post rendering update.
 

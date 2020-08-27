@@ -41,26 +41,26 @@ Camera::Camera(Camera const & c){
 Camera::~Camera(){}
 
 
-glm::vec3& Camera::eye() {
+const glm::vec3& Camera::eye(){
     return m_eye;
 }
 
-void Camera::eye(glm::vec3& e){
+void Camera::set_eye(const glm::vec3& e){
     m_eye = e;
 }
 
-glm::vec3& Camera::bearing() {
+const glm::vec3& Camera::bearing() {
     return m_bearing;
 }
 
-void Camera::bearing(glm::vec3& b){
+void Camera::set_bearing(const glm::vec3& b){
     m_bearing = b;
 }
 
-glm::vec3& Camera::up() {
+const glm::vec3& Camera::up() {
     return m_up;
 }
-void Camera::up(glm::vec3& u){
+void Camera::set_up(const glm::vec3& u) {
     m_up = u;
 }
 

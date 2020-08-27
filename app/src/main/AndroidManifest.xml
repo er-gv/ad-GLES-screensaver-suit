@@ -31,10 +31,10 @@
         <activity
             android:name=".JuliaSet.JuliaSetActivity"
             android:label="@string/julia_set"/>
-        <!--<activity
+        <activity
             android:name=".Polyhedrons.PolyhedronsActivity"
             android:label="@string/polyhedrons"/>
--->
+
         <!--<activity
             android:name=".Geodetic.SphereConeCylinderActivity"
             android:label="@string/SphereConeCylinderActivity"/>

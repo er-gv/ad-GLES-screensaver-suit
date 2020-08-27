@@ -1,4 +1,4 @@
-#Sun Aug 23 11:51:55 IDT 2020
+#Thu Aug 27 06:33:45 IDT 2020
 base.0=/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 path.1=classes.dex
 renamed.1=classes2.dex

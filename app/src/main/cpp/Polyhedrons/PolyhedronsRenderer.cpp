@@ -6,10 +6,13 @@
 
 #include <jni.h>
 #include <GLES2/gl2.h>
-#include "../graphics/GLUtils.h"
+#include "graphics/GLUtils.h"
 //#include "utils/Logger.h"
 
-//#include "Polyhedrons/Tetrahedron.h"
+#include "Polyhedrons/Tetrahedron.h"
+#include "Polyhedrons/Octahedron.h"
+#include "Polyhedrons/Icosahedron.h"
+#include "Polyhedrons/Dodecahedron.h"
 static Scene scene;
 
 
@@ -20,21 +23,36 @@ Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeSurfaceCreate
 
     GLUtils::setEnvAndAssetManager(env, asset_manager);
 
-    // Print some OpenGL info
-   /* renderer->printGLString("Version", GL_VERSION);
-    renderer->printGLString("Vendor", GL_VENDOR);
-    renderer->printGLString("Renderer", GL_RENDERER);
-    renderer->printGLString("Extensions", GL_EXTENSIONS);*/
-    //Polyhedrons::Tetrahedron* t = new Polyhedrons::Tetrahedron();
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    Polyhedrons::Polyhedron* models[4];
+    models[0] =  new Polyhedrons::Tetrahedron();
+    models[1] =  new Polyhedrons::Octahedron();
+    models[2] =  new Polyhedrons::Icosahedron();
+    models[3] =  new Polyhedrons::Dodecahedron();
+    Transform t;
+    t.translate(5.5, -3.5, -1.0);
+    models[1]->setTransform(t.get());
 
-    scene.setupCamera();
+    t.identity();
+    t.translate(-3.5, -5.5, -1.0);
+    models[2]->setTransform(t.get());
+
+    t.identity();
+    t.translate(+3.5, +5.5, +4.0);
+    models[3]->setTransform(t.get());
+    for(auto* poly: models){
+        if(poly->init()) {
+            scene.addModel(poly);
+        }
+    }
+
     scene.setLights();
 
 
 }
 
-extern "C" JNIEXPORT
-void JNICALL
+extern "C" JNIEXPORT void JNICALL
 Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeSurfaceChange(
         JNIEnv *env, jclass type, jint width, jint height) {
 
@@ -44,7 +62,7 @@ Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeSurfaceChange
 extern "C" JNIEXPORT void JNICALL
 Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeDrawFrame(
         JNIEnv *env, jclass type) {
-
+    scene.update();
     scene.render();
 }
 

@@ -22,6 +22,6 @@ void main(){
 	useBrick = step(position, u_BrickPct);
 	
 	color = mix(u_MortarColor, u_BrickColor, useBrick.x * useBrick.y);
-	//color *= LightIntensity;
+	color *= LightIntensity;
 	gl_FragColor = vec4(color, 1.0);
 }

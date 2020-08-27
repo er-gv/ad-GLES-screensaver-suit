@@ -6,7 +6,10 @@
 #include "graphics/Model.h"
 #include <vector>
 
-Scene::Scene(){}
+Scene::Scene(): bounderyBox(Bounderies()), camera(){
+    camera.set_bearing(glm::vec3(0.0, 0.0, bounderyBox.back));
+}
+
 Scene::~Scene(){
     models.clear();
     for(auto m : models)
@@ -14,10 +17,11 @@ Scene::~Scene(){
 }
 
 void Scene::render() {
-    glClearColor(.0f, .65f, .65f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(.2f, .2f, .2f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    light.render(viewMat, projectionMat);
     for(auto model: models){
-        model->render(camera);
+        model->render(viewMat, projectionMat, light.position());
     }
 }
 
@@ -28,21 +32,38 @@ void Scene::setBounderies( Bounderies b){
 void Scene::addModel(Model* const m){
     models.push_back(m);
 }
-void Scene::setupCamera(){
+void Scene::setupCamera(double ratio){
 
+    double angle =atan(22.5);
+    double dist = bounderyBox.right/angle;
+    camera.set_eye(glm::vec3(0.0, 0.0, bounderyBox.front-dist));
+    camera.set_bearing(glm::vec3(0.0, 0.0, -1.0));
+    projectionMat = camera.projection(45, ratio, bounderyBox.front, bounderyBox.back);
+    viewMat = camera.lookAt();
 }
 void Scene::setLights(){
-
+    light.setup();
+    light.setColor(glm::vec3(0.975, 0.88, 0.2));
 }
 
 void Scene::viewport(int width, int height){
-    glViewport(0, 0, bounderyBox.right -bounderyBox.left, bounderyBox.bottom -bounderyBox.top);
-
+    glViewport(0, 0, width, height);
+    //setBounderies(Bounderies(10.0f, -10.0, -w, w, h, -h));
         // Create a new perspective projection matrix. The height will stay the same
         // while the width will vary as per aspect ratio.
-    float ratio = (float) width / height;
 
-    MVmatrix = camera.projection(45, ratio, bounderyBox.front, bounderyBox.back);
+    setupCamera((double) width / height);
+    //double angle =atan(22.5);
+}
+
+void Scene::update() {
+    struct timeval tv;
+    gettimeofday(&tv, (struct timezone *) NULL);
+    long time = (tv.tv_sec * 1000 + tv.tv_usec / 1000)% 10000L;
+    light.updatePosition(time);
+    for(auto& model : models){
+        model->update(time);
+    }
 }
 
 Bounderies::Bounderies(
@@ -50,7 +71,7 @@ Bounderies::Bounderies(
          front(front), back(back), left(left), right(right), top(top), bottom(bottom){}
 
 Bounderies::Bounderies():
-        front(2), back(-2), left(2), right(-2), top(2), bottom(-2){}
+        front(12), back(-12), left(12), right(-12), top(12), bottom(-12){}
 
 
 

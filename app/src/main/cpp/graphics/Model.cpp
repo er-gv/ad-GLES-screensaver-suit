@@ -10,7 +10,7 @@ Model::Model(){
 }
 
 Model::Model(const glm::mat4& t){
-    initialTransform = activeTransform = t;
+    initialTransform = initialTransform = t;
 }
 
 
@@ -21,7 +21,7 @@ Model::~Model() {
 }
 
 void Model::setTransform(const glm::mat4& t){
-    activeTransform = t;
+    initialTransform.setTransform(t);
 }
 
 void Model::resetTransform(){
@@ -30,30 +30,30 @@ void Model::resetTransform(){
 
 Model& Model::operator=(const Model& m){
     initialTransform = m.initialTransform;
-    activeTransform = m.activeTransform;
+    activeTransform = m.initialTransform;
     return *this;
 }
 
 void Model::translate(float dx, float dy, float dz) {
-    glm::translate(initialTransform, glm::vec3(dx, dy, dz));
+    initialTransform.translate(glm::vec3(dx, dy, dz));
 }
 
 void Model::translate(const glm::vec3& delta) {
-    glm::translate(initialTransform, delta);
+    initialTransform.translate(delta);
 }
 
 void  Model::rotate(float angleInDegrees, float rx, float ry, float rz) {
-    glm::rotate(activeTransform, angleInDegrees, glm::vec3(rx, ry, rz));
+    initialTransform.rotate(angleInDegrees, glm::vec3(rx, ry, rz));
 }
 
 void  Model::rotate(float angleInDegrees, const glm::vec3& axis){
-    glm::rotate(activeTransform, angleInDegrees, axis);
+    initialTransform.rotate(angleInDegrees, axis);
 }
 
 void Model::scale(float s) {
-    glm::scale(activeTransform, glm::vec3(s, s, s));
+    initialTransform.scale(glm::vec3(s, s, s));
 }
 
 void Model::scale(const glm::vec3& vs) {
-    glm::scale(activeTransform, vs);
+    initialTransform.scale(vs);
 }

@@ -390,15 +390,14 @@ void JuliaSetRenderer::randomizeSpectrumIndices() {
         perm[i] =i;
     }
     srandom(time(nullptr));
-    for(int i=0; i<4; ++i){
-        int idx = random()%(4-i)+i+1;
-        perm[i] =perm[i]^perm[idx];
-        perm[idx] =perm[i]^perm[idx];
-        perm[i] =perm[i]^perm[idx];
+    for(int i=0; i<5; ++i){
+        int idx = random()%5;
+        if(idx !=i) {
+            perm[i] = perm[i] ^ perm[idx];
+            perm[idx] = perm[i] ^ perm[idx];
+            perm[i] = perm[i] ^ perm[idx];
+        }
     }
-    perm[3] =perm[3]^perm[4];
-    perm[4] =perm[3]^perm[4];
-    perm[3] =perm[3]^perm[4];
 }
 
 
