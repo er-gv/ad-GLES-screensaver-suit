@@ -25,12 +25,15 @@ Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeSurfaceCreate
 
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
-    Polyhedrons::Polyhedron* models[4];
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    Polyhedrons::Polyhedron* models[1];
     models[0] =  new Polyhedrons::Tetrahedron();
-    models[1] =  new Polyhedrons::Octahedron();
-    models[2] =  new Polyhedrons::Icosahedron();
-    models[3] =  new Polyhedrons::Dodecahedron();
-    Transform t;
+    //models[1] =  new Polyhedrons::Octahedron();
+    //models[2] =  new Polyhedrons::Icosahedron();
+    //models[3] =  new Polyhedrons::Dodecahedron();
+    /*Transform t;
     t.translate(5.5, -3.5, -1.0);
     models[1]->setTransform(t.get());
 
@@ -40,7 +43,7 @@ Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeSurfaceCreate
 
     t.identity();
     t.translate(+3.5, +5.5, +4.0);
-    models[3]->setTransform(t.get());
+    models[3]->setTransform(t.get());*/
     for(auto* poly: models){
         if(poly->init()) {
             scene.addModel(poly);

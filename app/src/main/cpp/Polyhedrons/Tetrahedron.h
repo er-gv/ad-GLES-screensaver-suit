@@ -31,7 +31,7 @@ namespace Polyhedrons {
         static constexpr GLfloat faceColors[]={
                                 1.0, 0.0, 0.0,
                                 1.0, 1.0, 0.0,
-                                1.0, 1.0, 1.0,
+                                0.0, 1.0, 1.0,
                                 0.0, 0.0, 1.0};
         /** from Polyhedron
         glm::vec3 *vertices;

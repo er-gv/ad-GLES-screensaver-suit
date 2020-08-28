@@ -194,9 +194,9 @@ namespace Polyhedrons {
 
         float angleInDegrees = (360.0f / 10000.0f) * ((int) time);
         activeTransform.setTransform(initialTransform.get());
-        activeTransform.scale(2.4f);
-        activeTransform.translate(glm::vec3(-1.0, 0.0, 0.0));
-        activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.0, 1.0, 0.0)) ;
+        activeTransform.scale(3.1f);
+        activeTransform.translate(glm::vec3(-0.3, +0.3, 0.0));
+        activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(3.14, 1.0, 0.4)) ;
         //activeTransform.rotate(glm::radians(40.0), glm::vec3(1.0, 0.0, 0.0)) ;
 
     }

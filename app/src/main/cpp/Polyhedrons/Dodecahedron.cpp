@@ -28,7 +28,7 @@ void Polyhedrons::Dodecahedron::update(long time) {
 
     activeTransform.setTransform(initialTransform.get());
     activeTransform.scale(1.4f);
-    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.8, 1.0, -1.0)) ;
+    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.8, 0.5, -1.0)) ;
 }
 
 void Polyhedrons::Dodecahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
@@ -53,7 +53,7 @@ void Polyhedrons::Dodecahedron::render(glm::mat4& viewMat, glm::mat4& projection
     GLuint colorHandle = monochrome->getUniform("u_Color");
     for(int i=0; i<12; ++i) {
         glUniform3fv(normHandle, 1, glm::value_ptr(vertexNormals[i]));
-        glUniform4f(colorHandle, faceColors[3*(i%4)], faceColors[3*(i%4)+1], faceColors[3*(i%4)+2], 1.0f);
+        glUniform4f(colorHandle, faceColors[3*(i%4)], faceColors[3*(i%4)+1], faceColors[3*(i%4)+2], 0.25f);
         glDrawElements(GL_TRIANGLE_FAN, 5, GL_UNSIGNED_INT,
                        reinterpret_cast<const void *>(5 * i * sizeof(GLuint)));
     }

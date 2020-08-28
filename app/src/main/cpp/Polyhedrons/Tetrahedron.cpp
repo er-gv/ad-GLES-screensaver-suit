@@ -61,56 +61,10 @@ namespace Polyhedrons {
     }
 
     bool Tetrahedron::initShaders() {
+        const char vertex_shader[] = "shaders/vertex/monochrome_face_vertex.glsl";
+        const char fragment_shader[] = "shaders/fragment/monochrome_face_fragment.glsl";
+        monochrome = Material::makeMaterial(vertex_shader, fragment_shader);
 
-        {
-            const char vertex_shader[] = "shaders/vertex/monochrome_face_vertex.glsl";
-            const char fragment_shader[] = "shaders/fragment/monochrome_face_fragment.glsl";
-            monochrome = Material::makeMaterial(vertex_shader, fragment_shader);
-
-            /*monochromePositionHandle = glGetAttribLocation(monochromeProgram, "a_Position");
-            monochromeMVPHandle = glGetUniformLocation(monochromeProgram, "u_MVPMatrix");
-            monochromeMVHandle = glGetUniformLocation(monochromeProgram, "u_mvMat");
-            monochromeLightPosHandle = glGetUniformLocation(monochromeProgram, "u_LightPos");
-            monochromeFaceNormHandle = glGetUniformLocation(monochromeProgram, "u_FaceNormal")
-            monochromeProgram = GLUtils::createProgram(&vertex_shader, &fragment_shader);*/
-
-        }
-        /*
-        {
-            const char *vertex_shader = GLUtils::openTextFile(
-                    "shaders/vertex/point_vertex_shader.glsl");
-            const char *fragment_shader = GLUtils::openTextFile(
-                    "shaders/fragment/point_fragment_shader.glsl");
-            wireframeProgram = GLUtils::createProgram(&vertex_shader, &fragment_shader);
-        }
-        {
-            const char *vertex_shader = GLUtils::openTextFile(
-                    "shaders/vertex/point_vertex_shader.glsl");
-            const char *fragment_shader = GLUtils::openTextFile(
-                    "shaders/fragment/noise_fs.glsl");
-            cloudsProgram = GLUtils::createProgram(&vertex_shader, &fragment_shader);
-        }
-        if (wireframeProgram && monochromeProgram && cloudsProgram) {
-
-            // Bind Attributes and uniforms for the tetrahedron's material
-            monochromePositionHandle = glGetAttribLocation(monochromeProgram, "a_Position");
-            monochromeMVPHandle = glGetUniformLocation(monochromeProgram, "u_MVPMatrix");
-            monochromeMVHandle = glGetUniformLocation(monochromeProgram, "u_mvMat");
-            monochromeLightPosHandle = glGetUniformLocation(monochromeProgram, "u_LightPos");
-            monochromeFaceNormHandle = glGetUniformLocation(monochromeProgram, "u_FaceNormal");
-
-            wireframePositionHandler = glGetAttribLocation(wireframeProgram, "a_Position");
-            wireframeMVPHandler = glGetUniformLocation(wireframeProgram, "u_MVPMatrix");
-            wireframeColorHandler = glGetUniformLocation(wireframeProgram, "u_Color");
-
-            cloudsPositionHandle = glGetAttribLocation(cloudsProgram, "a_Position");
-            cloudsSkyColorHandler = glGetUniformLocation(cloudsProgram, "u_skyColor");
-            cloudsCloudColorHandle = glGetUniformLocation(cloudsProgram, "u_cloudColor");
-            cloudsMVHandle = glGetUniformLocation(cloudsProgram, "u_mvMat");
-            cloudsLightPosHandle = glGetUniformLocation(cloudsProgram, "u_LightPos");
-            cloudsFaceNormHandle = glGetUniformLocation(cloudsProgram, "u_FaceNormal");
-            return true;
-        }*/
         return true;
     }
 
@@ -191,9 +145,10 @@ namespace Polyhedrons {
         float angleInDegrees = (360.0f / 10000.0f) * ((int) time);
 
         activeTransform.setTransform(initialTransform.get());
-        activeTransform.scale(2.4f);
-        activeTransform.translate(glm::vec3(-2.0, 0.0, 0.0));
-        activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.0, 1.0, 0.0)) ;
+        activeTransform.scale(3.4f);
+        activeTransform.translate(glm::vec3(0.0, 1.45,-0.0));
+        activeTransform.rotate(glm::radians(90.0), glm::vec3(0.0, 0.0, 1.0)) ;
+        activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.4, 1.0, -0.8)) ;
         //activeTransform.rotate(glm::radians(40.0), glm::vec3(1.0, 0.0, 0.0)) ;
 
     }
@@ -210,29 +165,22 @@ namespace Polyhedrons {
         glEnableVertexAttribArray(positionAttr);
 
 
-         /*glVertexAttribPointer(texAttributeHandle, TEX_DATA_SIZE, GL_FLOAT, false, VERTEX_DATA_SIZE,
-                               24);**/
-
-        //pass in cloud and sky color.
-        //int skyColorLoc = glGetUniformLocation(7, "u_skyColor");
-        //int cloudColorLoc = glGetUniformLocation(7, "u_cloudColor");
-        //glUniform3f(cloudColorLoc, 0.8f, 0.8f, 0.8f);
-        //glUniform3f(skyColorLoc, 0.0f, 0.0f, 0.65f);
-
-
-
-        // Set the active texture unit to texture unit 0.
-        //GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-
 
         //draw triangles
         glBindBuffer(GL_ARRAY_BUFFER, ibo[0]);
         glm::mat4 viewT = viewMat*activeTransform.get();
         glm::mat4 projT = projectionMat*viewT;
         glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(projT));
-        glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(viewT));
+        glUniformMatrix4fv(monochrome->getUniform("u_mvMatrix"), 1, false, glm::value_ptr(viewT));
+        glUniformMatrix4fv(monochrome->getUniform("u_NormalMat"), 1, false, glm::value_ptr(viewMat));
 
         glUniform3fv(monochrome->getUniform("u_LightPos"), 1, glm::value_ptr(lightPos));
+        glUniform1f(monochrome->getUniform("u_diffuseCoaff"), 1.0);
+        glUniform1f(monochrome->getUniform("u_specularCoaff"), 0.8);
+        glUniform1f(monochrome->getUniform("u_shininess"), 5.0);
+        glUniform1f(monochrome->getUniform("u_ambiantCoaff"), 0.2);
+
+
 
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);

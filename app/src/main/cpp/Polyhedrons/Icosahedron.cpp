@@ -28,7 +28,7 @@ void Polyhedrons::Icosahedron::update(long time) {
 
     activeTransform.setTransform(initialTransform.get());
     activeTransform.scale(3.4f);
-    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.0, 1.0, 0.0)) ;
+    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(1.0, 1.0, -1.0)) ;
 }
 
 void Polyhedrons::Icosahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
