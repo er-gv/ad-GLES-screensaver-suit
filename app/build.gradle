@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.ergv.glScreenSavers"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 27
 
         externalNativeBuild {
             cmake {

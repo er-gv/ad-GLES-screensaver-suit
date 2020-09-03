@@ -763,8 +763,6 @@ raw fresnel_refraction_fragment_shader
 raw fresnel_refraction_vertex_shader
 raw lesson_seven_fragment_shader
 raw lesson_seven_vertex_shader
-raw monochrome_phong_fs
-raw monochrome_phong_vs
 raw noise_fs
 raw per_pixel_fragment_shader
 raw per_pixel_fragment_shader_no_tex

@@ -7,7 +7,7 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="28" />
+        android:targetSdkVersion="27" />
 
     <!-- We require OpenGL ES 2.0 -->
     <uses-feature

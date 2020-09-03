@@ -79,9 +79,6 @@ namespace Polyhedrons {
         //virtual void postUpdate() = 0; // call this for post rendering update.
         virtual bool initShaders()=0;
 
-
-
-
     };
 }
 

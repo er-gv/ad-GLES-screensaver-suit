@@ -15,7 +15,9 @@
 class Model {
 protected:
     Transform initialTransform, activeTransform;
-   // Transform t;
+    GLint mMVPMatrixHandle;
+    GLint mMVMatrixHandle;
+
 
 public:
     Model();
@@ -26,6 +28,7 @@ public:
     virtual bool init()=0;
     //bool loadModel(char* const path);
     virtual void render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) = 0;
+    //virtual void render(const Camera& cam, const Lighting& lights) = 0;
     virtual void destroy()=0;
     virtual void update(long time) = 0; // call this to update the model's state before rendering
     //virtual void postUpdate() = 0; // call this for post rendering update.

@@ -34,16 +34,16 @@ void Scene::addModel(Model* const m){
 }
 void Scene::setupCamera(double ratio){
 
-    double angle =atan(22.5);
-    double dist = bounderyBox.right/angle;
-    camera.set_eye(glm::vec3(0.0, 0.0, bounderyBox.front-dist));
-    camera.set_bearing(glm::vec3(0.0, 0.0, -1.0));
+
+
+    camera.set_eye(glm::vec3(0.0, 0.0, bounderyBox.front+12));
+    camera.set_bearing(glm::vec3(0.0, 0.0, bounderyBox.back));
     projectionMat = camera.projection(45, ratio, bounderyBox.front, bounderyBox.back);
     viewMat = camera.lookAt();
 }
 void Scene::setLights(){
     light.setup();
-    light.setColor(glm::vec3(0.975, 0.88, 0.2));
+    light.setColor(glm::vec3(1.0, 1.0, 1.0));
 }
 
 void Scene::viewport(int width, int height){

@@ -12,8 +12,6 @@ varying float v_attenation;
 
 // The entry point for our fragment shader.
 void main() {
-
-    float intencity = (gl_FrontFacing ? v_LightCoaff : u_ambiantCoaff);
-    gl_FragColor = clamp((u_Color*v_LightCoaff)*(vec4(1.0, 1.0, 0.25, 1.0)*v_attenation), vec4(0.0), vec4(1));
+    gl_FragColor = u_Color*max(v_LightCoaff*v_attenation, u_ambiantCoaff)/**u_LightColor*/;
 }
 

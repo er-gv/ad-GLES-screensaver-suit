@@ -8,8 +8,7 @@
 #include <jni.h>
 
 #include "graphics/GLincludes.h"
-//#include <GLES2/gl2.h>
-//#include <GLES2/gl2ext.h>
+
 
 class GLUtils {
 public:

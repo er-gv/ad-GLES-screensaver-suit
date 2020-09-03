@@ -6,7 +6,11 @@
 #define ANDROIDOPENGLESLESSONSCPP_GLINCLUDES_H
 
 #include <EGL/egl.h>
-#include <GLES2/gl2.h>
-#include <GLES2/gl2ext.h>
+//#include <GLES2/gl2.h>
+//#include <GLES2/gl2ext.h>
+
+#include <GLES3/gl3.h>
+//#include <GLES3/gl32.h>
+#include <GLES3/gl3ext.h>
 
 #endif //ANDROIDOPENGLESLESSONSCPP_GLINCLUDES_H

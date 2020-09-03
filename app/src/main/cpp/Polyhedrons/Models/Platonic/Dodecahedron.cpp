@@ -3,16 +3,11 @@
 //
 
 #include "Dodecahedron.h"
+#include "graphics/PerlinNoiseGenerator.h"
 #include <vector>
-#include <tuple>
 
-static constexpr GLfloat faceColors[] ={
-        0.941176f, 0.9019607f, 0.549019f,
-        1.0, 1.0, 0.0, 0.7, 1.0, 0.3,
-        1.0f, 0.184313f, 0.678431f
-};
 Polyhedrons::Dodecahedron::Dodecahedron():Polyhedrons::Polyhedron(), LogTag("DODECAHEDRON"){
-    monochrome = nullptr;
+    sunSurface = nullptr;
     vbo =0;
     ibo[0] =0;
 }
@@ -32,34 +27,53 @@ void Polyhedrons::Dodecahedron::update(long time) {
 }
 
 void Polyhedrons::Dodecahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
-    monochrome->activate();
+    sunSurface->activate();
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    GLuint positionAttr = monochrome->getAttrib("a_Position");
-    glVertexAttribPointer(positionAttr, 3, GL_FLOAT,
+    glVertexAttribPointer(positionAttributeHandle, POSITION_DATA_SIZE, GL_FLOAT,
                           static_cast<GLboolean>(false),
-                          0, 0);
-    glEnableVertexAttribArray(positionAttr);
+                          VERTEX_DATA_SIZE, 0);
+
+    glVertexAttribPointer(texcoordAttributeHandle, TEX_DATA_SIZE, GL_FLOAT,
+                          static_cast<GLboolean>(false),
+                          VERTEX_DATA_SIZE, reinterpret_cast<const void *>(TEX_OFFSET));
+    glEnableVertexAttribArray(positionAttributeHandle);
+    glEnableVertexAttribArray(texcoordAttributeHandle);
+    glActiveTexture(GL_TEXTURE0);
+    // Bind the texture to this unit
+    glBindTexture(GL_TEXTURE_3D, textureDataHandler);
+    // Tell the texture uniform sampler to use the texture
+    // in the shader by binding to texture unit 0.
+    glUniform1i(textureSamplerHandler, 0);
 
 
     //draw triangles
     glm::mat4 viewT = viewMat*activeTransform.get();
     glm::mat4 projT = projectionMat*viewT;
-    glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(projT));
-    glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(viewT));
-    glUniform3fv(monochrome->getUniform("u_LightPos"), 1, glm::value_ptr(lightPos));
+    glUniformMatrix4fv(MVPMatrixHandle, 1, false, glm::value_ptr(projT));
+    glUniformMatrix4fv(MVMatrixHandle, 1, false, glm::value_ptr(viewT));
+    glUniformMatrix4fv(NormalMatrixHandle, 1, false, glm::value_ptr(viewMat));
+
+    glUniform3fv(lightPositionHandler, 1, glm::value_ptr(lightPos));
+    /*glUniform1f(sunSurface->getUniform("u_diffuseCoaff"), 0.1);
+    glUniform1f(sunSurface->getUniform("u_specularCoaff"), 0.9);
+    glUniform1f(sunSurface->getUniform("u_shininess"), 5.0);
+    glUniform1f(sunSurface->getUniform("u_ambiantCoaff"), 0.2);*/
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
-    GLuint normHandle = monochrome->getUniform("u_FaceNormal");
-    GLuint colorHandle = monochrome->getUniform("u_Color");
-    for(int i=0; i<12; ++i) {
+    GLuint normHandle = sunSurface->getUniform("u_FaceNormal");
+    //GLuint colorHandle = sunSurface->getUniform("u_Color");
+    for(int i=0; i<NUM_FACES; ++i) {
         glUniform3fv(normHandle, 1, glm::value_ptr(vertexNormals[i]));
-        glUniform4f(colorHandle, faceColors[3*(i%4)], faceColors[3*(i%4)+1], faceColors[3*(i%4)+2], 0.25f);
+        //glUniform4f(colorHandle, faceColors[3*(i%4)], faceColors[3*(i%4)+1], faceColors[3*(i%4)+2], 1.0f);
         glDrawElements(GL_TRIANGLE_FAN, 5, GL_UNSIGNED_INT,
                        reinterpret_cast<const void *>(5 * i * sizeof(GLuint)));
     }
 
-    glDisableVertexAttribArray(positionAttr);
-    monochrome->deactivate();
+    glDisableVertexAttribArray(positionAttributeHandle);
+    glDisableVertexAttribArray(texcoordAttributeHandle);
+    glBindTexture(GL_TEXTURE_3D, 0);
+    glActiveTexture(0);
+    sunSurface->deactivate();
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
@@ -158,13 +172,13 @@ bool Polyhedrons::Dodecahedron::initBuffers() {
      //       {0,1,0,2,0,3,0,4,0,5,11,6,11,7,11,8,11,9,11,10};
 
     for(int i=0; i<NUM_VERTICES ; ++i){
-        int j = i*VERTEX_DATA_SIZE;
+        int j = i*6;
         vertexBuffer[j] = vertices[i].x;
         vertexBuffer[j+1] = vertices[i].y;
         vertexBuffer[j+2] = vertices[i].z;
-        /*vertexBuffer[i+3] = this.vertexNormals[j].x;
-        vertexBuffer[i+4] = this.vertexNormals[j].y;
-        vertexBuffer[i+5] = this.vertexNormals[j].z;*/
+        vertexBuffer[j+3] = vertices[i].x;
+        vertexBuffer[j+4] = vertices[i].y;
+        vertexBuffer[j+5] = vertices[i].z;
     }
     glGenBuffers(1, &vbo);
     glGenBuffers(1, ibo);
@@ -195,18 +209,37 @@ bool Polyhedrons::Dodecahedron::initBuffers() {
 
 
 void Polyhedrons::Dodecahedron::destroy() {
-    if(monochrome)
-        delete monochrome;
+    if(sunSurface)
+        delete sunSurface;
+    textureDataHandler = 0;
+
 }
 
 bool Polyhedrons::Dodecahedron::initShaders() {
-    const char vertex_shader[] = "shaders/vertex/monochrome_face_vertex.glsl";
-    const char fragment_shader[] = "shaders/fragment/monochrome_face_fragment.glsl";
-    monochrome = Material::makeMaterial(vertex_shader, fragment_shader);
-    return (nullptr != monochrome);
+    const char vertex_shader[] = "shaders/vertex/vertex_turbulence_texture.glsl";
+    const char fragment_shader[] = "shaders/fragment/fragment_sun_texture.glsl";
+    sunSurface = Material::makeMaterial(vertex_shader, fragment_shader);
+    if(nullptr != sunSurface){
+        positionAttributeHandle = sunSurface->getAttrib("a_Position");
+        texcoordAttributeHandle = sunSurface->getAttrib("a_TexCoord");
+
+        MVPMatrixHandle = sunSurface->getUniform("u_MVPMatrix");
+        MVMatrixHandle = sunSurface->getUniform("u_MVMatrix");
+        NormalMatrixHandle = sunSurface->getUniform("u_NormalMatrix");
+
+        lightPositionHandler = sunSurface->getUniform("u_LightPos");
+        textureSamplerHandler = sunSurface->getUniform("u_Texture");
+
+        textureDataHandler = PerlinNoiseGenerator::get3DTexture();
+        return (textureDataHandler>0);
+    }
+    return false;
 }
 
-bool Polyhedrons::Dodecahedron::addMaterials(){};
+bool Polyhedrons::Dodecahedron::addMaterials(){
+
+
+};
 
 bool Polyhedrons::Dodecahedron::init() {
     return (initVertices() && initFaces() &&  initBuffers() && initShaders());

@@ -7,7 +7,7 @@
 7    <uses-sdk
 8        android:minSdkVersion="21"
 8-->/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
-9        android:targetSdkVersion="28" />
+9        android:targetSdkVersion="27" />
 9-->/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
 10
 11    <!-- We require OpenGL ES 2.0 -->

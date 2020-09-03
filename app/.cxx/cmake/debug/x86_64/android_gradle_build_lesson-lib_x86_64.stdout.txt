@@ -1,5 +1,5 @@
-[1/2] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Tetrahedron.cpp.o
-/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Tetrahedron.cpp:72:14: warning: unused variable 'buffer' [-Wunused-variable]
+[1/2] Building CXX object CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp.o
+/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp:79:14: warning: unused variable 'buffer' [-Wunused-variable]
         char buffer[100];
              ^
 1 warning generated.

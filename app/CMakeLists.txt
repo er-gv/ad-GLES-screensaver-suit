@@ -37,8 +37,8 @@ add_library(
         src/main/cpp/graphics/Matrix.cpp
         src/main/cpp/graphics/Camera.h
         src/main/cpp/graphics/Camera.cpp
-        #src/main/cpp/graphics/ShaderClass.java.h
-        #src/main/cpp/graphics/ShaderClass.java.cpp
+        src/main/cpp/graphics/PerlinNoiseGenerator.h
+        src/main/cpp/graphics/PerlinNoiseGenerator.cpp
         src/main/cpp/graphics/PointLight.h
         src/main/cpp/graphics/PointLight.cpp
         src/main/cpp/graphics/Material.h
@@ -68,23 +68,27 @@ add_library(
         #polyhedrons
         src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp
         src/main/cpp/Polyhedrons/PolyhedronsRenderer.h
-        src/main/cpp/Polyhedrons/Polyhedron.h
-        src/main/cpp/Polyhedrons/Polyhedron.cpp
-        src/main/cpp/Polyhedrons/Tetrahedron.h
-        src/main/cpp/Polyhedrons/Tetrahedron.cpp
-        #src/main/cpp/Polyhedrons/TestCube.h
-        #src/main/cpp/Polyhedrons/TestCube.cpp
-        #src/main/cpp/Polyhedrons/Cube.h
-        #src/main/cpp/Polyhedrons/Cube.cpp
-        src/main/cpp/Polyhedrons/Octahedron.h
-        src/main/cpp/Polyhedrons/Octahedron.cpp
-        src/main/cpp/Polyhedrons/Dodecahedron.h
-        src/main/cpp/Polyhedrons/Dodecahedron.cpp
-        src/main/cpp/Polyhedrons/Icosahedron.h
-        src/main/cpp/Polyhedrons/Icosahedron.cpp
+        src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.h
+        src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.cpp
+        src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.h
+        src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp
+        src/main/cpp/Polyhedrons/Models/Platonic/TestCube.h
+        src/main/cpp/Polyhedrons/Models/Platonic/TestCube.cpp
+        src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.h
+        src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.cpp
+        src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.h
+        src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.cpp
+        src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.h
+        src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.cpp
+        src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.h
+        src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.cpp
+        src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.h
+        src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.cpp
+        src/main/cpp/Polyhedrons/Models/Geodetic/Torus.h
+        src/main/cpp/Polyhedrons/Models/Geodetic/Torus.cpp
+        src/main/cpp/Polyhedrons/Models/Geodetic/Ring.h
+        src/main/cpp/Polyhedrons/Models/Geodetic/Ring.cpp
 
-        #src/main/cpp/graphics/PerlinNoiseGenerator.h
-        #src/main/cpp/graphics/PerlinNoiseGenerator.cpp
 )
 
 include_directories(src/main/cpp/)

@@ -133,10 +133,10 @@ namespace Polyhedrons {
         normals[1] = glm::normalize(glm::cross(vertices[2]-vertices[0], vertices[3]-vertices[0]));
         normals[2] = glm::normalize(glm::cross(vertices[3]-vertices[0], vertices[4]-vertices[0]));
         normals[3] = glm::normalize(glm::cross(vertices[4]-vertices[0], vertices[1]-vertices[0]));
-        normals[0] = glm::normalize(glm::cross(vertices[1]-vertices[5], vertices[2]-vertices[5]));
-        normals[1] = glm::normalize(glm::cross(vertices[2]-vertices[5], vertices[3]-vertices[5]));
-        normals[2] = glm::normalize(glm::cross(vertices[3]-vertices[5], vertices[4]-vertices[5]));
-        normals[3] = glm::normalize(glm::cross(vertices[4]-vertices[5], vertices[1]-vertices[5]));
+        normals[4] = glm::normalize(glm::cross(vertices[1]-vertices[5], vertices[2]-vertices[5]));
+        normals[5] = glm::normalize(glm::cross(vertices[2]-vertices[5], vertices[3]-vertices[5]));
+        normals[6] = glm::normalize(glm::cross(vertices[3]-vertices[5], vertices[4]-vertices[5]));
+        normals[7] = glm::normalize(glm::cross(vertices[4]-vertices[5], vertices[1]-vertices[5]));
         /*for( int k=0; k<nFaces; k++){
             const glm::vec3& normal = faces[k]->getNormal();
             int j = 3*k;
@@ -217,11 +217,16 @@ namespace Polyhedrons {
         glBindBuffer(GL_ARRAY_BUFFER, ibo[0]);
         glm::mat4 viewT = viewMat*activeTransform.get();
         glm::mat4 projT = projectionMat*viewT;
+        glm::mat4 normalsT = glm::inverse(glm::transpose(activeTransform.get()));
         glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(projT));
         glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(viewT));
+        glUniformMatrix4fv(monochrome->getUniform("u_NormalMat"), 1, false, glm::value_ptr(normalsT));
 
         glUniform3fv(monochrome->getUniform("u_LightPos"), 1, glm::value_ptr(lightPos));
-
+        glUniform1f(monochrome->getUniform("u_diffuseCoaff"), 0.3);
+        glUniform1f(monochrome->getUniform("u_specularCoaff"), 0.0);
+        glUniform1f(monochrome->getUniform("u_shininess"), 2.0);
+        glUniform1f(monochrome->getUniform("u_ambiantCoaff"), 0.2);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
 

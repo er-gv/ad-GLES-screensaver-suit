@@ -10,7 +10,7 @@
 #include <jni.h>
 #include <vector>
 #include "graphics/Camera.h"
-#include "Polyhedrons/Polyhedron.h"
+#include "Polyhedrons/Models/Platonic/Polyhedron.h"
 #include "graphics/Model.h"
 #include "graphics/PointLight.h"
 

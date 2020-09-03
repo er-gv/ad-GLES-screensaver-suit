@@ -45,10 +45,8 @@ void PointLight::updatePosition(long time){
     float angleInDegrees = (360.0f / 10000.0f) * ((int) time);
     float radians = glm::radians(angleInDegrees);
     t.identity();
-    t.translate(glm::vec3(0, 0, -5));
-    t.rotate(radians, glm::vec3(1.0f, 1.0f, 0.0f));
-    t.translate(glm::vec3(0, 0, 2));
-
+    t.translate(glm::vec3(0, 2.0, -7));
+    t.rotate(radians, glm::vec3(0.0f, 0.0f, 1.0f));
 }
 
 void PointLight::render(const glm::mat4& view, const glm::mat4& projection) {
@@ -56,7 +54,7 @@ void PointLight::render(const glm::mat4& view, const glm::mat4& projection) {
     __android_log_print(ANDROID_LOG_INFO, "POINTLIGHT", "entering render");
     mat->activate();//glUseProgram(mPointProgramHandle);
     // Pass in the mPosition
-    glVertexAttrib3f(mat->getAttrib("a_Position"),  .0f, .0f, .0f);
+    glVertexAttrib3fv(mat->getAttrib("a_Position"),  glm::value_ptr(position()));
 
 
     // Pass in the model*view*projection matrix.

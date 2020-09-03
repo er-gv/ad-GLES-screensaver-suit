@@ -20,11 +20,11 @@ public class PolyhedronsActivity extends Activity {
 		// Check if the system supports OpenGL ES 2.0.
 		final ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 		final ConfigurationInfo configurationInfo = activityManager.getDeviceConfigurationInfo();
-		final boolean supportsEs2 = configurationInfo.reqGlEsVersion >= 0x20000;
+		final boolean supportsEs3 = configurationInfo.reqGlEsVersion >= 0x30000;
 
-		if (supportsEs2) {
+		if (supportsEs3) {
 			// Request an OpenGL ES 2.0 compatible context.
-			mGLSurfaceView.setEGLContextClientVersion(2);
+			mGLSurfaceView.setEGLContextClientVersion(3);
 
 			// Set the native renderer to our demo renderer,defined below.
 			mGLSurfaceView.setRenderer(new PolyhedronsRenderer(this));

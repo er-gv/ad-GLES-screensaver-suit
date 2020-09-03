@@ -19,13 +19,11 @@ void main()
 {
     vec3 eyeCPos = vec3(u_MVMatrix*vec4(a_Position, 1.0)); //OK
     vec3 tnorm = normalize(vec3(u_NormalMat * vec4(u_FaceNormal, 1.0)));
-    vec3 lightVec = normalize(u_LightPos-eyeCPos);  //OK
-    vec3 reflectVec = reflect(-lightVec, tnorm);
-    vec3 viewVec = normalize(vec3(u_NormalMat*vec4(a_Position, 1.0)));
+    vec3 lightVec = normalize((u_MVMatrix*vec4(u_LightPos, 1.0)).xyz-eyeCPos);
+    vec3 reflectVec = normalize(reflect(lightVec, tnorm));
+    vec3 viewVec = -eyeCPos;
 
-    float spec = max(dot(tnorm, lightVec), 0.0);
-    vec3 halfAngle = normalize(lightVec+viewVec);
-    spec = spec*pow(max(dot(tnorm, halfAngle), 0.0), u_shininess);
+    float spec = pow(max(dot(reflectVec, viewVec), 0.0), u_shininess);
     float lightDist = length(u_LightPos-eyeCPos);
     v_attenation = 1.0/(0.32+0.2*lightDist*lightDist);
     v_LightCoaff = u_diffuseCoaff*max(dot(lightVec, tnorm), 0.0)+u_specularCoaff*spec;

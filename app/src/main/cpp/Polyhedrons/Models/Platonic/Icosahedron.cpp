@@ -43,11 +43,21 @@ void Polyhedrons::Icosahedron::render(glm::mat4& viewMat, glm::mat4& projectionM
 
     //draw triangles
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, ibo[0]);
     glm::mat4 viewT = viewMat*activeTransform.get();
     glm::mat4 projT = projectionMat*viewT;
+    glm::mat4 normalsT = glm::inverse(glm::transpose(activeTransform.get()));
     glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(projT));
     glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(viewT));
+    glUniformMatrix4fv(monochrome->getUniform("u_NormalMat"), 1, false, glm::value_ptr(normalsT));
+
     glUniform3fv(monochrome->getUniform("u_LightPos"), 1, glm::value_ptr(lightPos));
+    glUniform1f(monochrome->getUniform("u_diffuseCoaff"), 0.0);
+    glUniform1f(monochrome->getUniform("u_specularCoaff"), 0.0);
+    glUniform1f(monochrome->getUniform("u_shininess"), 7.0);
+    glUniform1f(monochrome->getUniform("u_ambiantCoaff"), 0.2);
+
+
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
     glUniform4f(monochrome->getUniform("u_Color"), faceColors[0], faceColors[1], faceColors[2], 1.0f);

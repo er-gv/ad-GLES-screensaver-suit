@@ -24,30 +24,31 @@ namespace Polyhedrons {
 
 
         static const int POSITION_DATA_SIZE = 3;
+        static const int TEX_DATA_SIZE = 3;
         static const int POSITION_OFFSET = 0;
-        static const int NORMAL_DATA_SIZE = 0;
-        static const int VERTEX_DATA_SIZE = NORMAL_DATA_SIZE+ POSITION_DATA_SIZE;
+        static const int TEX_OFFSET = POSITION_DATA_SIZE*BYTES_PER_FLOAT;
+        static const int VERTEX_DATA_SIZE = (TEX_DATA_SIZE+ POSITION_DATA_SIZE)*BYTES_PER_FLOAT;
         static const int NUM_VERTICES = 20;
         static const int NUM_FACES = 12;
 
         glm::vec3 vertices[NUM_VERTICES]{};
         glm::vec3 vertexNormals[NUM_FACES]{};
-        Material* monochrome{};
+        Material* sunSurface;
 
-        GLuint  vbo{};
-        GLuint  ibo[2]{};
+        GLuint  vbo;
+        GLuint  ibo[2];
         // Attributes and uniforms handlers for the tetrahedron's material
-        GLint positionAttributeHandle{};
-        GLint normalAttributeHandle{};
-        GLint lightPositionHandler{};
+        GLuint positionAttributeHandle;
+        GLuint texcoordAttributeHandle;
 
+        GLuint MVPMatrixHandle;
+        GLuint MVMatrixHandle;
+        GLuint NormalMatrixHandle;
 
-        // Attributes and uniforms for the tetrahedron's wireframe
-        GLint wireframeVetexAtributeHandle{};
-        GLint wireframeColorUniformHandle{};
-
-        GLint mMVPMatrixHandle{};
-        GLint mMVMatrixHandle{};
+        GLuint lightPositionHandler;
+        GLuint textureSamplerHandler;
+        GLuint textureDataHandler;
+        GLuint normalHandle;
 
         bool initShaders();
 

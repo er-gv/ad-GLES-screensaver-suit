@@ -14,7 +14,7 @@
 
 #include <android/log.h>
 
-#include "Polyhedron.h"
+#include "Polyhedrons/Models/Platonic/Polyhedron.h"
 #include "graphics/GLUtils.h"
 #include "graphics/Material.h"
 
@@ -22,9 +22,9 @@ namespace Polyhedrons {
 
     class Tetrahedron : public Polyhedron {
         std::string  LogTag;
-        static const int POSITION_DATA_SIZE = 4;
+        static const int POSITION_DATA_SIZE = 3;
         static const int NORMAL_DATA_SIZE = 0;
-        static const int TEX_DATA_SIZE = 0;
+        static const int TEX_DATA_SIZE = 2;
         static const int VERTEX_DATA_SIZE_IN_ELEMENTS = TEX_DATA_SIZE +NORMAL_DATA_SIZE +POSITION_DATA_SIZE;
         static const int VERTEX_DATA_SIZE_IN_BYTES = BYTES_PER_FLOAT*VERTEX_DATA_SIZE_IN_ELEMENTS;
 
@@ -40,38 +40,25 @@ namespace Polyhedrons {
         glm::vec3 *vertexNormals;
         int nNormals
         */
-        GLuint cloudsProgram;
-        GLuint monochromeProgram;
-        GLuint wireframeProgram;
+        glm::vec3 texcoors[4];
 
-        Material* monochrome;
+        Material* granite;
         // Attributes and uniforms handlers for the tetrahedron's materials
 
-        GLint monochromePositionHandle;
-        GLint monochromeMVPHandle;
-        GLint monochromeMVHandle;
-        GLint monochromeFaceNormHandle;
-        GLint monochromeLightPosHandle;
+        GLuint positionAttributeHandle;
+        GLuint texcoordAttributeHandle;
 
-        GLint wireframePositionHandler;
-        GLint wireframeMVPHandler;
-        GLint wireframeColorHandler;
+        GLuint MVPMatrixHandle;
+        GLuint MVMatrixHandle;
+        GLuint NormalMatrixHandle;
 
-        GLint cloudsPositionHandle;
-        GLint cloudsSkyColorHandler;
-        GLint cloudsCloudColorHandle;
-        GLint cloudsFaceNormHandle;
-        GLint cloudsLightPosHandle;
-        GLint cloudsMVHandle;
+        GLuint noiseScaleHandler;
+        GLuint normalHandler;
+        GLuint lightPositionHandler;
+        GLuint textureSamplerHandler;
 
+        GLuint textureDataHandler;
 
-
-            // Attributes and uniforms for the tetrahedron's wireframe
-        GLint wireframeVetexAtributeHandle;
-        GLint wireframeColorUniformHandle;
-
-        GLint mMVPMatrixHandle;
-        GLint mMVMatrixHandle;
         bool initBuffers();
         bool initShaders();
         virtual bool initVertices();

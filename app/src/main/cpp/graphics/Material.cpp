@@ -34,8 +34,9 @@ GLuint Material::getUniform(const char* name) {
 Material* Material::makeMaterial(const char* vertexSrc, const char* fragmentSrc){
 
     Material* mat;
-    const char *vertex = GLUtils::openTextFile(vertexSrc);
     const char *fragment = GLUtils::openTextFile(fragmentSrc);
+    const char *vertex = GLUtils::openTextFile(vertexSrc);
+
 
     // Set program handles
     int program = GLUtils::createProgram(&vertex, &fragment);

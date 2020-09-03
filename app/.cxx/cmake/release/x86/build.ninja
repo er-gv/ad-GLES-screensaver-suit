@@ -75,6 +75,14 @@ build CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Camera.cpp.o: CXX_COMPILER
   IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/Camera.cpp
   OBJECT_DIR = CMakeFiles/lesson-lib.dir
   OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/graphics
+build CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/PerlinNoiseGenerator.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/graphics/PerlinNoiseGenerator.cpp
+  DEFINES = -Dlesson_lib_EXPORTS
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/PerlinNoiseGenerator.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
+  INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/PerlinNoiseGenerator.cpp
+  OBJECT_DIR = CMakeFiles/lesson-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/graphics
 build CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/PointLight.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/graphics/PointLight.cpp
   DEFINES = -Dlesson_lib_EXPORTS
   DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/PointLight.cpp.o.d
@@ -139,46 +147,86 @@ build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp
   IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp
   OBJECT_DIR = CMakeFiles/lesson-lib.dir
   OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons
-build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Polyhedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Polyhedron.cpp
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.cpp
   DEFINES = -Dlesson_lib_EXPORTS
-  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Polyhedron.cpp.o.d
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
   INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
-  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Polyhedron.cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.cpp
   OBJECT_DIR = CMakeFiles/lesson-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons
-build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Tetrahedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Tetrahedron.cpp
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp
   DEFINES = -Dlesson_lib_EXPORTS
-  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Tetrahedron.cpp.o.d
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
   INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
-  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Tetrahedron.cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp
   OBJECT_DIR = CMakeFiles/lesson-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons
-build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Octahedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Octahedron.cpp
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/TestCube.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Platonic/TestCube.cpp
   DEFINES = -Dlesson_lib_EXPORTS
-  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Octahedron.cpp.o.d
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/TestCube.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
   INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
-  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Octahedron.cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/TestCube.cpp
   OBJECT_DIR = CMakeFiles/lesson-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons
-build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Dodecahedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Dodecahedron.cpp
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.cpp
   DEFINES = -Dlesson_lib_EXPORTS
-  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Dodecahedron.cpp.o.d
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
   INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
-  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Dodecahedron.cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.cpp
   OBJECT_DIR = CMakeFiles/lesson-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons
-build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Icosahedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Icosahedron.cpp
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.cpp
   DEFINES = -Dlesson_lib_EXPORTS
-  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Icosahedron.cpp.o.d
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
   INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
-  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Icosahedron.cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.cpp
   OBJECT_DIR = CMakeFiles/lesson-lib.dir
-  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.cpp
+  DEFINES = -Dlesson_lib_EXPORTS
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
+  INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.cpp
+  OBJECT_DIR = CMakeFiles/lesson-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.cpp
+  DEFINES = -Dlesson_lib_EXPORTS
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
+  INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.cpp
+  OBJECT_DIR = CMakeFiles/lesson-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.cpp
+  DEFINES = -Dlesson_lib_EXPORTS
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
+  INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.cpp
+  OBJECT_DIR = CMakeFiles/lesson-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Torus.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Geodetic/Torus.cpp
+  DEFINES = -Dlesson_lib_EXPORTS
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Torus.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
+  INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Geodetic/Torus.cpp
+  OBJECT_DIR = CMakeFiles/lesson-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic
+build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Ring.cpp.o: CXX_COMPILER__lesson-lib ../../../../src/main/cpp/Polyhedrons/Models/Geodetic/Ring.cpp
+  DEFINES = -Dlesson_lib_EXPORTS
+  DEP_FILE = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Ring.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG  -fPIC
+  INCLUDES = -I/usr/include/GL/glm -I../../../../src/main/cpp
+  IN_ABS = /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Geodetic/Ring.cpp
+  OBJECT_DIR = CMakeFiles/lesson-lib.dir
+  OBJECT_FILE_DIR = CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target lesson-lib
@@ -187,7 +235,7 @@ build CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Icosahedron.cpp.o: CXX_
 #############################################
 # Link the shared library ../../../../build/intermediates/cmake/release/obj/x86/liblesson-lib.so
 
-build ../../../../build/intermediates/cmake/release/obj/x86/liblesson-lib.so: CXX_SHARED_LIBRARY_LINKER__lesson-lib CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/GLUtils.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Matrix.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Camera.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/PointLight.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Material.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Model.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/utils/Scene.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/JuliaSet/JuliaSetRenderer.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Polyhedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Tetrahedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Octahedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Dodecahedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Icosahedron.cpp.o | /home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/i686-linux-android/21/liblog.so
+build ../../../../build/intermediates/cmake/release/obj/x86/liblesson-lib.so: CXX_SHARED_LIBRARY_LINKER__lesson-lib CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/GLUtils.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Matrix.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Camera.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/PerlinNoiseGenerator.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/PointLight.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Material.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/graphics/Model.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/utils/Scene.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/QuantizedColor/QuantizedColorNative.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/JuliaSet/JuliaSetRenderer.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/TestCube.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Torus.cpp.o CMakeFiles/lesson-lib.dir/src/main/cpp/Polyhedrons/Models/Geodetic/Ring.cpp.o | /home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/i686-linux-android/21/liblog.so
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -O2 -DNDEBUG
   LINK_FLAGS = -Wl,--exclude-libs,libgcc_real.a -Wl,--exclude-libs,libatomic.a -static-libstdc++ -Wl,--build-id -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments
   LINK_LIBRARIES = -lEGL -lGLESv2 -lGLESv3 -landroid /home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/i686-linux-android/21/liblog.so -latomic -lm

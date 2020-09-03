@@ -40,6 +40,12 @@
 				
 				{
 					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/PerlinNoiseGenerator.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
 					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/graphics/PointLight.cpp",
 					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
 				},
@@ -88,31 +94,61 @@
 				
 				{
 					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
-					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Polyhedron.cpp",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.cpp",
 					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
 				},
 				
 				{
 					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
-					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Tetrahedron.cpp",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp",
 					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
 				},
 				
 				{
 					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
-					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Octahedron.cpp",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/TestCube.cpp",
 					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
 				},
 				
 				{
 					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
-					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Dodecahedron.cpp",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.cpp",
 					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
 				},
 				
 				{
 					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
-					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Icosahedron.cpp",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Geodetic/Torus.cpp",
+					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/nathan/DevTool/Android-SDK/ndk/21.0.6113669/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dlesson_lib_EXPORTS -I/usr/include/GL/glm -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -std=c++11 -fno-rtti -fno-exceptions -Wall -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/cpp/Polyhedrons/Models/Geodetic/Ring.cpp",
 					"workingDirectory" : "/home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/.cxx/cmake/release/armeabi-v7a"
 				}
 			],
