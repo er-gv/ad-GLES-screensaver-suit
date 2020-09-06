@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-44:12
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-47:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] /home/nathan/.gradle/caches/transforms-2/files-2.1/3888b76ca1d3233026c2f5cad8877075/appcompat-v7-27.1.1/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:27.1.1] /home/nathan/.gradle/caches/transforms-2/files-2.1/34b522c8855e0c73cf9effc4a9a32013/support-fragment-27.1.1/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/nathan/.gradle/caches/transforms-2/files-2.1/8620ba8927b39a6d291db6ea05c53d76/animated-vector-drawable-27.1.1/AndroidManifest.xml:17:1-22:12
@@ -15,9 +15,9 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/nathan/.gradle/ca
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/nathan/.gradle/caches/transforms-2/files-2.1/555b39dad4a9593ee5ac0435517d4a05/viewmodel-1.1.0/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/nathan/.gradle/caches/transforms-2/files-2.1/115e96da560aef7a1eded67ff187307e/runtime-1.1.0/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] /home/nathan/.gradle/caches/transforms-2/files-2.1/f3d8400d34d44a28d45a1ffcf10f060c/runtime-1.1.0/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:2:1-47:12
 	package
 		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:3:11-44
 		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
@@ -34,54 +34,61 @@ INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit
 		INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml
 uses-feature#0x00020000
 ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:8:5-10:34
+REJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:8:5-10:34
 	android:glEsVersion
 		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:9:9-41
 	android:required
 		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:10:9-32
+uses-feature#0x00030000
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:11:5-13:34
+	android:glEsVersion
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:12:9-41
+	android:required
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:13:9-32
 application
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:12:5-42:19
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:15:5-45:19
 	android:label
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:14:9-41
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:17:9-41
 	android:icon
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:13:9-38
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:16:9-38
 activity#com.ergv.glScreenSavers.TableOfContents
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:16:9-22:20
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:19:9-25:20
 	android:name
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:16:19-50
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:19:19-50
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:17:13-21:29
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:20:13-24:29
 action#android.intent.action.MAIN
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:18:17-68
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:21:17-68
 	android:name
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:18:25-66
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:20:17-76
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:23:17-76
 	android:name
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:20:27-74
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:23:27-74
 activity#com.ergv.glScreenSavers.bricksShader.BricksShaderActivity
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:23:9-25:52
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:26:9-28:52
 	android:label
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:25:13-50
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:28:13-50
 	android:name
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:24:13-62
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:27:13-62
 activity#com.ergv.glScreenSavers.quantizedColor.QuantizedColorActivity
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:27:9-29:54
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:30:9-32:54
 	android:label
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:29:13-52
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:32:13-52
 	android:name
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:28:13-66
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:31:13-66
 activity#com.ergv.glScreenSavers.JuliaSet.JuliaSetActivity
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:31:9-33:48
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:34:9-36:48
 	android:label
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:33:13-46
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:36:13-46
 	android:name
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:32:13-54
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:35:13-54
 activity#com.ergv.glScreenSavers.Polyhedrons.PolyhedronsActivity
-ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:34:9-36:50
+ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:37:9-39:50
 	android:label
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:36:13-48
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:39:13-48
 	android:name
-		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:35:13-60
+		ADDED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml:38:13-60
 uses-sdk
 INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/nathan/Programming/Projects/Android/ad-GLES-screensaver-suit/app/src/main/AndroidManifest.xml

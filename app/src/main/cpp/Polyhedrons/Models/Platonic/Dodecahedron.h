@@ -31,9 +31,10 @@ namespace Polyhedrons {
         static const int NUM_VERTICES = 20;
         static const int NUM_FACES = 12;
 
-        glm::vec3 vertices[NUM_VERTICES]{};
-        glm::vec3 vertexNormals[NUM_FACES]{};
+        glm::vec3 vertices[NUM_VERTICES];
+        glm::vec3 vertexNormals[NUM_FACES];
         Material* sunSurface;
+        Material* wireFrame;
 
         GLuint  vbo;
         GLuint  ibo[2];

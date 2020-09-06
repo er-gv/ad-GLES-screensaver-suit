@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <tuple>
+#include <graphics/PerlinNoiseGenerator.h>
 
 #include "Icosahedron.h"
 
@@ -15,7 +16,7 @@ static constexpr GLfloat faceColors[] ={
 };
 Polyhedrons::Icosahedron::Icosahedron() :
     Polyhedron(), LogTag("ICOSAHEDRON"){
-    monochrome = nullptr;
+    paintSpatter = nullptr;
 }
 
 Polyhedrons::Icosahedron::~Icosahedron() {
@@ -28,61 +29,86 @@ void Polyhedrons::Icosahedron::update(long time) {
 
     activeTransform.setTransform(initialTransform.get());
     activeTransform.scale(3.4f);
-    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(1.0, 1.0, -1.0)) ;
+    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.0, 1.0, -0.0)) ;
 }
 
 void Polyhedrons::Icosahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
-    monochrome->activate();
+
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    GLuint positionAttr = monochrome->getAttrib("a_Position");
-    glVertexAttribPointer(positionAttr, 3, GL_FLOAT,
+    glVertexAttribPointer(positionAttributeHandle, POSITION_DATA_SIZE, GL_FLOAT,
                           static_cast<GLboolean>(false),
-                          0, 0);
-    glEnableVertexAttribArray(positionAttr);
+                          VERTEX_DATA_SIZE_BYTES, reinterpret_cast<const void *>(POSITION_OFFSET));
+    glEnableVertexAttribArray( positionAttributeHandle);
+
+    glVertexAttribPointer(texcoordAttributeHandle, TEX_DATA_SIZE, GL_FLOAT,
+                          static_cast<GLboolean>(false),
+                          VERTEX_DATA_SIZE_BYTES, reinterpret_cast<const void *>(TEX_OFFSET));
+    glEnableVertexAttribArray(texcoordAttributeHandle);
 
 
     //draw triangles
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
-    glBindBuffer(GL_ARRAY_BUFFER, ibo[0]);
     glm::mat4 viewT = viewMat*activeTransform.get();
     glm::mat4 projT = projectionMat*viewT;
     glm::mat4 normalsT = glm::inverse(glm::transpose(activeTransform.get()));
-    glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(projT));
-    glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(viewT));
-    glUniformMatrix4fv(monochrome->getUniform("u_NormalMat"), 1, false, glm::value_ptr(normalsT));
 
-    glUniform3fv(monochrome->getUniform("u_LightPos"), 1, glm::value_ptr(lightPos));
-    glUniform1f(monochrome->getUniform("u_diffuseCoaff"), 0.0);
-    glUniform1f(monochrome->getUniform("u_specularCoaff"), 0.0);
-    glUniform1f(monochrome->getUniform("u_shininess"), 7.0);
-    glUniform1f(monochrome->getUniform("u_ambiantCoaff"), 0.2);
+    glLineWidth(7.5);
+    wireFrame->activate();
+    glUniformMatrix4fv(MVPMatrixHandle, 1, false, glm::value_ptr(projT));
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[2]);
+    glDrawElements(GL_LINES, 20, GL_UNSIGNED_INT,0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
+    glDrawElements(GL_LINE_LOOP, 10, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_LINE_LOOP, 5, GL_UNSIGNED_INT, reinterpret_cast<const void *>(10* sizeof(GLuint)));
+    glDrawElements(GL_LINE_LOOP, 5, GL_UNSIGNED_INT, reinterpret_cast<const void *>(15 * sizeof(GLuint)));
+
+    wireFrame->deactivate();
+    glLineWidth(1.0);
+
+    paintSpatter->activate();
+    glUniformMatrix4fv(MVPMatrixHandle, 1, false, glm::value_ptr(projT));
+    glUniformMatrix4fv(MVMatrixHandle, 1, false, glm::value_ptr(viewT));
+    //glUniformMatrix4fv(NormalMatrixHandle, 1, false, glm::value_ptr(normalsT));
+    glUniform3fv(lightPositionHandler, 1, glm::value_ptr(lightPos));
+    glActiveTexture(GL_TEXTURE0);
+    // Bind the texture to this unit
+    glBindTexture(GL_TEXTURE_3D, textureDataHandler);
+    // Tell the texture uniform sampler to use the texture
+    // in the shader by binding to texture unit 0.
+    glUniform1i(textureSamplerHandler, 0);
+    /*
+     * glUniform1f(paintSpatter->getUniform("u_diffuseCoaff"), 0.0);
+     * glUniform1f(paintSpatter->getUniform("u_specularCoaff"), 0.0);
+     * glUniform1f(paintSpatter->getUniform("u_shininess"), 7.0);
+     * glUniform1f(paintSpatter->getUniform("u_ambiantCoaff"), 0.2);
+     */
 
 
+
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
+    //glUniform4f(paintSpatter->getUniform("u_Color"), faceColors[0], faceColors[1], faceColors[2], 1.0f);
+    /*for(int i=0; i<2; ++i) {
+        //glUniform3fv(paintSpatter->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[i]));
+        glDrawElements(GL_TRIANGLE_FAN, 7, GL_UNSIGNED_INT,
+                       reinterpret_cast<const void *>(7 * i * sizeof(GLuint)));
+    }*/
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
-    glUniform4f(monochrome->getUniform("u_Color"), faceColors[0], faceColors[1], faceColors[2], 1.0f);
-    for(int i=0; i<5; ++i) {
-        glUniform3fv(monochrome->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[i]));
+    glUniform3f(paintColorHandler,0.9, 0.9, 0.9);
+    glUniform3f(materialColorHandler,  0.6, 0.2, 0.2);
+    glUniform1f(thresholdHandler, 0.075);
+    for(int i=0; i<NUM_FACES; ++i) {
+        //glUniform3fv(paintSpatter->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[i]));
+        //glUniform4f(paintSpatter->getUniform("u_Color"), faceColors[3 * (i % 2) + 3], faceColors[3 * (i % 2) + 4], faceColors[3 * (i % 2) + 5], 1.0f);
         glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
-                       reinterpret_cast<const void *>(3 * i * sizeof(GLuint)));
+                       reinterpret_cast<const void *>(((3 * i) )* sizeof(GLuint)));
     }
 
-    for(int i=0; i<10; ++i) {
-        glUniform3fv(monochrome->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[5+i]));
-        glUniform4f(monochrome->getUniform("u_Color"), faceColors[3*(i%2)+3], faceColors[3*(i%2)+4], faceColors[3*(i%2)+5], 1.0f);
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
-                       reinterpret_cast<const void *>((15+(3 * i) )* sizeof(GLuint)));
-    }
 
-    glUniform4f(monochrome->getUniform("u_Color"), faceColors[9], faceColors[10], faceColors[11], 1.0f);
-    for(int i=0; i<5; ++i) {
-        glUniform3fv(monochrome->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[15+i]));
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
-                       reinterpret_cast<const void *>((45+(3 * i))* sizeof(GLuint)));
-    }
-
-    glDisableVertexAttribArray(positionAttr);
-    monochrome->deactivate();
+    glDisableVertexAttribArray(positionAttributeHandle);
+    glDisableVertexAttribArray(texcoordAttributeHandle);
+    glBindTexture(GL_TEXTURE_3D, 0);
+    glActiveTexture(0);
+    paintSpatter->deactivate();
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
@@ -162,7 +188,7 @@ bool Polyhedrons::Icosahedron::initBuffers() {
     int dataSize = NUM_VERTICES*VERTEX_DATA_SIZE;
     GLfloat* vertexBuffer = new float[dataSize];
     bool result = false;
-    GLuint triangleFanIndicesBuffer[]= {0,1,2,3,4,5,1,11,10,9,8,7,6,10};
+
     GLuint triangleStripIndexBuffer[]= {
             0,1,2,            0,2,3,            0,3,4,
             0,4,5,            0,5,1,
@@ -176,15 +202,18 @@ bool Polyhedrons::Icosahedron::initBuffers() {
 
     GLuint wireFrameTopBottomLinesIndexBuffer[]=
             {0,1,0,2,0,3,0,4,0,5,11,6,11,7,11,8,11,9,11,10};
+    GLuint triangleLineLoopsBuffer[]= {10,5,9,4,8,3,7,2,6,1,
+                                       1,2,3,4,5,
+                                       9,8,7,6,10};
 
     for(int i=0; i<NUM_VERTICES ; ++i){
         int j = i*VERTEX_DATA_SIZE;
         vertexBuffer[j] = vertices[i].x;
         vertexBuffer[j+1] = vertices[i].y;
         vertexBuffer[j+2] = vertices[i].z;
-        /*vertexBuffer[i+3] = this.vertexNormals[j].x;
-        vertexBuffer[i+4] = this.vertexNormals[j].y;
-        vertexBuffer[i+5] = this.vertexNormals[j].z;*/
+        vertexBuffer[j+3] = vertices[i].x;
+        vertexBuffer[j+4] = vertices[i].y;
+        vertexBuffer[j+5] = vertices[i].z;
     }
     glGenBuffers(1, &vbo);
     glGenBuffers(3, ibo);
@@ -194,8 +223,8 @@ bool Polyhedrons::Icosahedron::initBuffers() {
         glBufferData(GL_ARRAY_BUFFER, dataSize*sizeof(GLfloat), vertexBuffer, GL_STATIC_DRAW);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(triangleFanIndicesBuffer),
-                     triangleFanIndicesBuffer, GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(triangleLineLoopsBuffer),
+                     triangleLineLoopsBuffer, GL_STATIC_DRAW);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(triangleStripIndexBuffer),
@@ -215,18 +244,40 @@ bool Polyhedrons::Icosahedron::initBuffers() {
 
 
 void Polyhedrons::Icosahedron::destroy() {
-    if(monochrome)
-        delete monochrome;
+    if(paintSpatter)
+        delete paintSpatter;
+    if(wireFrame)
+        delete  wireFrame;
 }
 
 bool Polyhedrons::Icosahedron::initShaders() {
-    const char vertex_shader[] = "shaders/vertex/monochrome_face_vertex.glsl";
-    const char fragment_shader[] = "shaders/fragment/monochrome_face_fragment.glsl";
-    monochrome = Material::makeMaterial(vertex_shader, fragment_shader);
-    return (nullptr != monochrome);
+    if(!addMaterials())
+        return false;
+
+    positionAttributeHandle = paintSpatter->getAttrib("a_Position");
+    texcoordAttributeHandle = paintSpatter->getAttrib("a_TexCoord");
+
+
+    MVPMatrixHandle = paintSpatter->getUniform("u_MVPMatrix");
+    MVMatrixHandle = paintSpatter->getUniform("u_MVMatrix");
+    //NormalMatrixHandle = paintSpatter->getUniform("u_NormalMatrix");
+    lightPositionHandler = paintSpatter->getUniform("u_LightPos");
+    textureSamplerHandler = paintSpatter->getUniform("u_Texture");
+    normalHandle = paintSpatter->getUniform("u_Normal");
+    paintColorHandler = paintSpatter->getUniform("u_PaintColor");
+    materialColorHandler = paintSpatter->getUniform("u_MaterialColor");
+    thresholdHandler = paintSpatter->getUniform("u_Threshold");
+    textureDataHandler = PerlinNoiseGenerator::get3DTexture();
+    return (textureDataHandler >0);
 }
     
-bool Polyhedrons::Icosahedron::addMaterials(){};
+bool Polyhedrons::Icosahedron::addMaterials(){
+    const char vertex_shader[] = "shaders/vertex/vertex_turbulence_texture.glsl";
+    const char fragment_shader[] = "shaders/fragment/fragment_paint_spatter.glsl"; //paint_spatter
+    paintSpatter = Material::makeMaterial(vertex_shader, fragment_shader);
+    wireFrame = Material::makeMaterial("shaders/wireframe/vertex.glsl", "shaders/wireframe/fragment.glsl");
+    return (paintSpatter && wireFrame);
+};
 
 bool Polyhedrons::Icosahedron::init() {
     return (initVertices() && initFaces() &&  initBuffers() && initShaders());

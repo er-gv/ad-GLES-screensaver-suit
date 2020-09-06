@@ -104,7 +104,6 @@ void JuliaSetRenderer::create(){
 }
 
 void JuliaSetRenderer::surfaceChange(int width, int height){
-    JuliaLogger->checkGlError("knjhkjhkj");
     LOG_D(JULIA_TAG, "@JuliaSetRenderer::nativeSurfaceChange");
 
     mWidth = width;

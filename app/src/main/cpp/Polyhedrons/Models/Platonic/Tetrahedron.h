@@ -24,15 +24,11 @@ namespace Polyhedrons {
         std::string  LogTag;
         static const int POSITION_DATA_SIZE = 3;
         static const int NORMAL_DATA_SIZE = 0;
-        static const int TEX_DATA_SIZE = 2;
+        static const int TEX_DATA_SIZE =2;
         static const int VERTEX_DATA_SIZE_IN_ELEMENTS = TEX_DATA_SIZE +NORMAL_DATA_SIZE +POSITION_DATA_SIZE;
         static const int VERTEX_DATA_SIZE_IN_BYTES = BYTES_PER_FLOAT*VERTEX_DATA_SIZE_IN_ELEMENTS;
 
-        static constexpr GLfloat faceColors[]={
-                                1.0, 0.0, 0.0,
-                                1.0, 1.0, 0.0,
-                                0.0, 1.0, 1.0,
-                                0.0, 0.0, 1.0};
+
         /** from Polyhedron
         glm::vec3 *vertices;
         int nVertices;
@@ -40,7 +36,7 @@ namespace Polyhedrons {
         glm::vec3 *vertexNormals;
         int nNormals
         */
-        glm::vec3 texcoors[4];
+        glm::vec2 texcoors[4];
 
         Material* granite;
         // Attributes and uniforms handlers for the tetrahedron's materials
@@ -52,8 +48,14 @@ namespace Polyhedrons {
         GLuint MVMatrixHandle;
         GLuint NormalMatrixHandle;
 
+        GLuint ambiantHandler;
+        GLuint diffuseHandler;
+        GLuint specularHandler;
+        GLuint shininessHandle;
+
         GLuint noiseScaleHandler;
         GLuint normalHandler;
+        GLuint colorHandler;
         GLuint lightPositionHandler;
         GLuint textureSamplerHandler;
 

@@ -31,6 +31,10 @@ namespace Polyhedrons {
         //init the vertices, faces and normals for this polyhedron.
         //then put everything into gpu buffers
 
+        //initVertices()
+        //initFaces(vertices)
+        //initBuffers(vertices, faces, )
+        //addMaterial(material name)
         return (initVertices() && initFaces() &&  initBuffers() && initShaders());
     }
 
@@ -39,11 +43,15 @@ namespace Polyhedrons {
         vertices = new glm::vec3[nVertices];
 
         vertices[0] = glm::vec3(0.0f, 1.0f, 0.0f); //top of the pyramid
-        int theta = 60;
+        texcoors[0] = glm::vec2(0.5, 0.5);
+        double theta = glm::radians(60.0);
+        double delta = glm::radians(120.0);
         for(int i=1; i<4; i++){
-            double  rads = glm::radians(float(theta));
-            vertices[i] = glm::vec3(cos(rads), 0.0, sin(rads));
-            theta+=120;
+            double cosine = cos(theta);
+            double sine = sin(theta);
+            vertices[i] = glm::vec3(cosine, 0.0, sine);
+            texcoors[i] = glm::vec2(0.5+0.5*cosine, 0.5+0.5*sine);
+            theta+=delta;
         }
 
         {
@@ -56,61 +64,54 @@ namespace Polyhedrons {
         }
         return true;
     }
-
-    bool Tetrahedron::initShaders() {
-        const char vertex_shader[] = "shaders/vertex/vertex_turbulence_2DTexture.glsl";
-        const char fragment_shader[] = "shaders/fragment/fragment_granite_2DTexture.glsl";
-        granite = Material::makeMaterial(vertex_shader, fragment_shader);
-
-        if(nullptr != granite){
-            positionAttributeHandle = granite->getAttrib("a_Position");
-            texcoordAttributeHandle = granite->getAttrib("a_TexCoord");
-
-            MVPMatrixHandle = granite->getUniform("u_MVPMatrix");
-            MVMatrixHandle = granite->getUniform("u_MVMatrix");
-            NormalMatrixHandle = granite->getUniform("u_NormalMatrix");
-
-            lightPositionHandler = granite->getUniform("u_LightPos");
-            textureSamplerHandler = granite->getUniform("u_Texture");
-            normalHandler = granite->getUniform("u_Normal");
-            noiseScaleHandler = granite->getUniform("u_noiseScale");
-
-            textureDataHandler = PerlinNoiseGenerator::get2DTexture();
-            return (textureDataHandler>0);
-        }
-        return false;
+    void Tetrahedron::destroy() {
+        //TODO delete unnecessary memory
+        glDeleteBuffers(1, vbo);
+        glDeleteBuffers(1, ibo);
     }
+
 
     bool Tetrahedron::initFaces() {
         char buffer[100];
         normals = new glm::vec3[nFaces];
         if(nullptr == normals)
             return false;
-        /*faces = new Polyhedron::Polygon*[nFaces];
 
-         faces[0] = new Polygon(*this, (int[]) {1, 2, 0}, 3);
-        faces[1] = new Polygon(*this, (int[]) {2, 3, 0}, 3);
-        faces[2] = new Polygon(*this, (int[]) {3, 1, 0}, 3);
-        faces[3] = new Polygon(*this, (int[]) {3, 1, 2}, 3);
-
-        size_t sizeof_float = sizeof(float);
-        size_t offset = 3*sizeof_float;
-        glm::vec3 v1 = vertices[1]-vertices[0];
-        glm::vec3 v2 = vertices[2]-vertices[0];*/
         normals[0] = glm::normalize(glm::cross(vertices[1]-vertices[0], vertices[2]-vertices[0]));
         normals[1] = glm::normalize(glm::cross(vertices[2]-vertices[0], vertices[3]-vertices[0]));
         normals[2] = glm::normalize(glm::cross(vertices[3]-vertices[0], vertices[1]-vertices[0]));
         normals[3] = glm::normalize(glm::cross(vertices[1]-vertices[2], vertices[3]-vertices[2]));
-        /*for( int k=0; k<nFaces; k++){
-            const glm::vec3& normal = faces[k]->getNormal();
-            int j = 3*k;
-            glm::vec3 n = glm::normalize(glm::vec3 const&a, glm::vec3 const& b , glm::vec3 const& c){
-                return glm::normalize(glm::cross(c-a, b-a));
-            }
 
-        }*/
         return true;
     }
+    bool Tetrahedron::initShaders() {
+        if(!addMaterials())
+            return false;
+
+        positionAttributeHandle = granite->getAttrib("a_Position");
+        texcoordAttributeHandle = granite->getAttrib("a_TexCoord");
+
+        MVMatrixHandle = granite->getUniform("u_MVMatrix");
+        MVPMatrixHandle = granite->getUniform("u_MVPMatrix");
+        NormalMatrixHandle = granite->getUniform("u_NormalMat");
+
+        textureSamplerHandler = granite->getUniform("u_Texture");
+
+        lightPositionHandler = granite->getUniform("u_LightPos");
+        normalHandler = granite->getUniform("u_FaceNormal");
+        colorHandler = granite->getUniform("u_FaceColor");
+
+
+        noiseScaleHandler = granite->getUniform("u_noiseScale");
+        diffuseHandler = granite->getUniform("u_diffuseCoaff");
+        ambiantHandler = granite->getUniform("u_ambiantCoaff");
+        specularHandler = granite->getUniform("u_specularCoaff");
+        shininessHandle = granite->getUniform("u_shininess");
+
+        return true;
+    };
+
+
 
     bool Tetrahedron::initBuffers() {
         vbo = new GLuint[1];
@@ -120,23 +121,22 @@ namespace Polyhedrons {
 
         GLuint constexpr trianglesIndexBuffer[] ={1,2,0, 2,3,0, 3,1,0, 3,2,1};
 
-        vertexDataBuffer = new GLfloat[4*3];
+        vertexDataBuffer = new GLfloat[nVertices*5];
         char buffer[100];
         for(int i=0; i< nVertices; i++){
             sprintf(buffer, "nVert[%d] = (%f, %f, %f).", i, vertices[i].x, vertices[i].y, vertices[i].z);
             __android_log_print(ANDROID_LOG_INFO, Tetrahedron::LogTag.c_str(), "%s",
                                 buffer);
-
-            vertexDataBuffer[3*i] = vertices[i].x;
-            vertexDataBuffer[3*i+1] = vertices[i].y;
-            vertexDataBuffer[3*i+2] = vertices[i].z;
-            /*vertexDataBuffer[3*i+2] = vertices[i].z;
-            vertexDataBuffer[3*i+2] = vertices[i].z;
-            vertexDataBuffer[3*i+2] = vertices[i].z;*/
+            int j = 5*i;
+            vertexDataBuffer[j] = vertices[i].x;
+            vertexDataBuffer[j+1] = vertices[i].y;
+            vertexDataBuffer[j+2] = vertices[i].z;
+            vertexDataBuffer[j+3] = texcoors[i].x;
+            vertexDataBuffer[j+4] = texcoors[i].y;
         }
         if (vbo[0]>0 && ibo[0]>0 ) {
             glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-            glBufferData(GL_ARRAY_BUFFER, 3*4*sizeof(GLfloat),  vertexDataBuffer, GL_STATIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, 5*nVertices*sizeof(GLfloat),  vertexDataBuffer, GL_STATIC_DRAW);
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(trianglesIndexBuffer),
@@ -149,19 +149,14 @@ namespace Polyhedrons {
         return true;
     }
 
-    void Tetrahedron::destroy() {
-        //TODO delete unnecessary memory
-        glDeleteBuffers(1, vbo);
-        glDeleteBuffers(1, ibo);
-    }
-
-    //TODO transform/projection/pre-render state update
+       //TODO transform/projection/pre-render state update
     void Tetrahedron::update(long time) {
 
         float angleInDegrees = (360.0f / 10000.0f) * ((int) time);
 
         activeTransform.setTransform(initialTransform.get());
-        activeTransform.scale(3.4f);
+        activeTransform.scale(4.4f);
+        activeTransform.translate(glm::vec3(0.0, 1.45,-0.0));
         activeTransform.rotate(glm::radians(90.0), glm::vec3(0.0, 0.0, 1.0)) ;
         activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.4, 1.0, -0.8)) ;
         //activeTransform.rotate(glm::radians(40.0), glm::vec3(1.0, 0.0, 0.0)) ;
@@ -170,52 +165,60 @@ namespace Polyhedrons {
 
     //TODO bugfix
     void Tetrahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
-
+        static constexpr GLfloat faceColors[]={
+                1.0, 0.77647, 0.6, 1.0,
+                1.0, 0.0, 1.0, 1.0,
+                0.0, 1.0, 0.0, 1.0,
+                1.0, 1.0, 1.0, 1.0};
         granite->activate();
         glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-        GLuint positionAttr = granite->getAttrib("a_Position");
-        glVertexAttribPointer(positionAttr, POSITION_DATA_SIZE, GL_FLOAT,
+        glVertexAttribPointer(positionAttributeHandle, 3, GL_FLOAT,
                               static_cast<GLboolean>(false),
                               VERTEX_DATA_SIZE_IN_BYTES, 0);
-        glEnableVertexAttribArray(positionAttr);
-        /*glVertexAttribPointer(texcoordAttributeHandle, TEX_DATA_SIZE, GL_FLOAT,
+        glEnableVertexAttribArray(positionAttributeHandle);
+
+        glVertexAttribPointer(texcoordAttributeHandle, 2, GL_FLOAT,
                               static_cast<GLboolean>(false),
                               VERTEX_DATA_SIZE_IN_BYTES,
-                              reinterpret_cast<const void *>(POSITION_DATA_SIZE * BYTES_PER_FLOAT));
-        glEnableVertexAttribArray(texcoordAttributeHandle);*/
+                              reinterpret_cast<const void *>(3 * BYTES_PER_FLOAT));
+        glEnableVertexAttribArray(texcoordAttributeHandle);
 
 
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textureDataHandler);
+        glUniform1i(textureSamplerHandler, 0);
 
-        //draw triangles
+
         glBindBuffer(GL_ARRAY_BUFFER, ibo[0]);
         glm::mat4 viewT = viewMat*activeTransform.get();
         glm::mat4 projT = projectionMat*viewT;
+
         glUniformMatrix4fv(MVPMatrixHandle, 1, false, glm::value_ptr(projT));
         glUniformMatrix4fv(MVMatrixHandle, 1, false, glm::value_ptr(viewT));
-        glUniformMatrix4fv(NormalMatrixHandle, 1, false, glm::value_ptr(viewMat));
+        glUniformMatrix4fv(NormalMatrixHandle, 1, false, glm::value_ptr(viewT));
 
         glUniform3fv(lightPositionHandler, 1, glm::value_ptr(lightPos));
-        /*glUniform1f(granite->getUniform("u_diffuseCoaff"), 1.0);
-        glUniform1f(granite->getUniform("u_specularCoaff"), 0.8);
-        glUniform1f(granite->getUniform("u_shininess"), 5.0);
-        glUniform1f(granite->getUniform("u_ambiantCoaff"), 0.2);*/
+        glUniform1f(ambiantHandler, 0.2);
+        glUniform1f(diffuseHandler, 1.0);
+        glUniform1f(specularHandler, 0.8);
+        glUniform1f(shininessHandle, 5.0);
 
+        //draw triangles
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
-        float noiseScale = 3.0;
         for(int i=0; i<4; ++i) {
+            glUniform4fv(colorHandler, 1, &faceColors[i]);
             glUniform3fv(normalHandler, 1, glm::value_ptr(normals[i]));
-            glUniform1f(noiseScaleHandler, noiseScale);
-            //glUniform4f(granite->getUniform("u_Color"), faceColors[3 * i], faceColors[3 * i + 1], faceColors[3 * i + 2], 1.0f);
+            glUniform1f(noiseScaleHandler,pow(3.0, i-1));
             glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
                            reinterpret_cast<const void *>(3 * i * sizeof(GLuint)));
-            noiseScale*0.5
+
         }
 
         glDisableVertexAttribArray(positionAttributeHandle);
         glDisableVertexAttribArray(texcoordAttributeHandle);
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glActiveTexture(0);
         granite->deactivate();
+        glActiveTexture(0);
+        glBindTexture(GL_TEXTURE_2D, 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
@@ -225,7 +228,14 @@ namespace Polyhedrons {
     }
 
     bool Tetrahedron::addMaterials() {
-        return true;
+        const char vertex_shader[] = "shaders/vertex/vertex_turbulence_2DTexture.glsl";
+        const char fragment_shader[] = "shaders/fragment/fragment_granite_2DTexture.glsl";
+        granite = Material::makeMaterial(vertex_shader, fragment_shader);
+        if(nullptr != granite )
+        {
+            textureDataHandler = PerlinNoiseGenerator::get2DTexture(32);
+            return textureDataHandler>0;
+        }
     }
 
 

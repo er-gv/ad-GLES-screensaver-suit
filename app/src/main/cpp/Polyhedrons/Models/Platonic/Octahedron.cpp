@@ -3,12 +3,12 @@
 //
 
 #include "Octahedron.h"
-
 //
 // Created by nathan on 16/04/20.
 //
 
 #include <android/log.h>
+#include <graphics/PerlinNoiseGenerator.h>
 #include "Octahedron.h"
 #include "graphics/Material.h"
 
@@ -44,16 +44,25 @@ namespace Polyhedrons {
     }
 
     bool Octahedron::initVertices() {
-        //vertexNormals = new glm::vec3[nVertices];
+        //set tex coordintes
+        texcoors[0] = glm::vec2(0.5, 0.0);
+        texcoors[1] = glm::vec2(0.0, 0.5);
+        texcoors[2] = glm::vec2(1.0, 0.5);
+        texcoors[3] = glm::vec2(0.0, 0.5);
+        texcoors[4] = glm::vec2(1.0, 0.5);
+        texcoors[5] = glm::vec2(0.5, 1.0);
+
         vertices = new glm::vec3[nVertices];
 
         vertices[0] = glm::vec3(0.0f, 1.0f, 0.0f); //top of the pyramid
         vertices[5] = glm::vec3(0.0f, -1.0f, 0.0f); //bottom of the pyramid
-        int theta = 0;
+        double theta = 0.0;
         for(int i=1; i<5; i++){
-            double  rads = glm::radians(float(theta));
-            vertices[i] = glm::vec3(cos(rads), 0.0, sin(rads));
-            theta+=90;
+
+            double cosine =cos(glm::radians(theta));
+            double sine =sin(glm::radians(theta));
+            vertices[i] = glm::vec3(cosine, 0.0, sine);
+            theta+=90.0;
         }
 
         return true;
@@ -61,55 +70,33 @@ namespace Polyhedrons {
 
     bool Octahedron::initShaders() {
 
-        {
-            const char vertex_shader[] = "shaders/vertex/monochrome_face_vertex.glsl";
-            const char fragment_shader[] = "shaders/fragment/monochrome_face_fragment.glsl";
-            monochrome = Material::makeMaterial(vertex_shader, fragment_shader);
+        const char vertex_shader[] = "shaders/vertex/vertex_turbulence_2DTexture.glsl";
+        const char fragment_shader[] = "shaders/fragment/fragment_wood_2DTexture.glsl";
+        wood = Material::makeMaterial(vertex_shader, fragment_shader);
+        if(!wood || !addMaterials())
+            return false;
 
-            /*monochromePositionHandle = glGetAttribLocation(monochromeProgram, "a_Position");
-            monochromeMVPHandle = glGetUniformLocation(monochromeProgram, "u_MVPMatrix");
-            monochromeMVHandle = glGetUniformLocation(monochromeProgram, "u_mvMat");
-            monochromeLightPosHandle = glGetUniformLocation(monochromeProgram, "u_LightPos");
-            monochromeFaceNormHandle = glGetUniformLocation(monochromeProgram, "u_FaceNormal")
-            monochromeProgram = GLUtils::createProgram(&vertex_shader, &fragment_shader);*/
+        positionAttributeHandle = wood->getAttrib("a_Position");
+        texcoordAttributeHandle = wood->getAttrib("a_TexCoord");
 
-        }
-        /*
-        {
-            const char *vertex_shader = GLUtils::openTextFile(
-                    "shaders/vertex/point_vertex_shader.glsl");
-            const char *fragment_shader = GLUtils::openTextFile(
-                    "shaders/fragment/point_fragment_shader.glsl");
-            wireframeProgram = GLUtils::createProgram(&vertex_shader, &fragment_shader);
-        }
-        {
-            const char *vertex_shader = GLUtils::openTextFile(
-                    "shaders/vertex/point_vertex_shader.glsl");
-            const char *fragment_shader = GLUtils::openTextFile(
-                    "shaders/fragment/noise_fs.glsl");
-            cloudsProgram = GLUtils::createProgram(&vertex_shader, &fragment_shader);
-        }
-        if (wireframeProgram && monochromeProgram && cloudsProgram) {
+        MVMatrixHandle = wood->getUniform("u_MVMatrix");
+        MVPMatrixHandle = wood->getUniform("u_MVPMatrix");
+        NormalMatrixHandle = wood->getUniform("u_NormalMat");
 
-            // Bind Attributes and uniforms for the Octahedron's material
-            monochromePositionHandle = glGetAttribLocation(monochromeProgram, "a_Position");
-            monochromeMVPHandle = glGetUniformLocation(monochromeProgram, "u_MVPMatrix");
-            monochromeMVHandle = glGetUniformLocation(monochromeProgram, "u_mvMat");
-            monochromeLightPosHandle = glGetUniformLocation(monochromeProgram, "u_LightPos");
-            monochromeFaceNormHandle = glGetUniformLocation(monochromeProgram, "u_FaceNormal");
+        textureSamplerHandler = wood->getUniform("u_Texture");
 
-            wireframePositionHandler = glGetAttribLocation(wireframeProgram, "a_Position");
-            wireframeMVPHandler = glGetUniformLocation(wireframeProgram, "u_MVPMatrix");
-            wireframeColorHandler = glGetUniformLocation(wireframeProgram, "u_Color");
+        lightPositionHandler = wood->getUniform("u_LightPos");
+        normalHandler = wood->getUniform("u_FaceNormal");
+        lightWoodColorHandler = wood->getUniform("u_LightWood");
+        darkWoodColorHandler = wood->getUniform("u_DarkWood");
 
-            cloudsPositionHandle = glGetAttribLocation(cloudsProgram, "a_Position");
-            cloudsSkyColorHandler = glGetUniformLocation(cloudsProgram, "u_skyColor");
-            cloudsCloudColorHandle = glGetUniformLocation(cloudsProgram, "u_cloudColor");
-            cloudsMVHandle = glGetUniformLocation(cloudsProgram, "u_mvMat");
-            cloudsLightPosHandle = glGetUniformLocation(cloudsProgram, "u_LightPos");
-            cloudsFaceNormHandle = glGetUniformLocation(cloudsProgram, "u_FaceNormal");
-            return true;
-        }*/
+
+        sliceMatHandler = wood->getUniform("u_SliceMat");
+        diffuseHandler = wood->getUniform("u_diffuseCoaff");
+        ambiantHandler = wood->getUniform("u_ambiantCoaff");
+        specularHandler = wood->getUniform("u_specularCoaff");
+        shininessHandle = wood->getUniform("u_shininess");
+        textureDataHandler = PerlinNoiseGenerator::get2DTexture();
         return true;
     }
 
@@ -118,17 +105,7 @@ namespace Polyhedrons {
         normals = new glm::vec3[nFaces];
         if(nullptr == normals)
             return false;
-        /*faces = new Polyhedron::Polygon*[nFaces];
 
-         faces[0] = new Polygon(*this, (int[]) {1, 2, 0}, 3);
-        faces[1] = new Polygon(*this, (int[]) {2, 3, 0}, 3);
-        faces[2] = new Polygon(*this, (int[]) {3, 1, 0}, 3);
-        faces[3] = new Polygon(*this, (int[]) {3, 1, 2}, 3);
-
-        size_t sizeof_float = sizeof(float);
-        size_t offset = 3*sizeof_float;
-        glm::vec3 v1 = vertices[1]-vertices[0];
-        glm::vec3 v2 = vertices[2]-vertices[0];*/
         normals[0] = glm::normalize(glm::cross(vertices[1]-vertices[0], vertices[2]-vertices[0]));
         normals[1] = glm::normalize(glm::cross(vertices[2]-vertices[0], vertices[3]-vertices[0]));
         normals[2] = glm::normalize(glm::cross(vertices[3]-vertices[0], vertices[4]-vertices[0]));
@@ -137,14 +114,7 @@ namespace Polyhedrons {
         normals[5] = glm::normalize(glm::cross(vertices[2]-vertices[5], vertices[3]-vertices[5]));
         normals[6] = glm::normalize(glm::cross(vertices[3]-vertices[5], vertices[4]-vertices[5]));
         normals[7] = glm::normalize(glm::cross(vertices[4]-vertices[5], vertices[1]-vertices[5]));
-        /*for( int k=0; k<nFaces; k++){
-            const glm::vec3& normal = faces[k]->getNormal();
-            int j = 3*k;
-            glm::vec3 n = glm::normalize(glm::vec3 const&a, glm::vec3 const& b , glm::vec3 const& c){
-                return glm::normalize(glm::cross(c-a, b-a));
-            }
 
-        }*/
         return true;
     }
 
@@ -157,20 +127,20 @@ namespace Polyhedrons {
         GLuint constexpr trianglesIndexBuffer[] ={1,2,0, 2,3,0, 3,4,0, 4,1,0,
                                                   5,2,1, 5,3,2, 5,4,3, 5,1,4};
 
-        vertexDataBuffer = new GLfloat[nVertices*3];
+        vertexDataBuffer = new GLfloat[nVertices*VERTEX_DATA_SIZE_IN_ELEMENTS];
         char buffer[100];
         for(int i=0; i< nVertices; i++){
-            sprintf(buffer, "nVert[%d] = (%f, %f, %f).", i, vertices[i].x, vertices[i].y, vertices[i].z);
-            __android_log_print(ANDROID_LOG_INFO, Octahedron::LogTag.c_str(), "%s",
-                                buffer);
 
-            vertexDataBuffer[3*i] = vertices[i].x;
-            vertexDataBuffer[3*i+1] = vertices[i].y;
-            vertexDataBuffer[3*i+2] = vertices[i].z;
+            int j = VERTEX_DATA_SIZE_IN_ELEMENTS*i;
+            vertexDataBuffer[j] = vertices[i].x;
+            vertexDataBuffer[j+1] = vertices[i].y;
+            vertexDataBuffer[j+2] = vertices[i].z;
+            vertexDataBuffer[j+3] = texcoors[i].x;
+            vertexDataBuffer[j+4] = texcoors[i].y;
         }
         if (vbo[0]>0 && ibo[0]>0 ) {
             glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-            glBufferData(GL_ARRAY_BUFFER, 3*nVertices*sizeof(GLfloat),  vertexDataBuffer, GL_STATIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, nVertices*VERTEX_DATA_SIZE_IN_BYTES,  vertexDataBuffer, GL_STATIC_DRAW);
 
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(trianglesIndexBuffer),
@@ -195,7 +165,7 @@ namespace Polyhedrons {
         float angleInDegrees = (360.0f / 10000.0f) * ((int) time);
         activeTransform.setTransform(initialTransform.get());
         activeTransform.scale(3.1f);
-        activeTransform.translate(glm::vec3(-0.3, +0.3, 0.0));
+        activeTransform.translate(glm::vec3(-0.3, -0.6, 0.0));
         activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(3.14, 1.0, 0.4)) ;
         //activeTransform.rotate(glm::radians(40.0), glm::vec3(1.0, 0.0, 0.0)) ;
 
@@ -203,43 +173,72 @@ namespace Polyhedrons {
 
     //TODO bugfix
     void Octahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
+    static glm::vec3 woodColors[] ={
+            glm::vec3(1.0, 0.75, 0.2),
+            glm::vec3(0.8, 0.5, 0.1),
+            glm::vec3(0.3647058, 0.1607843, 0.0235294),
+            glm::vec3(0.71764705, 0.43529411, 0.12549019)
 
-        monochrome->activate();
+    };
+    static int colorIndices[] ={
+                0,1, 3,2, 0,1, 3,2,
+                3,2, 0,1, 3,2, 0,1
+        };
+        wood->activate();
         glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-        GLuint positionAttr = monochrome->getAttrib("a_Position");
-        glVertexAttribPointer(positionAttr, 3, GL_FLOAT,
+        glVertexAttribPointer(positionAttributeHandle, 3, GL_FLOAT,
                               static_cast<GLboolean>(false),
-                              0, 0);
-        glEnableVertexAttribArray(positionAttr);
+                              VERTEX_DATA_SIZE_IN_BYTES, 0);
+        glEnableVertexAttribArray(positionAttributeHandle);
+
+        glVertexAttribPointer(texcoordAttributeHandle, 2, GL_FLOAT,
+                              static_cast<GLboolean>(false),
+                              VERTEX_DATA_SIZE_IN_BYTES,
+                              reinterpret_cast<const void *>(3 * BYTES_PER_FLOAT));
+        glEnableVertexAttribArray(texcoordAttributeHandle);
 
 
-        //draw triangles
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, textureDataHandler);
+        glUniform1i(textureSamplerHandler, 0);
+
+
         glBindBuffer(GL_ARRAY_BUFFER, ibo[0]);
         glm::mat4 viewT = viewMat*activeTransform.get();
         glm::mat4 projT = projectionMat*viewT;
-        glm::mat4 normalsT = glm::inverse(glm::transpose(activeTransform.get()));
-        glUniformMatrix4fv(monochrome->getUniform("u_MVPMatrix"), 1, false, glm::value_ptr(projT));
-        glUniformMatrix4fv(monochrome->getUniform("u_mvMat"), 1, false, glm::value_ptr(viewT));
-        glUniformMatrix4fv(monochrome->getUniform("u_NormalMat"), 1, false, glm::value_ptr(normalsT));
 
-        glUniform3fv(monochrome->getUniform("u_LightPos"), 1, glm::value_ptr(lightPos));
-        glUniform1f(monochrome->getUniform("u_diffuseCoaff"), 0.3);
-        glUniform1f(monochrome->getUniform("u_specularCoaff"), 0.0);
-        glUniform1f(monochrome->getUniform("u_shininess"), 2.0);
-        glUniform1f(monochrome->getUniform("u_ambiantCoaff"), 0.2);
 
+        glUniformMatrix4fv(MVPMatrixHandle, 1, false, glm::value_ptr(projT));
+        glUniformMatrix4fv(MVMatrixHandle, 1, false, glm::value_ptr(viewT));
+        glUniformMatrix4fv(NormalMatrixHandle, 1, false, glm::value_ptr(viewT));
+
+
+        glUniform3fv(lightPositionHandler, 1, glm::value_ptr(lightPos));
+        glUniform1f(ambiantHandler, 0.2);
+        glUniform1f(diffuseHandler, 1.0);
+        glUniform1f(specularHandler, 0.8);
+        glUniform1f(shininessHandle, 5.0);
+
+        //draw triangles
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
+        glUniformMatrix4fv(sliceMatHandler, 1, false, glm::value_ptr(getSliceingMat()));
 
-        for(int i=0; i<8; ++i) {
-            glUniform3fv(monochrome->getUniform("u_FaceNormal"), 1,glm::value_ptr(normals[i]));
-            glUniform4f(monochrome->getUniform("u_Color"), faceColors[(i/4+1+3*i)%4], faceColors[(i/4+1+3*i)%4+1], faceColors[(i/4+1+3*i)%4+2], 1.0f);
+        for(int i=0; i<nFaces; ++i) {
+            glUniform3fv(lightWoodColorHandler, 1, glm::value_ptr(woodColors[colorIndices[2*i]]));
+            glUniform3fv(darkWoodColorHandler, 1, glm::value_ptr(woodColors[colorIndices[2*i+1]]));
+            glUniform3fv(normalHandler, 1, glm::value_ptr(normals[i]));
+        //    glUniform1f(noiseScaleHandler,pow(3.0, i-1));
             glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
-                           reinterpret_cast<const void *>( 3 * i * sizeof(GLuint)));
+                           reinterpret_cast<const void *>(3 * i * sizeof(GLuint)));
+
         }
 
 
-        glDisableVertexAttribArray(positionAttr);
-        monochrome->deactivate();
+        glDisableVertexAttribArray(positionAttributeHandle);
+        glDisableVertexAttribArray(texcoordAttributeHandle);
+        wood->deactivate();
+        glActiveTexture(0);
+        glBindTexture(GL_TEXTURE_2D, 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
@@ -249,7 +248,7 @@ namespace Polyhedrons {
     }
 
     bool Octahedron::addMaterials() {
-        return true;
+        return (0< (textureDataHandler = PerlinNoiseGenerator::get2DTexture()));
     }
 
 

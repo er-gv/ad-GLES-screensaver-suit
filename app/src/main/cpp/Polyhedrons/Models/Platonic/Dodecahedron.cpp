@@ -27,8 +27,9 @@ void Polyhedrons::Dodecahedron::update(long time) {
 }
 
 void Polyhedrons::Dodecahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
-    sunSurface->activate();
+
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
     glVertexAttribPointer(positionAttributeHandle, POSITION_DATA_SIZE, GL_FLOAT,
                           static_cast<GLboolean>(false),
                           VERTEX_DATA_SIZE, 0);
@@ -38,6 +39,21 @@ void Polyhedrons::Dodecahedron::render(glm::mat4& viewMat, glm::mat4& projection
                           VERTEX_DATA_SIZE, reinterpret_cast<const void *>(TEX_OFFSET));
     glEnableVertexAttribArray(positionAttributeHandle);
     glEnableVertexAttribArray(texcoordAttributeHandle);
+
+    glm::mat4 viewT = viewMat*activeTransform.get();
+    glm::mat4 projT = projectionMat*viewT;
+
+    glLineWidth(7.5);
+    wireFrame->activate();
+    glUniformMatrix4fv(MVPMatrixHandle, 1, false, glm::value_ptr(projT));
+    for(int i=0; i<NUM_FACES; ++i) {
+        glDrawElements(GL_LINE_LOOP, 5, GL_UNSIGNED_INT,
+                       reinterpret_cast<const void *>(5 * i * sizeof(GLuint)));
+    }
+    wireFrame->deactivate();
+    glLineWidth(1.0);
+
+    sunSurface->activate();
     glActiveTexture(GL_TEXTURE0);
     // Bind the texture to this unit
     glBindTexture(GL_TEXTURE_3D, textureDataHandler);
@@ -47,8 +63,6 @@ void Polyhedrons::Dodecahedron::render(glm::mat4& viewMat, glm::mat4& projection
 
 
     //draw triangles
-    glm::mat4 viewT = viewMat*activeTransform.get();
-    glm::mat4 projT = projectionMat*viewT;
     glUniformMatrix4fv(MVPMatrixHandle, 1, false, glm::value_ptr(projT));
     glUniformMatrix4fv(MVMatrixHandle, 1, false, glm::value_ptr(viewT));
     glUniformMatrix4fv(NormalMatrixHandle, 1, false, glm::value_ptr(viewMat));
@@ -59,7 +73,7 @@ void Polyhedrons::Dodecahedron::render(glm::mat4& viewMat, glm::mat4& projection
     glUniform1f(sunSurface->getUniform("u_shininess"), 5.0);
     glUniform1f(sunSurface->getUniform("u_ambiantCoaff"), 0.2);*/
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[0]);
+
     GLuint normHandle = sunSurface->getUniform("u_FaceNormal");
     //GLuint colorHandle = sunSurface->getUniform("u_Color");
     for(int i=0; i<NUM_FACES; ++i) {
@@ -68,12 +82,14 @@ void Polyhedrons::Dodecahedron::render(glm::mat4& viewMat, glm::mat4& projection
         glDrawElements(GL_TRIANGLE_FAN, 5, GL_UNSIGNED_INT,
                        reinterpret_cast<const void *>(5 * i * sizeof(GLuint)));
     }
+    sunSurface->deactivate();
+
 
     glDisableVertexAttribArray(positionAttributeHandle);
     glDisableVertexAttribArray(texcoordAttributeHandle);
     glBindTexture(GL_TEXTURE_3D, 0);
     glActiveTexture(0);
-    sunSurface->deactivate();
+    //sunSurface->deactivate();
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
@@ -211,15 +227,15 @@ bool Polyhedrons::Dodecahedron::initBuffers() {
 void Polyhedrons::Dodecahedron::destroy() {
     if(sunSurface)
         delete sunSurface;
+    if(wireFrame)
+        delete  wireFrame;
     textureDataHandler = 0;
 
 }
 
 bool Polyhedrons::Dodecahedron::initShaders() {
-    const char vertex_shader[] = "shaders/vertex/vertex_turbulence_texture.glsl";
-    const char fragment_shader[] = "shaders/fragment/fragment_sun_texture.glsl";
-    sunSurface = Material::makeMaterial(vertex_shader, fragment_shader);
-    if(nullptr != sunSurface){
+
+    if(addMaterials()){
         positionAttributeHandle = sunSurface->getAttrib("a_Position");
         texcoordAttributeHandle = sunSurface->getAttrib("a_TexCoord");
 
@@ -238,7 +254,11 @@ bool Polyhedrons::Dodecahedron::initShaders() {
 
 bool Polyhedrons::Dodecahedron::addMaterials(){
 
-
+    const char vertex_shader[] = "shaders/vertex/vertex_turbulence_texture.glsl";
+    const char fragment_shader[] = "shaders/fragment/fragment_sun_texture.glsl";
+    sunSurface = Material::makeMaterial(vertex_shader, fragment_shader);
+    wireFrame = Material::makeMaterial("shaders/wireframe/vertex.glsl", "shaders/wireframe/fragment.glsl");
+    return (sunSurface && wireFrame);
 };
 
 bool Polyhedrons::Dodecahedron::init() {

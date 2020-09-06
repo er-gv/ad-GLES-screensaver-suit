@@ -23,17 +23,22 @@ namespace Polyhedrons {
 
     class Octahedron : public Polyhedron {
         std::string  LogTag;
-        static const int POSITION_DATA_SIZE = 4;
+
+
+        static const int POSITION_DATA_SIZE = 3;
         static const int NORMAL_DATA_SIZE = 0;
-        static const int TEX_DATA_SIZE = 0;
+        static const int TEX_DATA_SIZE =2;
         static const int VERTEX_DATA_SIZE_IN_ELEMENTS = TEX_DATA_SIZE +NORMAL_DATA_SIZE +POSITION_DATA_SIZE;
         static const int VERTEX_DATA_SIZE_IN_BYTES = BYTES_PER_FLOAT*VERTEX_DATA_SIZE_IN_ELEMENTS;
 
-        static constexpr GLfloat faceColors[]={
-                                1.0, 0.0, 0.0,
-                                1.0, 1.0, 0.0,
-                                1.0, 1.0, 1.0,
-                                0.0, 0.0, 1.0};
+        static inline glm::mat4 getSliceingMat(){
+            static glm::mat4 slice(
+                    glm::vec4(2.0, 0.0,   0.0, 0.75),
+                    glm::vec4(0.0, 8, 0.0,0.25),
+                    glm::vec4(0.0, 0.0,   0.0, 0.0),
+                    glm::vec4(0.0, 0.0,   0.0, 1.0));
+            return slice;
+        }
         /** from Polyhedron
         glm::vec3 *vertices;
         int nVertices;
@@ -41,38 +46,46 @@ namespace Polyhedrons {
         glm::vec3 *vertexNormals;
         int nNormals
         */
-        GLuint cloudsProgram;
-        GLuint monochromeProgram;
-        GLuint wireframeProgram;
+        glm::vec2 texcoors[6];
 
-        Material* monochrome;
-        // Attributes and uniforms handlers for the Octahedron's materials
+        Material* wood;
+        // Attributes and uniforms handlers for the tetrahedron's materials
 
-        GLint monochromePositionHandle;
-        GLint monochromeMVPHandle;
-        GLint monochromeMVHandle;
-        GLint monochromeFaceNormHandle;
-        GLint monochromeLightPosHandle;
+        GLuint positionAttributeHandle;
+        GLuint texcoordAttributeHandle;
 
-        GLint wireframePositionHandler;
-        GLint wireframeMVPHandler;
-        GLint wireframeColorHandler;
+        GLuint MVPMatrixHandle;
+        GLuint MVMatrixHandle;
+        GLuint NormalMatrixHandle;
 
-        GLint cloudsPositionHandle;
-        GLint cloudsSkyColorHandler;
-        GLint cloudsCloudColorHandle;
-        GLint cloudsFaceNormHandle;
-        GLint cloudsLightPosHandle;
-        GLint cloudsMVHandle;
+        GLuint ambiantHandler;
+        GLuint diffuseHandler;
+        GLuint specularHandler;
+        GLuint shininessHandle;
 
+        GLuint sliceMatHandler;
+        GLuint normalHandler;
+        GLuint lightWoodColorHandler;
+        GLuint darkWoodColorHandler;
+        GLuint lightPositionHandler;
+        GLuint textureSamplerHandler;
 
+        GLuint textureDataHandler;
+/*
+        static constexpr GLfloat faceColors[]={
+                                1.0, 0.0, 0.0,
+                                1.0, 1.0, 0.0,
+                                1.0, 1.0, 1.0,
+                                0.0, 0.0, 1.0};
+                                */
+        /** from Polyhedron
+        glm::vec3 *vertices;
+        int nVertices;
 
-            // Attributes and uniforms for the Octahedron's wireframe
-        GLint wireframeVetexAtributeHandle;
-        GLint wireframeColorUniformHandle;
+        glm::vec3 *vertexNormals;
+        int nNormals
+        */
 
-        GLint mMVPMatrixHandle;
-        GLint mMVMatrixHandle;
         bool initBuffers();
         bool initShaders();
         virtual bool initVertices();

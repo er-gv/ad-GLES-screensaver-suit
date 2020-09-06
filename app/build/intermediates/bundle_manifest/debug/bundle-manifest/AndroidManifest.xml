@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ergv.glScreenSavers"
     android:versionCode="18"
-    android:versionName="1.0.0.0" >
+    android:versionName="1.0.0.3" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -10,7 +10,7 @@
 
     <!-- We require OpenGL ES 2.0 -->
     <uses-feature
-        android:glEsVersion="0x00020000"
+        android:glEsVersion="0x00030000"
         android:required="true" />
 
     <application
