@@ -11,7 +11,7 @@
 
 static constexpr GLfloat faceColors[] ={
         0.941176f, 0.9019607f, 0.549019f,
-        1.0, 1.0, 0.0, 0.7, 1.0, 0.3,
+        0.6, 0.2, 0.2, 0.7, 1.0, 0.3,
         0.894501f, 0.444444f, 0.839215f
 };
 Polyhedrons::Icosahedron::Icosahedron() :
@@ -29,7 +29,8 @@ void Polyhedrons::Icosahedron::update(long time) {
 
     activeTransform.setTransform(initialTransform.get());
     activeTransform.scale(3.4f);
-    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.0, 1.0, -0.0)) ;
+    activeTransform.rotate(glm::radians(angleInDegrees), glm::vec3(0.0, 1.0, -1.0)) ;
+
 }
 
 void Polyhedrons::Icosahedron::render(glm::mat4& viewMat, glm::mat4& projectionMat, const glm::vec3& lightPos) {
@@ -93,12 +94,12 @@ void Polyhedrons::Icosahedron::render(glm::mat4& viewMat, glm::mat4& projectionM
     }*/
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo[1]);
-    glUniform3f(paintColorHandler,0.9, 0.9, 0.9);
+    glUniform3f(paintColorHandler,0.941176f, 0.9019607f, 0.549019f);
     glUniform3f(materialColorHandler,  0.6, 0.2, 0.2);
     glUniform1f(thresholdHandler, 0.075);
     for(int i=0; i<NUM_FACES; ++i) {
         //glUniform3fv(paintSpatter->getUniform("u_FaceNormal"), 1, glm::value_ptr(vertexNormals[i]));
-        //glUniform4f(paintSpatter->getUniform("u_Color"), faceColors[3 * (i % 2) + 3], faceColors[3 * (i % 2) + 4], faceColors[3 * (i % 2) + 5], 1.0f);
+        //glUniform3f(materialColorHandler, faceColors[3 * (i % 2) + 3], faceColors[3 * (i % 2) + 4], faceColors[3 * (i % 2) + 5]);
         glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT,
                        reinterpret_cast<const void *>(((3 * i) )* sizeof(GLuint)));
     }
@@ -153,11 +154,11 @@ void Polyhedrons::Icosahedron::render(glm::mat4& viewMat, glm::mat4& projectionM
 
 bool Polyhedrons::Icosahedron::initFaces()  {
     std::vector<std::tuple<int, int, int>> facesIdx;
-    facesIdx.push_back(std::make_tuple(0, 1, 2));
-    facesIdx.push_back(std::make_tuple( 0, 2, 3 ));
-    facesIdx.push_back(std::make_tuple( 0, 3, 4 ));
-    facesIdx.push_back(std::make_tuple( 0, 4, 5 ));
-    facesIdx.push_back(std::make_tuple( 0, 5, 1 ));
+    facesIdx.push_back(std::make_tuple( 1, 2,0));
+    facesIdx.push_back(std::make_tuple( 2, 3,0 ));
+    facesIdx.push_back(std::make_tuple( 3, 4,0 ));
+    facesIdx.push_back(std::make_tuple( 4, 5,0));
+    facesIdx.push_back(std::make_tuple( 5, 1,0 ));
     facesIdx.push_back(std::make_tuple( 11, 6, 7 ));
     facesIdx.push_back(std::make_tuple( 11, 7, 8 ));
     facesIdx.push_back(std::make_tuple( 11, 8, 9 ));
@@ -190,14 +191,14 @@ bool Polyhedrons::Icosahedron::initBuffers() {
     bool result = false;
 
     GLuint triangleStripIndexBuffer[]= {
-            0,1,2,            0,2,3,            0,3,4,
-            0,4,5,            0,5,1,
+            0,2,1,            0,3,2,            0,4,3,
+            0,5,4,            0,1,5,
 
-            6,1,10, 1,6,2,  7,2,6, 2,7,3, 8,3,7,
-            3,8,4,  9,4,8,  4,9,5, 10,5,9, 5,10,1,
+            10,1,6, 2,6,1,  6,2,7, 3,7,2, 7,3,8,
+            4,8,3,  8,4,9,  5,9,4, 9,5,10, 1,10,5,
 
-            11, 10,9,            11, 9, 8,            11, 8, 7,
-            11, 7, 6,            11, 6, 10};
+            11, 9,10,            11, 8, 9,            11, 7, 8,
+            11, 6, 7,            11, 10, 6};
 
 
     GLuint wireFrameTopBottomLinesIndexBuffer[]=
