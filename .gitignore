@@ -4,6 +4,6 @@ gradlew
 build.gradle
 gradlew.bat
 settings.gradle
-gradle
+/gradle
 gradle.properties  
 local.properties
