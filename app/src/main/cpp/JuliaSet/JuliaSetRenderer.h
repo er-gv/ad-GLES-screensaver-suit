@@ -1,5 +1,5 @@
 //
-// Created by nathan on 09/04/20.
+// Created by Erez on 09/04/20.
 //
 
 #ifndef ANDROIDOPENGLESLESSONSCPP_JULIASETRENDERER_H

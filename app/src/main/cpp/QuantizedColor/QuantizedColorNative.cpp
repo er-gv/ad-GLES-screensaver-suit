@@ -1,5 +1,5 @@
 //
-// Created by nathan on 30/03/20.
+// Created by Erez on 30/03/20.
 //
 
 #include "QuantizedColorNative.h"

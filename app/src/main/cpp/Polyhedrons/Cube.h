@@ -1,5 +1,5 @@
 //
-// Created by nathan on 10/04/20.
+// Created by Erez on 10/04/20.
 //
 
 #ifndef ANDROIDOPENGLESLESSONSCPP_CUBE_H

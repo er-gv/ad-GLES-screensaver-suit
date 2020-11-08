@@ -1,5 +1,5 @@
 //
-// Created by nathan on 20/04/20.
+// Created by Erez on 20/04/20.
 //
 
 #ifndef ANDROIDOPENGLESLESSONSCPP_MODEL_H
