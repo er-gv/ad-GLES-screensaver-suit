@@ -1,10 +1,10 @@
 //
-// Created by nathan on 16/04/20.
+// Created by Erez on 16/04/20.
 //
 
 #include "Octahedron.h"
 //
-// Created by nathan on 16/04/20.
+// Created by Erez on 16/04/20.
 //
 
 #include <android/log.h>

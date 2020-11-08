@@ -1,5 +1,5 @@
 //
-// Created by nathan on 28/04/20.
+// Created by Erez on 28/04/20.
 //
 
 #ifndef ANDROIDOPENGLESLESSONSCPP_GLINCLUDES_H
