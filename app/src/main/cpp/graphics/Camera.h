@@ -1,5 +1,5 @@
 //
-// Created by nathan on 05/04/20.
+// Created by Erez on 05/04/20.
 //
 
 #ifndef ANDROIDOPENGLESLESSONSCPP_CAMERA_H
