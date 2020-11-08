@@ -5,16 +5,16 @@
 #include "utils/Scene.h"
 
 #include <jni.h>
-#include <GLES2/gl2.h>
+#include <GLES3/gl3.h>
 #include <graphics/PerlinNoiseGenerator.h>
 #include "graphics/GLUtils.h"
 //#include "utils/Logger.h"
 
-#include "Polyhedrons/Models/Platonic/Tetrahedron.h"
-#include "Polyhedrons/Models/Platonic/TestCube.h"
-#include "Polyhedrons/Models/Platonic/Octahedron.h"
-#include "Polyhedrons/Models/Platonic/Icosahedron.h"
-#include "Polyhedrons/Models/Platonic/Dodecahedron.h"
+#include "graphics/Models/Platonic/Tetrahedron.h"
+#include "graphics/Models/Platonic/TestCube.h"
+#include "graphics/Models/Platonic/Octahedron.h"
+#include "graphics/Models/Platonic/Icosahedron.h"
+#include "graphics/Models/Platonic/Dodecahedron.h"
 static Scene scene;
 
 
@@ -80,5 +80,3 @@ Java_com_ergv_glScreenSavers_Polyhedrons_PolyhedronsRenderer_nativeDrawFrame(
     scene.update();
     scene.render();
 }
-
-

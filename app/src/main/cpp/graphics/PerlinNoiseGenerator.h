@@ -5,7 +5,10 @@
 #ifndef ANDROIDOPENGLESLESSONSCPP_PERLINNOISEGENERATOR_H
 #define ANDROIDOPENGLESLESSONSCPP_PERLINNOISEGENERATOR_H
 
-#include "graphics/GLincludes.h"
+//#include "graphics/GLincludes.h"
+#include <GLES3/gl3.h>
+//#include <GLES3/gl32.h>
+#include <GLES3/gl3ext.h>
 
 class PerlinNoiseGenerator {
 private:

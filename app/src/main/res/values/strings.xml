@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>    
-    <string name="app_name">OpenGL ES models and shaders</string>
-    <string name="toc">Table of Contents</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">OpenGLES screen savers suit</string>
+    <string name="toc">Browse animated screen savers</string>
     <string name="tocHeader">Enjoy some OpenGL ES animations</string>
     <string name="lesson_three_wallpaper_1">Using GLSurfaceView</string>
     <string name="lesson_three_wallpaper_2">Using re-implementation of GLSurfaceView</string>
@@ -11,11 +11,14 @@
     <string name="quantized_color_subtitle">quantized color squares</string>
     <string name="bricks_shader">Bricks shader activity</string>
     <string name="bricks_shader_subtitle">Bricks shader activity</string>
-    <string name="julia_set_subtitle">The Julia Set animation</string>
-    <string name="julia_set">The Julia Set animation</string>
+    <string name="mandelbrot_set_subtitle">The Mandelbrot Set animation</string>
+    <string name="mandelbrot_set">The Mandelbrot Set animation</string>
     <string name="polyhedrons">Spining polyhedrons</string>
     <string name="polyhedrons_subtitle">Spining polyhedrons</string>
     <string name="spinning_polyhedrons">Spinning polyhedrons</string>
-    <string name="spinning_polyhedrons_subtitle">Spinning Polyhedrons</string>
+    <string name="spinning_polyhedrons_subtitle">Tetrahedron, Cube, Octahedron, Dudcohedron and Icosahedron</string>
+    <string name="geodetic_bodies_title">Geodetic Bodies Activity</string>
+    <string name="geodetic_bodies_subtitle">Sphere, Torus, Cylinder and Cone</string>
     <string name="todo">TODO</string>
+    <string name="daydream_name">screenSaver_service</string>
 </resources>

@@ -10,13 +10,13 @@
 #include <jni.h>
 #include <vector>
 #include "graphics/Camera.h"
-#include "Polyhedrons/Models/Platonic/Polyhedron.h"
-#include "graphics/Model.h"
-#include "graphics/PointLight.h"
+#include "graphics/Models/Platonic/Polyhedron.h"
+#include "graphics/Models/HardCodedModel.h"
+#include "graphics/lights/PointLight.h"
 
 class Scene {
 
-    std::vector<Model*> models;
+    std::vector<HardCodedModel*> models;
     Camera camera;
     glm::mat4 projectionMat;
     glm::mat4 viewMat;
@@ -33,7 +33,7 @@ public:
     void render();
     void update();
     void setBounderies( Bounderies b);
-    void addModel(Model* const m);
+    void addModel(HardCodedModel* const m);
     void setupCamera(double ratio =1.0);
     void setLights();
     void viewport(int width, int height);

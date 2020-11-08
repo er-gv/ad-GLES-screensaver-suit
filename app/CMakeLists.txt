@@ -10,9 +10,9 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 set(APP_STL "c++_shared")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-rtti -fno-exceptions -Wall")
-set(GLM_HOME "/usr/include/GL/glm")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-rtti -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11  -Wall")
+set(GLM_HOME "/usr/include/glm")
 
 include_directories(${GLM_HOME})
 
@@ -39,13 +39,21 @@ add_library(
         src/main/cpp/graphics/Camera.cpp
         src/main/cpp/graphics/PerlinNoiseGenerator.h
         src/main/cpp/graphics/PerlinNoiseGenerator.cpp
-        src/main/cpp/graphics/PointLight.h
-        src/main/cpp/graphics/PointLight.cpp
+        src/main/cpp/graphics/lights/PointLight.h
+        src/main/cpp/graphics/lights/PointLight.cpp
         src/main/cpp/graphics/Material.h
         src/main/cpp/graphics/Material.cpp
-        src/main/cpp/graphics/Model.h
-        src/main/cpp/graphics/Model.cpp
+        #src/main/cpp/graphics/Models/ModelNode.h
+        #src/main/cpp/graphics/Models/ModelNode.cpp
+        #src/main/cpp/graphics/Models/Model.h
+        #src/main/cpp/graphics/Models/Model.cpp
+        src/main/cpp/graphics/Models/HardCodedModel.h
+        src/main/cpp/graphics/Models/HardCodedModel.cpp
         src/main/cpp/graphics/transform.h
+        src/main/cpp/graphics/VertexLayout.h
+        src/main/cpp/graphics/VertexLayout.cpp
+        src/main/cpp/graphics/Geometry.h
+        src/main/cpp/graphics/Geometry.cpp
 
         # utils
         src/main/cpp/utils/Logger.h
@@ -53,41 +61,43 @@ add_library(
         src/main/cpp/utils/Scene.cpp
         src/main/cpp/utils/Scene.h
 
-        #quantized color
-        src/main/cpp/QuantizedColor/QuantizedColorNative.cpp
-        src/main/cpp/QuantizedColor/QuantizedColorNative.h
-
         #bricks
         src/main/cpp/BricksShader/BricksShaderNativeRenderer.cpp
         src/main/cpp/BricksShader/BricksShaderNativeRenderer.h
 
-        #Julia
-        src/main/cpp/JuliaSet/JuliaSetRenderer.cpp
-        src/main/cpp/JuliaSet/JuliaSetRenderer.h
+        #Mandelbrot
+        src/main/cpp/MandelbrotSet/MandelbrotSetRenderer.cpp
+        src/main/cpp/MandelbrotSet/MandelbrotSetRenderer.h
 
         #polyhedrons
         src/main/cpp/Polyhedrons/PolyhedronsRenderer.cpp
         src/main/cpp/Polyhedrons/PolyhedronsRenderer.h
-        src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.h
-        src/main/cpp/Polyhedrons/Models/Platonic/Polyhedron.cpp
-        src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.h
-        src/main/cpp/Polyhedrons/Models/Platonic/Tetrahedron.cpp
-        src/main/cpp/Polyhedrons/Models/Platonic/TestCube.h
-        src/main/cpp/Polyhedrons/Models/Platonic/TestCube.cpp
-        src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.h
-        src/main/cpp/Polyhedrons/Models/Platonic/Octahedron.cpp
-        src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.h
-        src/main/cpp/Polyhedrons/Models/Platonic/Dodecahedron.cpp
-        src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.h
-        src/main/cpp/Polyhedrons/Models/Platonic/Icosahedron.cpp
-        src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.h
-        src/main/cpp/Polyhedrons/Models/Geodetic/Cylinder.cpp
-        src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.h
-        src/main/cpp/Polyhedrons/Models/Geodetic/Sphere.cpp
-        src/main/cpp/Polyhedrons/Models/Geodetic/Torus.h
-        src/main/cpp/Polyhedrons/Models/Geodetic/Torus.cpp
-        src/main/cpp/Polyhedrons/Models/Geodetic/Ring.h
-        src/main/cpp/Polyhedrons/Models/Geodetic/Ring.cpp
+        src/main/cpp/graphics/Models/Platonic/Polyhedron.h
+        src/main/cpp/graphics/Models/Platonic/Polyhedron.cpp
+        src/main/cpp/graphics/Models/Platonic/Tetrahedron.h
+        src/main/cpp/graphics/Models/Platonic/Tetrahedron.cpp
+        src/main/cpp/graphics/Models/Platonic/TestCube.h
+        src/main/cpp/graphics/Models/Platonic/TestCube.cpp
+        src/main/cpp/graphics/Models/Platonic/Octahedron.h
+        src/main/cpp/graphics/Models/Platonic/Octahedron.cpp
+        src/main/cpp/graphics/Models/Platonic/Dodecahedron.h
+        src/main/cpp/graphics/Models/Platonic/Dodecahedron.cpp
+        src/main/cpp/graphics/Models/Platonic/Icosahedron.h
+        src/main/cpp/graphics/Models/Platonic/Icosahedron.cpp
+
+        #Geodetic
+        src/main/cpp/geodeticBodies/GeodeticBodiesRenderer.h
+        src/main/cpp/geodeticBodies/GeodeticBodiesRenderer.cpp
+        src/main/cpp/graphics/Models/Geodetic/Cylinder.h
+        src/main/cpp/graphics/Models/Geodetic/Cylinder.cpp
+        src/main/cpp/graphics/Models/Geodetic/Sphere.h
+        src/main/cpp/graphics/Models/Geodetic/Sphere.cpp
+        src/main/cpp/graphics/Models/Geodetic/Torus.h
+        src/main/cpp/graphics/Models/Geodetic/Torus.cpp
+        src/main/cpp/graphics/Models/Geodetic/Cone.h
+        src/main/cpp/graphics/Models/Geodetic/Cone.cpp
+
+
 
 )
 

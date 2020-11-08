@@ -135,8 +135,8 @@ void BricksShaderNativeRenderer::create() {
 
     // Set bricks and mortar program handle
     {
-        const char* vertex = GLUtils::openTextFile("shaders/vertex/bricks_vertex_shader.glsl");
-        const char* fragment = GLUtils::openTextFile("shaders/fragment/bricks_fragment_shader.glsl");
+        const char* vertex = GLUtils::openTextFile("shaders/bricks/gouraund/vertex.glsl");
+        const char* fragment = GLUtils::openTextFile("shaders/bricks/gouraund/fragment.glsl");
         mBricksProgram = GLUtils::createProgram(&vertex, &fragment);
         if (!mBricksProgram) {
             LOGD("Could not create program");
@@ -146,8 +146,8 @@ void BricksShaderNativeRenderer::create() {
 
     // Set Point program handle
     {
-        const char *vertex = GLUtils::openTextFile("shaders/vertex/point_vertex_shader.glsl");
-        const char *fragment = GLUtils::openTextFile("shaders/fragment/point_fragment_shader.glsl");
+        const char *vertex = GLUtils::openTextFile("shaders/lightSource/pointLight_vertex.glsl");
+        const char *fragment = GLUtils::openTextFile("shaders/lightSource/pointlight_fragment.glsl");
 
         // Set program handles
         mLightProgram = GLUtils::createProgram(&vertex, &fragment);
@@ -458,11 +458,11 @@ Java_com_ergv_glScreenSavers_bricksShader_BricksShaderNativeRenderer_nativeSurfa
 
 }
 
-extern "C" JNIEXPORT void JNICALL
-Java_com_ergv_glScreenSavers_bricksShader_BricksShaderNativeRenderer_nativeDrawFrame(
-        JNIEnv *env, jclass type) {
 
-    if (renderer) {
+extern "C" JNIEXPORT void JNICALL
+Java_com_ergv_glScreenSavers_bricksShader_BricksShaderNativeRenderer_nativeDrawFrame(JNIEnv *env,
+                                                                                     jclass thiz) {
+     if (renderer) {
         renderer->draw();
     }
 }

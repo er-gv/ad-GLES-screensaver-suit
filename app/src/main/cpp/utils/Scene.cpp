@@ -3,7 +3,7 @@
 //
 
 #include "utils/Scene.h"
-#include "graphics/Model.h"
+#include "graphics/Models/HardCodedModel.h"
 #include <vector>
 
 Scene::Scene(): bounderyBox(Bounderies()), camera(){
@@ -29,7 +29,7 @@ void Scene::setBounderies( Bounderies b){
     bounderyBox =b;
 }
 
-void Scene::addModel(Model* const m){
+void Scene::addModel(HardCodedModel* const m){
     models.push_back(m);
 }
 void Scene::setupCamera(double ratio){
